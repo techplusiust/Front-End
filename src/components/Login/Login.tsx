@@ -34,8 +34,7 @@ const LoginForm = () => {
   }, []);
 
   const onSubmit = async (values: any) => {
-    const { email , password} =
-      values;
+    const { email , password } = values;
     const userData = {
       email,
       password,
