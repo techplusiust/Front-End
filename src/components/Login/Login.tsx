@@ -118,10 +118,11 @@ const LoginForm = () => {
           >
             تایید
           </Button>
-
+          <p>آیا حساب کاربری دارید؟
           <Link to={`/signup`} className="text-blue-600">
-            <p>آیا حساب کاربری دارید؟</p>
+            ثبت نام
           </Link>
+          </p>
         </form>
       </div>
       <div className="flex-1 bg-primary flex justify-center items-center">
