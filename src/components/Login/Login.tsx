@@ -26,14 +26,7 @@ const validationSchema = Yup.object({
 const LoginForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  // const [subjectOptions, setSubjectOptions] = useState<any[]>([
-  //   {
-  //     id: "1",
-  //     title: "مهندسی کامپیوتر",
-  //   },
-  // ]);
-  // const query = useQuery();
-  // const redirect = query.get("redirect") || "/";
+
 
   useEffect(() => {
     //todo
