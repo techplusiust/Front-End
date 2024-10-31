@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useQuery } from "../../hooks/useQuery";
 import { eGender } from "../../models/enum/Enums";
+import signupimage from "../../assets/fonts/iranyekan/Images/signupimage.png";
 
 const initialValues = {
   name: "",
@@ -241,7 +242,8 @@ const SignupForm = () => {
         </form>
       </div>
       <div className="flex-1 bg-primary flex justify-center items-center">
-        add picture
+        
+        <img src={signupimage} alt="Login" style={{ width: '768px', height: '825px' }}/>
       </div>
     </div>
   );
