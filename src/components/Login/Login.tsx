@@ -4,6 +4,7 @@ import { Eye, EyeSlash, TickCircle } from "iconsax-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import loginimage from "../../assets/fonts/iranyekan/Images/loginimage.png";
 // import { useQuery } from "../../hooks/useQuery";
 
 const initialValues = {
@@ -125,7 +126,8 @@ const LoginForm = () => {
         </form>
       </div>
       <div className="flex-1 bg-primary flex justify-center items-center">
-        add picture
+        
+        <img src={loginimage} alt="Login" style={{ width: '770px', height: '825px' }}/>
       </div>
     </div>
   );
