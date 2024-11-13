@@ -1,7 +1,8 @@
-import { Button, Input, Select, SelectItem } from "@nextui-org/react";
+import axios from "axios";
+import { Button, Input } from "@nextui-org/react";
 import { useFormik } from "formik";
 import { Eye, EyeSlash, TickCircle } from "iconsax-react";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import loginimage from "../../assets/fonts/iranyekan/Images/loginimage.png";
@@ -28,26 +29,21 @@ const LoginForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
 
-
-  useEffect(() => {
-    //todo
-    // after get departments from api =>  setSubjectOptions(subjectOptions);
-  }, []);
-
+ 
   const onSubmit = async (values: any) => {
-    const { email , password } = values;
-    const userData = {
-      email,
-      password,
-    };
+    const { email, password } = values;
+    const userData = { email, password };
 
-    console.log("userData", userData);
-    //todo
-    // try {
-    //   const { data } = await signupUser(userData);
-    // } catch (error: any) {
-    //   console.log(error);
-    // }
+    try {
+      const response = await axios.post("https://localhost/login", userData);
+      if (response.data.success) {
+        console.log("Login successful. User data:", response.data);
+      } else {
+        console.error("Login error. Please check your credentials.", response.data.message);
+      }
+    } catch (error) {
+      console.error("Server connection error. Please try again later.", error);
+    }
   };
 
   const formik = useFormik({
@@ -119,9 +115,9 @@ const LoginForm = () => {
             تایید
           </Button>
           <p>آیا حساب کاربری دارید؟
-          <Link to={`/signup`} className="text-blue-600">
-            ثبت نام
-          </Link>
+            <Link to={`/signup`} className="text-blue-600">
+              ثبت نام
+            </Link>
           </p>
         </form>
       </div>
