@@ -14,7 +14,7 @@ interface UserContextType {
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
-export const UserContextProvider: React.FC = ({ children }) => {
+export const UserContextProvider: React.FC = ({ children } : any) => {
   const [user, setUser] = useState<User | null>(null);
 
   return (

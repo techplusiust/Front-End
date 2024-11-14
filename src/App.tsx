@@ -5,6 +5,7 @@ import { UserContextProvider } from "./contexts/UserContext";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ProfilePage from "./pages/ProfilePage";
+import Schedule from "./pages/schedule";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/schedule" element={<Schedule />} />
         </Routes>
       </UserContextProvider>
     </BrowserRouter>
