@@ -5,6 +5,8 @@ import { UserContextProvider } from "./contexts/UserContext";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ProfilePage from "./pages/ProfilePage";
+import Navbars from "./components/Navbar/Navbar";
+
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/navbar" element={<Navbars/>} />
         </Routes>
       </UserContextProvider>
     </BrowserRouter>
