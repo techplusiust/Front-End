@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ProfilePage from "./pages/ProfilePage";
 import Navbars from "./components/Navbar/Navbar";
+import Schedule from "./pages/schedule";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/navbar" element={<Navbars/>} />
+          <Route path="/schedule" element={<Schedule />} />
         </Routes>
       </UserContextProvider>
     </BrowserRouter>
