@@ -7,7 +7,6 @@ import * as Yup from "yup";
 import { useQuery } from "../../hooks/useQuery";
 import { eGender } from "../../models/enum/Enums";
 import signupimage from "../../assets/fonts/iranyekan/Images/signupimage.png";
-import { useUser } from "../../contexts/UserContext";
 
 const initialValues = {
   name: "",
@@ -50,8 +49,6 @@ const SignupForm = () => {
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
 
-  const { setUser } = useUser();
-
   useEffect(() => {
     //todo
     // after get departments from api =>  setSubjectOptions(subjectOptions);
@@ -69,8 +66,6 @@ const SignupForm = () => {
       gender,
       department,
     };
-
-    setUser(userData);
 
     console.log("userData", userData);
     //todo
