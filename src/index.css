@@ -32,25 +32,3 @@
     font-family: iranyekan !important;
   }
 }
-.weekCalendar {
-  padding-left: 0;
-  padding-right: 125px;
-}
-.weekCalendar__scaleHeader {
-  right: 0;
-  left: unset;
-}
-
-.weekCalendar__header {
-  right: 0px;
-  padding-right: 125px;
-  padding-left: 0;
-}
-
-.weekCalendar__scaleColumn {
-  right: 0;
-}
-.weekCalendar__content {
-  direction: rtl;
-  height: 100%;
-}
