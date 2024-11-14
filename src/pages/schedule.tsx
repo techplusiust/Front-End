@@ -239,6 +239,8 @@ const generateTimeSlots = (): string[] => {
     locale: persian_fa,
   });
 
+
+
   let currentTime = new DateObject(startTime);
   while (currentTime < endTime) {
     slots.push(currentTime.format("HH:mm"));
