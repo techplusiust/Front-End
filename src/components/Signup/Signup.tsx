@@ -1,7 +1,8 @@
+import axios from "axios";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 import { useFormik } from "formik";
 import { Eye, EyeSlash, TickCircle } from "iconsax-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useQuery } from "../../hooks/useQuery";
@@ -49,36 +50,27 @@ const SignupForm = () => {
   ]);
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
-
-  const { setUser } = useUser();
-
-  useEffect(() => {
-    //todo
-    // after get departments from api =>  setSubjectOptions(subjectOptions);
-  }, []);
-
   const onSubmit = async (values: any) => {
-    const { name, email, username, password1, password2, gender, department } =
-      values;
+    const { name, email, username, password1, gender, department } = values;
     const userData = {
       name,
       username,
       email,
-      password1,
-      password2,
+      password: password1,
       gender,
       department,
     };
+    try {
+      const response = await axios.post("https://localhost/signup", userData);
+      if (response.data.success) {
+        console.log("Signup successful. User data:", response.data);
+      } else {
+        console.error("Signup error. Please check your details.", response.data.message);
+      }
+    } catch (error) {
+      console.error("Server connection error. Please try again later.", error);
+    }
 
-    setUser(userData);
-
-    console.log("userData", userData);
-    //todo
-    // try {
-    //   const { data } = await signupUser(userData);
-    // } catch (error: any) {
-    //   console.log(error);
-    // }
   };
 
   const formik = useFormik({
@@ -90,17 +82,10 @@ const SignupForm = () => {
   });
 
   return (
-    <div
-      className="flex justify-between h-screen relative"
-      lang="he-IL"
-      dir="rtl"
-    >
+    <div className="flex justify-between h-screen relative" lang="he-IL" dir="rtl">
       <div className="h-full overflow-y-scroll py-8 flex-1 flex flex-col justify-start items-center">
         <h1 className="text-blue-700 font-bold text-xl mb-4">ثبت نام</h1>
-        <form
-          className=" w-1/2 flex flex-col items-center justify-center gap-1"
-          onSubmit={formik.handleSubmit}
-        >
+        <form className=" w-1/2 flex flex-col items-center justify-center gap-1" onSubmit={formik.handleSubmit}>
           <Input
             {...formik.getFieldProps({ name: "name" })}
             name="name"
@@ -140,11 +125,7 @@ const SignupForm = () => {
             labelPlacement={"outside"}
             type={isVisible ? "text" : "password"}
             endContent={
-              <button
-                className="focus:outline-none"
-                type="button"
-                onClick={toggleVisibility}
-              >
+              <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                 {isVisible ? (
                   <span className="text-2xl text-default-400 pointer-events-none">
                     <EyeSlash variant="Bulk" />
@@ -167,23 +148,6 @@ const SignupForm = () => {
             variant="bordered"
             labelPlacement={"outside"}
             type={isVisible ? "text" : "password"}
-            endContent={
-              <button
-                className="focus:outline-none"
-                type="button"
-                onClick={toggleVisibility}
-              >
-                {isVisible ? (
-                  <span className="text-2xl text-default-400 pointer-events-none">
-                    <EyeSlash variant="Bulk" />
-                  </span>
-                ) : (
-                  <span className="text-2xl text-default-400 pointer-events-none">
-                    <Eye variant="Bulk" />
-                  </span>
-                )}
-              </button>
-            }
             errorMessage={<>{formik.errors.password2 ?? ""}</>}
             isInvalid={!!formik.errors.password2}
           />
@@ -196,20 +160,8 @@ const SignupForm = () => {
             errorMessage={<>{formik.errors.gender ?? ""}</>}
             isInvalid={!!formik.errors.gender}
           >
-            <SelectItem
-              className="dark:bg-primaryDark-600 dark:text-default-300 dark:data-[hover=true]:bg-primaryDark-700 dark:data-[selectable=true]:focus:bg-primaryDark-700 data-[hover=true]:bg-primary-100 data-[selectable=true]:focus:bg-primary-100"
-              key={eGender.Male}
-              value={eGender.Male}
-            >
-              آقا
-            </SelectItem>
-            <SelectItem
-              className="dark:bg-primaryDark-600 dark:text-default-300 dark:data-[hover=true]:bg-primaryDark-700 dark:data-[selectable=true]:focus:bg-primaryDark-700 data-[hover=true]:bg-primary-100 data-[selectable=true]:focus:bg-primary-100"
-              key={eGender.Female}
-              value={eGender.Female}
-            >
-              خانم
-            </SelectItem>
+            <SelectItem key={eGender.Male} value={eGender.Male}>آقا</SelectItem>
+            <SelectItem key={eGender.Female} value={eGender.Female}>خانم</SelectItem>
           </Select>
           <Select
             size="sm"
@@ -221,13 +173,7 @@ const SignupForm = () => {
             isInvalid={!!formik.errors.department}
           >
             {subjectOptions.map((item: any) => (
-              <SelectItem
-                className="dark:bg-primaryDark-600 dark:text-default-300 dark:data-[hover=true]:bg-primaryDark-700 dark:data-[selectable=true]:focus:bg-primaryDark-700 data-[hover=true]:bg-primary-100 data-[selectable=true]:focus:bg-primary-100"
-                key={item.id}
-                value={item.id}
-              >
-                {item.title}
-              </SelectItem>
+              <SelectItem key={item.id} value={item.id}>{item.title}</SelectItem>
             ))}
           </Select>
           <Button
@@ -247,7 +193,6 @@ const SignupForm = () => {
         </form>
       </div>
       <div className="flex-1 bg-primary flex justify-center items-center">
-        
         <img src={signupimage} alt="Login" style={{ width: '768px', height: '825px' }}/>
       </div>
     </div>
