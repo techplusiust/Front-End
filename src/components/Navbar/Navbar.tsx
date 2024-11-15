@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button ,Dropdown ,DropdownTrigger ,Avatar , DropdownMenu ,NavbarMenuToggle} from "@nextui-org/react";
 import { AcmeLogo } from "../Navbar/AcmeLogo";
 import img1 from "../../assets/fonts/iranyekan/Images/article7.webp";  // Ensure the import is correct
-
+import { useUser } from "../../context/UserContext";
 interface PageRoutes {
   [key: string]: string;
 }
@@ -20,6 +20,7 @@ const pageRoutes: PageRoutes = {
 
 const Navbars: React.FC = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
+  const { user, isLoggedIn, logout } = useUser();
 
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen((prev) => !prev);
@@ -41,17 +42,22 @@ const Navbars: React.FC = () => {
       </NavbarContent>
 
       <NavbarContent style={{ flex: 1, justifyContent: "flex-end",  alignItems: "center"}}>
-        <NavLink to="/login">
-          <Button color="success">
-            Login
-          </Button>
-        </NavLink>
-        <NavLink to="/signup">
-          <Button color= "danger">
-            Signup
-          </Button>
-        </NavLink>
-
+      {!isLoggedIn && (
+        <>
+            <NavLink to="/login">
+              <Button color="success">
+                Login
+              </Button>
+            </NavLink>
+            <NavLink to="/signup">
+              <Button color= "danger">
+                Signup
+              </Button>
+            </NavLink>
+        </>
+        )}
+        {isLoggedIn && (
+          <>
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <Avatar color="primary" src={img1} size="md" />
@@ -69,12 +75,13 @@ const Navbars: React.FC = () => {
             <NavLink key="professors" to="/professors">
               Professors
             </NavLink>
-            <NavLink key="logout" color= "danger" to="/404">
+            <NavLink key="logout" color= "danger" to="/404" onClick={logout}>
               Logout
             </NavLink>
           </DropdownMenu>
         </Dropdown>
-
+        </>
+        )}
         <NavbarMenuToggle className="md:hidden" aria-label="toggle navigation" onClick={handleMobileMenuToggle} />
 
       {isMobileMenuOpen && (

@@ -6,6 +6,7 @@ import {  useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import loginimage from "../../assets/fonts/iranyekan/Images/loginimage.png";
+import { useUser } from "../../contexts/UserContext";
 // import { useQuery } from "../../hooks/useQuery";
 
 const initialValues = {
@@ -28,6 +29,7 @@ const validationSchema = Yup.object({
 const LoginForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const { login } = useUser();
 
  
   const onSubmit = async (values: any) => {
@@ -38,6 +40,7 @@ const LoginForm = () => {
       const response = await axios.post("https://localhost/login", userData);
       if (response.data.success) {
         console.log("Login successful. User data:", response.data);
+        login(response.data.user);
       } else {
         console.error("Login error. Please check your credentials.", response.data.message);
       }
