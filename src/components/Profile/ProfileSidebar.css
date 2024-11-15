@@ -1,0 +1,36 @@
+html,
+body {
+  height: 100vh !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.profile-sidebar-card {
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  overflow-y: auto;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.5);
+}
+
+.profile-sidebar-avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.profile-sidebar-avatar {
+  border-color: blue;
+  margin-top: 30px;
+}
+
+.profile-sidebar-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 80px;
+}

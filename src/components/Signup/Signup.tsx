@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { useQuery } from "../../hooks/useQuery";
 import { eGender } from "../../models/enum/Enums";
 import signupimage from "../../assets/fonts/iranyekan/Images/signupimage.png";
+import { useUser } from "../../contexts/UserContext";
 
 const initialValues = {
   name: "",
@@ -49,7 +50,6 @@ const SignupForm = () => {
   ]);
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
-
   const onSubmit = async (values: any) => {
     const { name, email, username, password1, gender, department } = values;
     const userData = {
@@ -60,7 +60,6 @@ const SignupForm = () => {
       gender,
       department,
     };
-
     try {
       const response = await axios.post("https://localhost/signup", userData);
       if (response.data.success) {
@@ -71,6 +70,7 @@ const SignupForm = () => {
     } catch (error) {
       console.error("Server connection error. Please try again later.", error);
     }
+
   };
 
   const formik = useFormik({
