@@ -30,7 +30,7 @@ const styles = {
       gap: "20px",
     },
     button: {
-      backgroundColor: "#0056b3", // رنگ دکمه اصلی
+      backgroundColor: "#0056b3", 
       color: "#fff",
       padding: "15px 30px",
       fontSize: "1rem",
@@ -69,3 +69,4 @@ export default function Landing() {
     </>
   )
 }
+
