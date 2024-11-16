@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button ,Dropdown ,DropdownTrigger ,Avatar , DropdownMenu ,NavbarMenuToggle} from "@nextui-org/react";
 import { AcmeLogo } from "../Navbar/AcmeLogo";
 import img1 from "../../assets/fonts/iranyekan/Images/article7.webp";  // Ensure the import is correct
-import { useUser } from "../../context/UserContext";
+import { useUser } from "../../contexts/UserContext";
 interface PageRoutes {
   [key: string]: string;
 }
