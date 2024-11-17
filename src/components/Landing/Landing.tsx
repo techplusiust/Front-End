@@ -1,5 +1,7 @@
 import React from "react";
 import "../Landing/Landing.css";
+import {Link} from 'react-router-dom';
+
 import img1 from "../../assets/fonts/iranyekan/Images/landingimage/hero-bg.png";
 import img2 from "../../assets/fonts/iranyekan/Images/landingimage/slider-img.png";
 import img3 from "../../assets/fonts/iranyekan/Images/landingimage/s1.png";
@@ -23,6 +25,7 @@ import { BsInstagram } from "react-icons/bs";
 import { LiaMapMarkerAltSolid } from "react-icons/lia";
 import { FaPhone } from "react-icons/fa";
 import { FaRegEnvelope } from "react-icons/fa6";
+
 // import { NavLink } from 'react-router-dom'
 
 // const styles = {
@@ -64,6 +67,7 @@ import { FaRegEnvelope } from "react-icons/fa6";
 //       transition: "all 0.3s ease",
 //     },
 //   };
+
 export default function Landing() {
   return (
     <>
@@ -99,11 +103,11 @@ export default function Landing() {
         </div>
 
         <header className="header_section">
-          <div className="container-fluid">
-            <nav className="navbar navbar-expand-lg custom_nav-container flex justify-between ml-5" dir="ltr">
-              <a className="navbar-brand" href="index.html" >
+          <div className="container">
+            <nav className="navbar navbar-expand-lg custom_nav-container flex justify-between " dir="ltr">
+              <Link className="navbar-brand" to="index.html" >
                 <span>Finexo</span>
-              </a>
+              </Link>
 
               {/* <button
                 className="navbar-toggler"
@@ -121,36 +125,36 @@ export default function Landing() {
               >
                 <ul className="flex m-2 text-white">
                   <li className="nav-item active me-5">
-                    <a className="nav-link" href="index.html">
+                    <Link className="nav-link" to="/">
                       Home <span className="sr-only">(current)</span>
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item me-5">
-                    <a className="nav-link" href="about.html">
+                    <Link className="nav-link" to="/about">
                       {" "}
                       About
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item me-5">
-                    <a className="nav-link" href="service.html">
+                    <Link className="nav-link" to="/service">
                       Services
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item me-5">
-                    <a className="nav-link" href="why.html">
+                    <Link className="nav-link" to="/why">
                       Why Us
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item me-5">
-                    <a className="nav-link" href="team.html">
+                    <Link className="nav-link" to="/team">
                       Team
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item me-5">
-                    <a className="nav-link" href="#">
+                    <Link className="nav-link" to="/login">
                       {" "}
                       <i className="fa fa-user" aria-hidden="true"></i> Login
-                    </a>
+                    </Link>
                   </li>
                   <form className="form-inline">
                     <button
@@ -183,16 +187,16 @@ export default function Landing() {
                           Currency
                         </h1>
                         <p>
-                          Explicabo esse amet tempora quibusdam laudantium,
+                          Explicabo esse amet tempora quibusdam laudantium,<br/>
                           laborum eaque magnam fugiat hic? Esse dicta aliquid
                           error repudiandae earum suscipit fugiat molestias,
                           veniam, vel architecto veritatis delectus repellat
                           modi impedit sequi.
                         </p>
                         <div className="btn-box">
-                          <a href="" className="btn1">
+                          <Link to="" className="btn1">
                             Read More
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -205,7 +209,7 @@ export default function Landing() {
                 </div>
               </div>
             </div>
-            <ol className="carousel-indicators">
+            {/* <ol className="carousel-indicators">
               <li
                 data-target="#customCarousel1"
                 data-slide-to="0"
@@ -213,13 +217,13 @@ export default function Landing() {
               ></li>
               <li data-target="#customCarousel1" data-slide-to="1"></li>
               <li data-target="#customCarousel1" data-slide-to="2"></li>
-            </ol>
+            </ol> */}
           </div>
         </section>
       </div>
 
       <section className="service_section layout_padding">
-        <div className="service_container">
+       
           <div className="container ">
             <div className="heading_container heading_center">
               <h2>
@@ -243,7 +247,7 @@ export default function Landing() {
                       content of a page when looking at its layout. The point of
                       using
                     </p>
-                    <a href="">Read More</a>
+                    <Link to="">Read More</Link>
                   </div>
                 </div>
               </div>
@@ -259,7 +263,7 @@ export default function Landing() {
                       content of a page when looking at its layout. The point of
                       using
                     </p>
-                    <a href="">Read More</a>
+                    <Link to="">Read More</Link>
                   </div>
                 </div>
               </div>
@@ -275,16 +279,16 @@ export default function Landing() {
                       content of a page when looking at its layout. The point of
                       using
                     </p>
-                    <a href="">Read More</a>
+                    <Link to="">Read More</Link>
                   </div>
                 </div>
               </div>
             </div>
             <div className="btn-box">
-              <a href="">View All</a>
+              <Link to="">View All</Link>
             </div>
           </div>
-        </div>
+       
       </section>
 
       <section className="about_section layout_padding">
@@ -298,7 +302,7 @@ export default function Landing() {
               aspernatur ullam vel beatae rerum ipsum voluptatibus
             </p>
           </div>
-          <div className="row flex">
+          <div className="row flex" dir="ltr">
             <div className="col-md-6 ">
               <div className="img-box">
                 <img src={img6} alt="" />
@@ -309,7 +313,7 @@ export default function Landing() {
                 <h3>We Are Finexo</h3>
                 <p>
                   There are many variations of passages of Lorem Ipsum
-                  available, but the majority have suffered alteration in some
+                  available, but the majority <br/>have suffered alteration in some
                   form, by injected humour, or randomised words which don't look
                   even slightly believable. If you are going to use a passage of
                   Lorem Ipsum, you need to be sure there isn't anything
@@ -321,14 +325,14 @@ export default function Landing() {
                   unde alias eius ducimus reiciendis soluta eveniet. Nobis ullam
                   ab omnis quasi expedita.
                 </p>
-                <a href="">Read More</a>
+                <Link to="">Read More</Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* <section className="why_section layout_padding">
+      <section className="why_section layout_padding">
 <div className="container">
   <div className="heading_container heading_center">
     <h2>
@@ -394,12 +398,12 @@ export default function Landing() {
     </div>
   </div>
   <div className="btn-box">
-    <a href="">
+    <Link to="">
       Read More
-    </a>
+    </Link>
   </div>
 </div>
-</section> */}
+</section>
 
       <section className="team_section layout_padding">
         <div className="container-fluid">
@@ -421,18 +425,18 @@ export default function Landing() {
                     <p>Marketing Head</p>
                   </div>
                   <div className="info_social">
-                    <a href="">
+                    <Link to="">
                       <FaFacebookF />
-                    </a>
-                    <a href="">
+                    </Link>
+                    <Link to="">
                       <RiTwitterXFill />
-                    </a>
-                    <a href="">
+                    </Link>
+                    <Link to="">
                       <SlSocialLinkedin />
-                    </a>
-                    <a href="">
+                    </Link>
+                    <Link to="">
                       <BsInstagram />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -446,18 +450,18 @@ export default function Landing() {
                     <p>Marketing Head</p>
                   </div>
                   <div className="info_social">
-                    <a href="">
+                    <Link to="">
                       <FaFacebookF />
-                    </a>
-                    <a href="">
+                    </Link>
+                    <Link to="">
                       <RiTwitterXFill />
-                    </a>
-                    <a href="">
+                    </Link>
+                    <Link to="">
                       <SlSocialLinkedin />
-                    </a>
-                    <a href="">
+                    </Link>
+                    <Link to="">
                       <BsInstagram />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -471,18 +475,18 @@ export default function Landing() {
                     <p>Marketing Head</p>
                   </div>
                   <div className="info_social">
-                    <a href="">
+                    <Link to="">
                       <FaFacebookF />
-                    </a>
-                    <a href="">
+                    </Link>
+                    <Link to="">
                       <RiTwitterXFill />
-                    </a>
-                    <a href="">
+                    </Link>
+                    <Link to="">
                       <SlSocialLinkedin />
-                    </a>
-                    <a href="">
+                    </Link>
+                    <Link to="">
                       <BsInstagram />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -496,18 +500,18 @@ export default function Landing() {
                     <p>Marketing Head</p>
                   </div>
                   <div className="info_social">
-                    <a href="">
+                    <Link to="">
                       <FaFacebookF />
-                    </a>
-                    <a href="">
+                    </Link>
+                    <Link to="">
                       <RiTwitterXFill />
-                    </a>
-                    <a href="">
+                    </Link>
+                    <Link to="">
                       <SlSocialLinkedin />
-                    </a>
-                    <a href="">
+                    </Link>
+                    <Link to="">
                       <BsInstagram />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -621,40 +625,40 @@ export default function Landing() {
               <div className="info_contact">
                 <h4>Address</h4>
                 <div className="contact_link_box">
-                  <a href="" className="flex">
+                  <Link to="" className="flex">
                   <LiaMapMarkerAltSolid />
                     <span>Location</span>
-                  </a>
-                  <a href="" className="text-nowrap flex">
+                  </Link>
+                  <Link to="" className="text-nowrap flex">
                     <FaPhone />
                     <span>Call +01 1234567890</span>
-                  </a>
-                  <a href="" className="flex">
+                  </Link>
+                  <Link to="" className="flex">
                   <FaRegEnvelope />
                     <span>demo@gmail.com</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="info_social">
-                <a href="">
+                <Link to="">
                   <FaFacebookF />
-                </a>
-                <a href="">
+                </Link>
+                <Link to="">
                   <RiTwitterXFill />
-                </a>
-                <a href="">
+                </Link>
+                <Link to="">
                   <SlSocialLinkedin />
-                </a>
-                <a href="">
+                </Link>
+                <Link to="">
                   <BsInstagram />
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-md-6 col-lg-3 info_col flex text-center mr-4">
               <div className="info_detail">
                 <h4>Info</h4>
                 <p className="text-balance">
-                  necessary, making this the first true generator on the
+                  necessary, making this the first true generator on the<br/>
                   Internet. It uses a dictionary of over 200 Latin words,
                   combined with a handful
                 </p>
@@ -664,21 +668,21 @@ export default function Landing() {
               <div className="info_link_box mr-9">
                 <h4>Links</h4>
                 <div className="info_links">
-                  <a className="active" href="index.html">
+                  <Link className="active" to="index.html">
                     Home
-                  </a>
-                  <a className="" href="about.html">
+                  </Link>
+                  <Link className="" to="about.html">
                     About
-                  </a>
-                  <a className="" href="service.html">
+                  </Link>
+                  <Link className="" to="service.html">
                     Services
-                  </a>
-                  <a className="" href="why.html">
+                  </Link>
+                  <Link className="" to="why.html">
                     Why Us
-                  </a>
-                  <a className="" href="team.html">
+                  </Link>
+                  <Link className="" to="team.html">
                     Team
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -697,7 +701,7 @@ export default function Landing() {
         <div className="container">
           <p>
             &copy; <span id="displayYear"></span> All Rights Reserved By
-            <a href="https://html.design/">Free Html Templates</a>
+            <Link to="https://html.design/">Free Html Templates</Link>
           </p>
         </div>
       </section>

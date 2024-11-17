@@ -394,8 +394,11 @@ a:focus {
 }
 
 .service_section {
-  position: relative;
+ 
+  width: 100%;
 }
+
+
 
 .service_section .box {
   display: -webkit-box;
@@ -1026,11 +1029,15 @@ a:focus {
   }
 }
 
-@media (max-width: 376px) {}
-
-@media (min-width: 1200px) {
+@media (min-width: 640px) {
   .container {
-    max-width: 1170px;
+    max-width: 640px;
   }
 }
+@media (min-width: 1200px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
