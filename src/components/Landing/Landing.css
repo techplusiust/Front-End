@@ -815,7 +815,7 @@ a:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 20px;
+  margin-top:30px;
   margin-bottom: 10px;
 }
 
@@ -831,7 +831,7 @@ a:focus {
           align-items: center;
   color: #ffffff;
   border-radius: 100%;
-  margin-right: 10px;
+  margin-right: 20px;
   font-size: 24px;
 }
 
@@ -887,11 +887,36 @@ a:focus {
 .info_section form input::-ms-input-placeholder {
   color: #ffffff;
 }
+.custom{
+  flex-basis: 50rem;
+}
 
+.boxy{
+  flex-basis: 50rem;
+}
+
+.why{
+  flex-basis: 50rem;
+}
+
+.team{
+  flex-basis: 50rem;
+}
+
+.item{
+  flex-basis: 50rem;
+}
+
+.carous{
+  flex-basis: 50rem;
+}
 .info_section form input::placeholder {
   color: #ffffff;
 }
-
+.fonty{
+  font-size: 3rem;
+  font-weight: bold;
+}
 .info_section form button {
   width: 100%;
   text-align: center;

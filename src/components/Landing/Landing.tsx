@@ -26,74 +26,11 @@ import { LiaMapMarkerAltSolid } from "react-icons/lia";
 import { FaPhone } from "react-icons/fa";
 import { FaRegEnvelope } from "react-icons/fa6";
 
-// import { NavLink } from 'react-router-dom'
 
-// const styles = {
-//     container: {
-//       backgroundColor: "#007BFF", // رنگ آبی
-//       color: "#fff",
-//       display: "flex",
-//       flexDirection: "column" as const,
-//       alignItems: "center",
-//       justifyContent: "center",
-//       height: "100vh",
-//       margin: 0,
-//     },
-//     header: {
-//       textAlign: "center" as const,
-//       marginBottom: "30px",
-//     },
-//     title: {
-//       fontSize: "3rem",
-//       fontWeight: "bold" as const,
-//       margin: 0,
-//     },
-//     subtitle: {
-//       fontSize: "1.2rem",
-//       marginTop: "10px",
-//     },
-//     main: {
-//       display: "flex",
-//       gap: "20px",
-//     },
-//     button: {
-//       backgroundColor: "#0056b3",
-//       color: "#fff",
-//       padding: "15px 30px",
-//       fontSize: "1rem",
-//       border: "none",
-//       borderRadius: "5px",
-//       cursor: "pointer",
-//       transition: "all 0.3s ease",
-//     },
-//   };
 
 export default function Landing() {
   return (
     <>
-      {/* <div style={styles.container}>
-      <header style={styles.header}>
-        <h1 style={styles.title}>سیستم انتخاب واحد</h1>
-        <p style={styles.subtitle}>
-          برای انتخاب واحد ترم جدید وارد سیستم شوید یا اطلاعات دوره‌ها را مشاهده کنید.
-        </p>
-      </header>
-      <main style={styles.main}>
-        <NavLink to="/login">
-        <button style={styles.button}>
-          ورود به سیستم
-        </button>
-        </NavLink>
-        <NavLink to="/navbar">
-        <button
-          style={{ ...styles.button, backgroundColor: "#28a745" }}
-          onClick={() => alert("نمایش اطلاعات دوره‌ها")}
-        >
-          مشاهده دوره‌ها
-        </button>
-        </NavLink>
-      </main>
-    </div> */}
 
       <div className="hero_area">
         <div className="hero_bg_box">
@@ -102,7 +39,7 @@ export default function Landing() {
           </div>
         </div>
 
-        <header className="header_section">
+        <header className="header_section flex justify-center">
           <div className="container">
             <nav className="navbar navbar-expand-lg custom_nav-container flex justify-between " dir="ltr">
               <Link className="navbar-brand" to="index.html" >
@@ -170,17 +107,17 @@ export default function Landing() {
           </div>
         </header>
 
-        <section className="slider_section ">
+        <section className="slider_section">
           <div
             id="customCarousel1"
             className="carousel slide"
             data-ride="carousel"
           >
-            <div className="carousel-inner">
+            <div className="carousel-inner flex justify-center">
               <div className="carousel-item active">
                 <div className="container ">
                   <div className="row flex" dir="ltr">
-                    <div className="col-md-6 ">
+                    <div className="carous col-md-6 ">
                       <div className="detail-box">
                         <h1>
                           Crypto <br />
@@ -200,7 +137,7 @@ export default function Landing() {
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="carous col-md-6">
                       <div className="img-box">
                         <img src={img2} alt="" />
                       </div>
@@ -222,11 +159,10 @@ export default function Landing() {
         </section>
       </div>
 
-      <section className="service_section layout_padding">
-       
+      <section className="service_section layout_padding flex justify-center">
           <div className="container ">
             <div className="heading_container heading_center">
-              <h2>
+              <h2 className="fonty">
                 Our <span>Services</span>
               </h2>
               <p>
@@ -234,8 +170,8 @@ export default function Landing() {
                 but the majority have suffered alteration
               </p>
             </div>
-            <div className="row flex flex-col justify-center items-center">
-              <div className="col-md-4">
+            <div className="row flex">
+              <div className="boxy col-md-4 ml-2">
                 <div className="box">
                   <div className="img-box">
                     <img src={img3} alt="" />
@@ -251,7 +187,7 @@ export default function Landing() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-4 ">
+              <div className="boxy col-md-4 ml-2">
                 <div className="box ">
                   <div className="img-box">
                     <img src={img4} alt="" />
@@ -267,7 +203,7 @@ export default function Landing() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-4 ">
+              <div className="boxy col-md-4 ml-2">
                 <div className="box ">
                   <div className="img-box">
                     <img src={img5} alt="" />
@@ -291,10 +227,10 @@ export default function Landing() {
        
       </section>
 
-      <section className="about_section layout_padding">
+      <section className="about_section layout_padding flex justify-center">
         <div className="container">
           <div className="heading_container heading_center">
-            <h2>
+            <h2 className="fonty">
               About <span>Us</span>
             </h2>
             <p>
@@ -302,13 +238,13 @@ export default function Landing() {
               aspernatur ullam vel beatae rerum ipsum voluptatibus
             </p>
           </div>
-          <div className="row flex" dir="ltr">
-            <div className="col-md-6 ">
+          <div className="row flex justify-between" dir="ltr">
+            <div className="custom col-md-6">
               <div className="img-box">
                 <img src={img6} alt="" />
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="custom col-md-6">
               <div className="detail-box text-center">
                 <h3>We Are Finexo</h3>
                 <p>
@@ -332,90 +268,89 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="why_section layout_padding">
-<div className="container">
-  <div className="heading_container heading_center">
-    <h2>
-      Why Choose <span>Us</span>
-    </h2>
-  </div>
-  <div className="why_container">
-    <div className="box">
-      <div className="img-box">
-        <img src={img7} alt=""/>
+      <section className="why_section layout_padding flex justify-center">
+      <div className="container">
+        <div className="heading_container heading_center">
+          <h2 className="fonty">
+            Why Choose <span>Us</span>
+          </h2>
+        </div>
+        <div className="why_container ">
+          <div className="why box">
+            <div className="img-box">
+              <img src={img7} alt=""/>
+            </div>
+            <div className="detail-box">
+              <h5>
+                Expert Management
+              </h5>
+              <p>
+                Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia id, aspernatur nihil.
+                Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat veritatis unde reiciendis possimus animi autem natus
+              </p>
+            </div>
+          </div>
+          <div className="why box">
+            <div className="img-box">
+              <img src={img8} alt=""/>
+            </div>
+            <div className="detail-box">
+              <h5>
+                Secure Investment
+              </h5>
+              <p>
+                Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia id, aspernatur nihil.
+                Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat veritatis unde reiciendis possimus animi autem natus
+              </p>
+            </div>
+          </div>
+          <div className="why box">
+            <div className="img-box">
+              <img src={img9} alt=""/>
+            </div>
+            <div className="detail-box">
+              <h5>
+                Instant Trading
+              </h5>
+              <p>
+                Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia id, aspernatur nihil.
+                Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat veritatis unde reiciendis possimus animi autem natus
+              </p>
+            </div>
+          </div>
+          <div className="why box">
+            <div className="img-box">
+              <img src={img10} alt=""/>
+            </div>
+            <div className="detail-box">
+              <h5>
+                Happy Customers
+              </h5>
+              <p>
+                Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia id, aspernatur nihil.
+                Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat veritatis unde reiciendis possimus animi autem natus
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="btn-box">
+          <Link to="">
+            Read More
+          </Link>
+        </div>
       </div>
-      <div className="detail-box">
-        <h5>
-          Expert Management
-        </h5>
-        <p>
-          Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia id, aspernatur nihil.
-          Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat veritatis unde reiciendis possimus animi autem natus
-        </p>
-      </div>
-    </div>
-    <div className="box">
-      <div className="img-box">
-        <img src={img8} alt=""/>
-      </div>
-      <div className="detail-box">
-        <h5>
-          Secure Investment
-        </h5>
-        <p>
-          Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia id, aspernatur nihil.
-          Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat veritatis unde reiciendis possimus animi autem natus
-        </p>
-      </div>
-    </div>
-    <div className="box">
-      <div className="img-box">
-        <img src={img9} alt=""/>
-      </div>
-      <div className="detail-box">
-        <h5>
-          Instant Trading
-        </h5>
-        <p>
-          Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia id, aspernatur nihil.
-          Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat veritatis unde reiciendis possimus animi autem natus
-        </p>
-      </div>
-    </div>
-    <div className="box">
-      <div className="img-box">
-        <img src={img10} alt=""/>
-      </div>
-      <div className="detail-box">
-        <h5>
-          Happy Customers
-        </h5>
-        <p>
-          Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia id, aspernatur nihil.
-          Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat veritatis unde reiciendis possimus animi autem natus
-        </p>
-      </div>
-    </div>
-  </div>
-  <div className="btn-box">
-    <Link to="">
-      Read More
-    </Link>
-  </div>
-</div>
-</section>
+      </section>
 
-      <section className="team_section layout_padding">
+      <section className="team_section layout_padding flex justify-center">
         <div className="container-fluid">
           <div className="heading_container heading_center">
-            <h2 className="">
+            <h2 className="fonty">
               Our <span> Team</span>
             </h2>
           </div>
-
           <div className="team_container">
             <div className="row flex justify-center">
-              <div className="col-lg-3 col-sm-6 me-3">
+              <div className="team col-lg-3 col-sm-6 me-3">
                 <div className="box w-[290px]">
                   <div className="img-box">
                     <img src={img11} className="img1" alt="" />
@@ -424,23 +359,23 @@ export default function Landing() {
                     <h5>Joseph Brown</h5>
                     <p>Marketing Head</p>
                   </div>
-                  <div className="info_social">
-                    <Link to="">
+                  <div className="info_social flex justify-center">
+                    <Link to="" className="ml-2">
                       <FaFacebookF />
                     </Link>
-                    <Link to="">
+                    <Link to="" className="ml-2">
                       <RiTwitterXFill />
                     </Link>
-                    <Link to="">
+                    <Link to="" className="ml-2">
                       <SlSocialLinkedin />
                     </Link>
-                    <Link to="">
+                    <Link to="" className="ml-2">
                       <BsInstagram />
                     </Link>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-sm-6 me-4">
+              <div className="team col-lg-3 col-sm-6 me-3">
                 <div className="box w-[290px]">
                   <div className="img-box">
                     <img src={img12} className="img1" alt="" />
@@ -449,23 +384,23 @@ export default function Landing() {
                     <h5>Nancy White</h5>
                     <p>Marketing Head</p>
                   </div>
-                  <div className="info_social">
-                    <Link to="">
+                  <div className="info_social flex justify-center">
+                    <Link to="" className="ml-2">
                       <FaFacebookF />
                     </Link>
-                    <Link to="">
+                    <Link to="" className="ml-2">
                       <RiTwitterXFill />
                     </Link>
-                    <Link to="">
+                    <Link to="" className="ml-2">
                       <SlSocialLinkedin />
                     </Link>
-                    <Link to="">
+                    <Link to="" className="ml-2">
                       <BsInstagram />
                     </Link>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-sm-6 me-4">
+              <div className="teamcol-lg-3 col-sm-6 me-3">
                 <div className="box w-[290px]">
                   <div className="img-box">
                     <img src={img13} className="img1" alt="" />
@@ -474,23 +409,23 @@ export default function Landing() {
                     <h5>Earl Martinez</h5>
                     <p>Marketing Head</p>
                   </div>
-                  <div className="info_social">
-                    <Link to="">
+                  <div className="info_social flex justify-center">
+                    <Link to="" className="ml-2">
                       <FaFacebookF />
                     </Link>
-                    <Link to="">
+                    <Link to="" className="ml-2">
                       <RiTwitterXFill />
                     </Link>
-                    <Link to="">
+                    <Link to="" className="ml-2">
                       <SlSocialLinkedin />
                     </Link>
-                    <Link to="">
+                    <Link to="" className="ml-2">
                       <BsInstagram />
                     </Link>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-sm-6 me-4">
+              <div className="team col-lg-3 col-sm-6 me-3">
                 <div className="box w-[290px]">
                   <div className="img-box">
                     <img src={img14} className="img1" alt="" />
@@ -499,17 +434,17 @@ export default function Landing() {
                     <h5>Josephine Allard</h5>
                     <p>Marketing Head</p>
                   </div>
-                  <div className="info_social">
-                    <Link to="">
+                  <div className="info_social flex justify-center">
+                    <Link to="" className="ml-2">
                       <FaFacebookF />
                     </Link>
-                    <Link to="">
+                    <Link to="" className="ml-2">
                       <RiTwitterXFill />
                     </Link>
-                    <Link to="">
+                    <Link to="" className="ml-2">
                       <SlSocialLinkedin />
                     </Link>
-                    <Link to="">
+                    <Link to="" className="ml-2">
                       <BsInstagram />
                     </Link>
                   </div>
@@ -520,15 +455,15 @@ export default function Landing() {
         </div>
       </section>
       
-      <section className="client_section layout_padding">
+      <section className="client_section layout_padding flex justify-center">
         <div className="container">
           <div className="heading_container heading_center psudo_white_primary mb_45">
-            <h2>
+            <h2 className="fonty">
               What says our <span>Customers</span>
             </h2>
           </div>
           <div className="carousel-wrap">
-            <div className="owl-carousel client_owl-carousel flex justify-center items-center">
+            <div className="owl-carousel client_owl-carousel flex ">
               <div className="item">
                 <div className="box">
                   <div className="img-box">
@@ -618,7 +553,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="info_section layout_padding2">
+      <section className="info_section layout_padding2 flex justify-center">
         <div className="container ">
           <div dir="ltr" className="row flex">
             <div className="col-md-6 col-lg-3 info_col">
@@ -630,11 +565,11 @@ export default function Landing() {
                     <span>Location</span>
                   </Link>
                   <Link to="" className="text-nowrap flex">
-                    <FaPhone />
+                    <FaPhone className="me-1"/>
                     <span>Call +01 1234567890</span>
                   </Link>
                   <Link to="" className="flex">
-                  <FaRegEnvelope />
+                  <FaRegEnvelope className="me-1"/>
                     <span>demo@gmail.com</span>
                   </Link>
                 </div>
@@ -697,7 +632,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="footer_section">
+      <section className="footer_section flex justify-center">
         <div className="container">
           <p>
             &copy; <span id="displayYear"></span> All Rights Reserved By
