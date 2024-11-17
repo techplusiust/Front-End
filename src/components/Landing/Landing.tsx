@@ -120,8 +120,8 @@ export default function Landing() {
                     <div className="carous col-md-6 ">
                       <div className="detail-box">
                         <h1>
-                          Crypto <br />
-                          Currency
+                          Unit <br />
+                          Selection
                         </h1>
                         <p>
                           Explicabo esse amet tempora quibusdam laudantium,<br/>
