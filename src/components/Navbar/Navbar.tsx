@@ -3,7 +3,7 @@ import * as React from "react";
 import { NavLink } from "react-router-dom";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button ,Dropdown ,DropdownTrigger ,Avatar , DropdownMenu ,NavbarMenuToggle} from "@nextui-org/react";
 import { AcmeLogo } from "../Navbar/AcmeLogo";
-import img1 from "../../assets/fonts/iranyekan/Images/article7.webp";  // Ensure the import is correct
+import mg1 from "../../assets/fonts/iranyekan/Images/article7.webp";  // Ensure the import is correct
 import { useUser } from "../../contexts/UserContext";
 interface PageRoutes {
   [key: string]: string;
@@ -60,7 +60,7 @@ const Navbars: React.FC = () => {
           <>
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
-            <Avatar color="primary" src={img1} size="md" />
+            <Avatar src={mg1} size="md" />
           </DropdownTrigger>
           <DropdownMenu aria-label="User menu actions">
             <NavLink key="profile" to="/profile">
