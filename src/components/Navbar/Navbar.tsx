@@ -1,10 +1,13 @@
 
 import * as React from "react";
 import { NavLink } from "react-router-dom";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button ,Dropdown ,DropdownTrigger ,Avatar , DropdownMenu ,NavbarMenuToggle} from "@nextui-org/react";
+import {Navbar, NavbarBrand, NavbarContent, Button ,Dropdown ,DropdownTrigger ,Avatar , DropdownMenu ,NavbarMenuItem } from "@nextui-org/react";
 import { AcmeLogo } from "../Navbar/AcmeLogo";
 import mg1 from "../../assets/fonts/iranyekan/Images/article7.webp";  // Ensure the import is correct
 import { useUser } from "../../contexts/UserContext";
+import { MdClose } from 'react-icons/md';
+import { FiMenu } from 'react-icons/fi';
+// import Offcanvas from 'react-bootstrap/Offcanvas';
 
 
 const Navbars: React.FC = () => {
@@ -12,7 +15,8 @@ const Navbars: React.FC = () => {
   const { user, isLoggedIn, logout } = useUser();
 
   const handleMobileMenuToggle = () => {
-    setMobileMenuOpen((prev) => !prev);
+    // console.log("Toggle clicked");
+    setMobileMenuOpen(!isMobileMenuOpen)
   };
 
   return (
@@ -23,7 +27,7 @@ const Navbars: React.FC = () => {
         <p className="font-bold text-inherit">ACME</p>
       </NavbarBrand>
 
-      <NavbarContent className="hidden sm:flex gap-5 p-3"  style={{ marginLeft: "45px", flexBasis:'4rem',whiteSpace: 'nowrap' }}>
+      <NavbarContent className="hidden sm:flex gap-4 p-3"  style={{ marginLeft: "45px", flexBasis:'4rem',whiteSpace: 'nowrap' }}>
            <NavLink key="profile" to="/profile">
               پروفایل
             </NavLink>
@@ -80,27 +84,56 @@ const Navbars: React.FC = () => {
         </Dropdown>
         </>
         )}
-        <NavbarMenuToggle className="md:hidden" aria-label="toggle navigation" onClick={handleMobileMenuToggle} />
+        <Button
+          className="toggle sm:flex md:hidden bg-white"
+          onClick={handleMobileMenuToggle}
+        >
+        {isMobileMenuOpen ? (
+          <MdClose style={{ width: '32px', height: '32px' }} />
+        ) : (
+          <FiMenu
+            style={{
+              width: '32px',
+              height: '32px',
+            }}
+          />
+        )}
+        </Button>
 
-      {isMobileMenuOpen && (
-        <NavbarContent onClick={() => setMobileMenuOpen(false)}>
-            <NavLink key="profile" to="/profile">
-              پروفایل
-            </NavLink>
-            <NavLink key="courses" to="/courses">
-              دوره ها
-            </NavLink>
-            <NavLink key="exam" to="/exam">
-              برنامه امتحانی
-            </NavLink>
-            <NavLink key="professors" to="/professors">
-              اساتید
-            </NavLink>
-        </NavbarContent>
+
+      {isMobileMenuOpen && ( 
+      //   <Offcanvas backdrop="static" show={isMobileMenuOpen} onHide={() => setMobileMenuOpen(false)}>
+      //   <Offcanvas.Header closeButton>
+      //     <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+      //   </Offcanvas.Header>
+      //   <Offcanvas.Body>
+      //     I will not close if you click outside of me.
+      //   </Offcanvas.Body>
+      // </Offcanvas>
+
+      <NavbarMenuItem  className="bg-purple-600 md:hidden flex flex-col items-center justify-center mt-15 w-[10rem]">
+           <div className="mr-5">
+               <NavLink key="profile" to="/profile">
+                 پروفایل
+               </NavLink>
+               <NavLink key="courses" to="/courses">
+                 دوره ها
+               </NavLink>
+               <NavLink key="exam" to="/exam">
+                 برنامه امتحانی
+               </NavLink>
+               <NavLink key="professors" to="/professors">
+                 اساتید
+               </NavLink>
+               </div>
+           </NavbarMenuItem > 
       )}
+          
       </NavbarContent>
       </div>
     </Navbar>
+
+    
   );
 };
 
