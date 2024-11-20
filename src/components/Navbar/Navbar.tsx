@@ -5,18 +5,7 @@ import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button ,Dropdown ,Dropdo
 import { AcmeLogo } from "../Navbar/AcmeLogo";
 import mg1 from "../../assets/fonts/iranyekan/Images/article7.webp";  // Ensure the import is correct
 import { useUser } from "../../contexts/UserContext";
-interface PageRoutes {
-  [key: string]: string;
-}
 
-const pages = ["Profile", "Courses", "ExamSchedule", "Professors"];
-
-const pageRoutes: PageRoutes = {
-  Profile: "/profile",
-  Courses: "/courses",
-  ExamSchedule: "/exam",
-  Professors: "/professors",
-};
 
 const Navbars: React.FC = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
@@ -27,20 +16,29 @@ const Navbars: React.FC = () => {
   };
 
   return (
-    <Navbar isBordered style={{ direction: "ltr", width: "100%", maxWidth: "100vw" ,backgroundColor: "#328bf1"}}>
-      <NavbarBrand style={{ marginLeft: "5px"}}>
+    <Navbar isBordered style={{ direction: "ltr",backgroundColor: "#328bf1"}}>
+      <div className="flex items-center justify-start">
+      <NavbarBrand style={{ marginLeft: "-15px", flexBasis:'4rem'}}>
         <AcmeLogo />
         <p className="font-bold text-inherit">ACME</p>
       </NavbarBrand>
 
-      <NavbarContent className="hidden sm:flex gap-5"  style={{ marginLeft: "-35px" }}>
-        {pages.map((page) => (
-          <NavLink key={page} to={pageRoutes[page]}>
-            {page}
-          </NavLink>
-        ))}
+      <NavbarContent className="hidden sm:flex gap-5 p-3"  style={{ marginLeft: "45px", flexBasis:'4rem',whiteSpace: 'nowrap' }}>
+           <NavLink key="profile" to="/profile">
+              پروفایل
+            </NavLink>
+            <NavLink key="courses" to="/courses">
+              دوره ها
+            </NavLink>
+            <NavLink key="exam" to="/exam">
+              برنامه امتحانی
+            </NavLink>
+            <NavLink key="professors" to="/professors">
+              اساتید
+            </NavLink>
       </NavbarContent>
-
+      </div>
+      <div className="flex items-center justify-end">
       <NavbarContent style={{ flex: 1, justifyContent: "flex-end",  alignItems: "center"}}>
       {!isLoggedIn && (
         <>
@@ -64,19 +62,19 @@ const Navbars: React.FC = () => {
           </DropdownTrigger>
           <DropdownMenu aria-label="User menu actions">
             <NavLink key="profile" to="/profile">
-              Profile
+              پروفایل
             </NavLink>
             <NavLink key="courses" to="/courses">
-              Courses
+              دوره ها
             </NavLink>
             <NavLink key="exam" to="/exam">
-              ExamSchedule
+              برنامه امتحانی
             </NavLink>
             <NavLink key="professors" to="/professors">
-              Professors
+              اساتید
             </NavLink>
             <NavLink key="logout" color= "danger" to="/404" onClick={logout}>
-              Logout
+              خروج
             </NavLink>
           </DropdownMenu>
         </Dropdown>
@@ -85,24 +83,23 @@ const Navbars: React.FC = () => {
         <NavbarMenuToggle className="md:hidden" aria-label="toggle navigation" onClick={handleMobileMenuToggle} />
 
       {isMobileMenuOpen && (
-        <NavbarContent>
-          {pages.map((page , index) => (
-            <NavbarItem key={index}>
-              <NavLink
-                to={pageRoutes[page]}
-                onClick={() => setMobileMenuOpen(false)}
-                color={
-                  index === 2 ? "primary" : index === pages.length - 1 ? "danger" : "foreground"
-                }
-                className="w-full"
-              >
-                {page}
-              </NavLink>
-            </NavbarItem>
-          ))}
+        <NavbarContent onClick={() => setMobileMenuOpen(false)}>
+            <NavLink key="profile" to="/profile">
+              پروفایل
+            </NavLink>
+            <NavLink key="courses" to="/courses">
+              دوره ها
+            </NavLink>
+            <NavLink key="exam" to="/exam">
+              برنامه امتحانی
+            </NavLink>
+            <NavLink key="professors" to="/professors">
+              اساتید
+            </NavLink>
         </NavbarContent>
       )}
       </NavbarContent>
+      </div>
     </Navbar>
   );
 };
