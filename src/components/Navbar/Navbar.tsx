@@ -36,9 +36,12 @@ const CustomNavbar: React.FC = () => {
   };
 
   return (
-    <Navbar isBordered style={{ direction: "rtl", backgroundColor: "#328bf1" }}>
+    <Navbar
+      classNames={{ base: "bg-primary-300", wrapper: "max-w-full" }}
+      isBordered
+    >
       <div className="flex items-center justify-start">
-        <NavbarBrand className=" basis-16 flex justify-center items-center">
+        <NavbarBrand className="basis-16 flex justify-center items-center">
           <AcmeLogo />
           <p className="font-bold text-inherit">Tech Plus</p>
         </NavbarBrand>
@@ -71,7 +74,9 @@ const CustomNavbar: React.FC = () => {
           {!auth.isLoggedin && (
             <>
               <NavLink to="/login">
-                <Button color="success">Login</Button>
+                <Button variant="solid" color="primary">
+                  ورود / ثبت نام
+                </Button>
               </NavLink>
               {/* <NavLink to="/signup">
                 <Button color="danger">Signup</Button>
@@ -110,7 +115,7 @@ const CustomNavbar: React.FC = () => {
             </>
           )}
           <Button
-            className="toggle sm:flex sm:hidden bg-white"
+            className="toggle sm:hidden bg-white"
             onClick={handleMobileMenuToggle}
           >
             {isMobileMenuOpen ? (
