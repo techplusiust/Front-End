@@ -5,7 +5,6 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ProfilePage from "./pages/ProfilePage";
 import Schedule from "./pages/schedule";
-import NavbarPage from "./pages/NavbarPage";
 import LandingPage from "./pages/LandingPage";
 import { useRecoilValue } from "recoil";
 import { authAtom } from "./recoil/authAtom";
@@ -27,7 +26,6 @@ function App() {
                 </Layout>
               }
             />
-
             <Route
               path="/schedule"
               element={
