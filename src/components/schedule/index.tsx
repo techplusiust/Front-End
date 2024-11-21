@@ -4,8 +4,8 @@ import { Card, Select, SelectItem, Checkbox } from "@nextui-org/react";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { formatDate } from "./utils/formatDate";
-import { calculateRowSpan } from "./utils/calculateRowSpan";
 import Logic from "./logic";
+import { calculateRowSpan } from "./utils/calculateRowSpan";
 
 const Schedule: React.FC = () => {
   const {
