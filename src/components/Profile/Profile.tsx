@@ -1,10 +1,12 @@
 import { Card, Avatar, Divider, Spacer, Button } from "@nextui-org/react";
-import { useUser } from "../../contexts/UserContext";
+
 import { useEffect } from "react";
 import "./ProfileSidebar.css";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "../../recoil/userAtom";
 
 const ProfileSidebar = () => {
-  const { user } = useUser();
+  const user = useRecoilValue(userAtom);
 
   useEffect(() => {
     if (user) {
@@ -19,7 +21,7 @@ const ProfileSidebar = () => {
       shadow="md"
       className="profile-sidebar-card"
       style={{
-        height: "100vh"
+        height: "100vh",
       }}
     >
       <div className="profile-sidebar-avatar-container">
@@ -43,7 +45,6 @@ const ProfileSidebar = () => {
       <div className="profile-sidebar-buttons">
         <Button
           color="primary"
-          auto
           onClick={() => console.log("Change Password")}
           style={{ flex: 1 }}
         >
@@ -52,7 +53,6 @@ const ProfileSidebar = () => {
 
         <Button
           color="danger"
-          auto
           onClick={() => console.log("Delete Profile")}
           style={{ flex: 1 }}
         >
