@@ -27,7 +27,7 @@ const Navbars: React.FC = () => {
   };
 
   return (
-    <Navbar isBordered style={{ direction: "ltr", width: "100%", maxWidth: "100vw" ,backgroundColor: "#328bf1"}}>
+    <Navbar isBordered style={{ direction: "ltr", width: "100%", maxWidth: "100vw" ,backgroundColor: "#328bf1", position:'fixed'}}>
       <NavbarBrand style={{ marginLeft: "5px"}}>
         <AcmeLogo />
         <p className="font-bold text-inherit">ACME</p>

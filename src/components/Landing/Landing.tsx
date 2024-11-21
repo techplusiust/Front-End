@@ -25,6 +25,7 @@ import { BsInstagram } from "react-icons/bs";
 import { LiaMapMarkerAltSolid } from "react-icons/lia";
 import { FaPhone } from "react-icons/fa";
 import { FaRegEnvelope } from "react-icons/fa6";
+import NavbarPage from "../../pages/NavbarPage";
 
 
 
@@ -39,73 +40,9 @@ export default function Landing() {
           </div>
         </div>
 
-        <header className="header_section flex justify-center">
-          <div className="container">
-            <nav className="navbar navbar-expand-lg custom_nav-container flex justify-between " dir="ltr">
-              <Link className="navbar-brand" to="index.html" >
-                <span>Finexo</span>
-              </Link>
-
-              {/* <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className=""> </span>
-              </button> */}
-
-              <div
-              >
-                <ul className="flex m-2 text-white">
-                  <li className="nav-item active me-5">
-                    <Link className="nav-link" to="/">
-                      Home <span className="sr-only">(current)</span>
-                    </Link>
-                  </li>
-                  <li className="nav-item me-5">
-                    <Link className="nav-link" to="/about">
-                      {" "}
-                      About
-                    </Link>
-                  </li>
-                  <li className="nav-item me-5">
-                    <Link className="nav-link" to="/service">
-                      Services
-                    </Link>
-                  </li>
-                  <li className="nav-item me-5">
-                    <Link className="nav-link" to="/why">
-                      Why Us
-                    </Link>
-                  </li>
-                  <li className="nav-item me-5">
-                    <Link className="nav-link" to="/team">
-                      Team
-                    </Link>
-                  </li>
-                  <li className="nav-item me-5">
-                    <Link className="nav-link" to="/login">
-                      {" "}
-                      <i className="fa fa-user" aria-hidden="true"></i> Login
-                    </Link>
-                  </li>
-                  <form className="form-inline">
-                    <button
-                      className="btn  my-2 my-sm-0 nav_search-btn"
-                      type="submit"
-                    >
-                      <i className="fa fa-search" aria-hidden="true"></i>
-                    </button>
-                  </form>
-                </ul>
-              </div>
-            </nav>
-          </div>
-        </header>
+        
+           <NavbarPage/>
+        
 
         <section className="slider_section">
           <div
