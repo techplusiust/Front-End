@@ -126,36 +126,34 @@ const Navbars: React.FC = () => {
             )}
           </Button>
 
+          {isMobileMenuOpen && (
+            //   <Offcanvas backdrop="static" show={isMobileMenuOpen} onHide={() => setMobileMenuOpen(false)}>
+            //   <Offcanvas.Header closeButton>
+            //     <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+            //   </Offcanvas.Header>
+            //   <Offcanvas.Body>
+            //     I will not close if you click outside of me.
+            //   </Offcanvas.Body>
+            // </Offcanvas>
 
-      {isMobileMenuOpen && ( 
-      //   <Offcanvas backdrop="static" show={isMobileMenuOpen} onHide={() => setMobileMenuOpen(false)}>
-      //   <Offcanvas.Header closeButton>
-      //     <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-      //   </Offcanvas.Header>
-      //   <Offcanvas.Body>
-      //     I will not close if you click outside of me.
-      //   </Offcanvas.Body>
-      // </Offcanvas>
-
-      <NavbarMenuItem  className="bg-purple-600 md:hidden flex flex-col items-center justify-center mt-15 w-[10rem]">
-           <div className="mr-5">
-               <NavLink key="profile" to="/profile">
-                 پروفایل
-               </NavLink>
-               <NavLink key="courses" to="/courses">
-                 دوره ها
-               </NavLink>
-               <NavLink key="exam" to="/exam">
-                 برنامه امتحانی
-               </NavLink>
-               <NavLink key="professors" to="/professors">
-                 اساتید
-               </NavLink>
-               </div>
-           </NavbarMenuItem > 
-      )}
-          
-      </NavbarContent>
+            <NavbarMenuItem className="bg-purple-600 md:hidden flex flex-col items-center justify-center mt-15 w-[10rem]">
+              <div className="mr-5">
+                <NavLink key="profile" to="/profile">
+                  پروفایل
+                </NavLink>
+                <NavLink key="courses" to="/courses">
+                  دوره ها
+                </NavLink>
+                <NavLink key="exam" to="/exam">
+                  برنامه امتحانی
+                </NavLink>
+                <NavLink key="professors" to="/professors">
+                  اساتید
+                </NavLink>
+              </div>
+            </NavbarMenuItem>
+          )}
+        </NavbarContent>
       </div>
     </Navbar>
   );
