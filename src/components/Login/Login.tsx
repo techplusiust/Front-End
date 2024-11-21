@@ -3,13 +3,12 @@ import { Button, Input } from "@nextui-org/react";
 import { useFormik } from "formik";
 import { Eye, EyeSlash, TickCircle } from "iconsax-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import loginimage from "../../assets/fonts/iranyekan/Images/loginimage.png";
 import { useSetRecoilState } from "recoil";
 import { userAtom } from "../../recoil/userAtom";
 import { authAtom } from "../../recoil/authAtom";
-
 
 const initialValues = {
   email: "",
@@ -29,37 +28,48 @@ const validationSchema = Yup.object({
 });
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  // const { login } = useUser();
   const setUser = useSetRecoilState(userAtom);
   const setAuth = useSetRecoilState(authAtom);
 
   const onSubmit = async (values: any) => {
     const { email, password } = values;
     const userData = { email, password };
-
-    try {
-      const response = await axios.post("https://localhost/login", userData);
-      if (response.data.success) {
-        console.log("Login successful. User data:", response.data);
-        setUser({
-          username: email,
-          email: email,
-          department: "-",
-        });
-        setAuth({
-          isLoggedin: true,
-        });
-      } else {
-        console.error(
-          "Login error. Please check your credentials.",
-          response.data.message
-        );
-      }
-    } catch (error) {
-      console.error("Server connection error. Please try again later.", error);
-    }
+    // todo => remove after api
+    setUser({
+      username: email,
+      email: email,
+      department: "-",
+    });
+    setAuth({
+      isLoggedin: true,
+    });
+    navigate("/profile");
+    // todo => after api
+    // try {
+    //   const response = await axios.post("https://localhost/login", userData);
+    //   if (response.data.success) {
+    //     console.log("Login successful. User data:", response.data);
+    //     setUser({
+    //       username: email,
+    //       email: email,
+    //       department: "-",
+    //     });
+    //     setAuth({
+    //       isLoggedin: true,
+    //     });
+    //     navigate("/profile");
+    //   } else {
+    //     console.error(
+    //       "Login error. Please check your credentials.",
+    //       response.data.message
+    //     );
+    //   }
+    // } catch (error) {
+    //   console.error("Server connection error. Please try again later.", error);
+    // }
   };
 
   const formik = useFormik({
