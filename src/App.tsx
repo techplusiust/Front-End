@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ProfilePage from "./pages/ProfilePage";
-import Schedule from "./pages/schedule";
+import Schedule from "./pages/schedulePage";
 import LandingPage from "./pages/LandingPage";
 import { useRecoilValue } from "recoil";
 import { authAtom } from "./recoil/authAtom";
