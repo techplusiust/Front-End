@@ -57,19 +57,15 @@ export default function Landing() {
                     <div className="carous col-md-6 ">
                       <div className="detail-box">
                         <h1>
-                          Crypto <br />
-                          Currency
+                        انتخاب واحد
                         </h1>
                         <p>
-                          Explicabo esse amet tempora quibusdam laudantium,<br/>
-                          laborum eaque magnam fugiat hic? Esse dicta aliquid
-                          error repudiandae earum suscipit fugiat molestias,
-                          veniam, vel architecto veritatis delectus repellat
-                          modi impedit sequi.
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+
                         </p>
                         <div className="btn-box">
                           <Link to="" className="btn1">
-                            Read More
+                          ادامه مطلب
                           </Link>
                         </div>
                       </div>
@@ -495,15 +491,15 @@ export default function Landing() {
           <div dir="ltr" className="row flex">
             <div className="col-md-6 col-lg-3 info_col">
               <div className="info_contact">
-                <h4>Address</h4>
+                <h4>آدرس</h4>
                 <div className="contact_link_box">
                   <Link to="" className="flex">
                   <LiaMapMarkerAltSolid />
-                    <span>Location</span>
+                    <span>مکان</span>
                   </Link>
                   <Link to="" className="text-nowrap flex">
                     <FaPhone className="me-1"/>
-                    <span>Call +01 1234567890</span>
+                    <span>تماس +01 1234567890</span>
                   </Link>
                   <Link to="" className="flex">
                   <FaRegEnvelope className="me-1"/>
@@ -528,11 +524,11 @@ export default function Landing() {
             </div>
             <div className="col-md-6 col-lg-3 info_col flex text-center mr-4">
               <div className="info_detail">
-                <h4>Info</h4>
+                <h4>اطلاعات</h4>
                 <p className="text-balance">
-                  necessary, making this the first true generator on the<br/>
-                  Internet. It uses a dictionary of over 200 Latin words,
-                  combined with a handful
+                ضروری است، و این اولین مولد واقعی در <br/> است
+                  اینترنت. از فرهنگ لغت بیش از 200 کلمه لاتین استفاده می کند،
+                  با یک مشت ترکیب شده است
                 </p>
               </div>
             </div>
@@ -541,25 +537,25 @@ export default function Landing() {
                 <h4>Links</h4>
                 <div className="info_links">
                   <Link className="active" to="index.html">
-                    Home
+                    خانه
                   </Link>
                   <Link className="" to="about.html">
-                    About
+                    درباره ما
                   </Link>
                   <Link className="" to="service.html">
-                    Services
+                    دستگاه ها
                   </Link>
                   <Link className="" to="why.html">
-                    Why Us
+                  چرا ما
                   </Link>
                   <Link className="" to="team.html">
-                    Team
+                    تیم
                   </Link>
                 </div>
               </div>
             </div>
             <div className="col-md-6 col-lg-3 info_col mr-9">
-              <h4>Subscribe</h4>
+              <h4>مشترک شوید</h4>
               <form action="#">
                 <input type="text" placeholder="Enter email" />
                 <button type="submit">Subscribe</button>
