@@ -56,7 +56,7 @@ const CustomNavbar: React.FC = () => {
           <NavLink key="profile" to="/profile">
             پروفایل
           </NavLink>
-          <NavLink key="courses" to="/courses">
+          <NavLink key="schedule" to="/schedule">
             دوره ها
           </NavLink>
           <NavLink key="exam" to="/exam">
@@ -93,7 +93,7 @@ const CustomNavbar: React.FC = () => {
                   <NavLink key="profile" to="/profile">
                     پروفایل
                   </NavLink>
-                  <NavLink key="courses" to="/courses">
+                  <NavLink key="schedule" to="/schedule">
                     دوره ها
                   </NavLink>
                   <NavLink key="exam" to="/exam">
@@ -211,7 +211,7 @@ const CustomNavbar: React.FC = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/courses"
+                      to="/schedule"
                       className="block py-2 px-3 text-gray-700 hover:bg-primary-300 rounded-lg"
                     >
                       دوره‌ها
