@@ -36,7 +36,7 @@ const CustomNavbar: React.FC = () => {
 
   return (
     <Navbar
-      classNames={{ base: "bg-primary-300", wrapper: "max-w-full"}}
+      classNames={{ base: "bg-primary-300", wrapper: "max-w-full" }}
       className="fixed"
       isBordered
     >
@@ -114,23 +114,22 @@ const CustomNavbar: React.FC = () => {
               </Dropdown>
             </>
           )}
-         <Button
-        className="toggle sm:hidden bg-white py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-        aria-haspopup="dialog"
-        aria-expanded={isMobileMenuOpen}
-        aria-controls="hs-offcanvas-example"
-        onClick={handleMobileMenuToggle}
-        type="button"
-      >
-        {isMobileMenuOpen ? (
-          <MdClose style={{ width: "32px", height: "32px" }} />
-        ) : (
-          <FiMenu style={{ width: "32px", height: "32px" }} />
-        )}
-      </Button>
+          <Button
+            className="toggle sm:hidden bg-white py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+            aria-haspopup="dialog"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="hs-offcanvas-example"
+            onClick={handleMobileMenuToggle}
+            type="button"
+          >
+            {isMobileMenuOpen ? (
+              <MdClose style={{ width: "32px", height: "32px" }} />
+            ) : (
+              <FiMenu style={{ width: "32px", height: "32px" }} />
+            )}
+          </Button>
 
           {isMobileMenuOpen && (
-            
             // <Navbar className="ml-auto" style={{ marginTop: "19rem" }}>
             //   <NavbarMenuItem
             //     className="bg-[#328bf1] sm:hidden flex flex-col items-center justify-center w-[10rem] h-[15rem] rounded"
