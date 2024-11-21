@@ -9,7 +9,6 @@ import {
   DropdownTrigger,
   Avatar,
   DropdownMenu,
-
 } from "@nextui-org/react";
 import { AcmeLogo } from "./AcmeLogo";
 import mg1 from "../../assets/fonts/iranyekan/Images/article7.webp";
