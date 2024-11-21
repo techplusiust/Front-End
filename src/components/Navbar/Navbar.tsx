@@ -87,7 +87,7 @@ const CustomNavbar: React.FC = () => {
             <>
               <Dropdown placement="bottom-end">
                 <DropdownTrigger>
-                  <Avatar src={mg1} size="md" />
+                  <Linkvatar src={mg1} size="md" />
                 </DropdownTrigger>
                 <DropdownMenu aria-label="User menu actions">
                   <NavLink key="profile" to="/profile">
@@ -202,36 +202,36 @@ const CustomNavbar: React.FC = () => {
               <div className="p-4 bg-white">
                 <ul className="flex flex-col space-y-3">
                   <li>
-                    <a
-                      href="/profile"
+                    <NavLink
+                      to="/profile"
                       className="block py-2 px-3 text-gray-700 hover:bg-primary-300 rounded-lg"
                     >
                       پروفایل
-                    </a>
+                    </NavLink>
                   </li>
                   <li>
-                    <a
-                      href="/courses"
+                    <NavLink
+                      to="/courses"
                       className="block py-2 px-3 text-gray-700 hover:bg-primary-300 rounded-lg"
                     >
                       دوره‌ها
-                    </a>
+                    </NavLink>
                   </li>
                   <li>
-                    <a
-                      href="/exam"
+                    <NavLink
+                      to="/exam"
                       className="block py-2 px-3 text-gray-700 hover:bg-primary-300 rounded-lg"
                     >
                       برنامه امتحانی
-                    </a>
+                    </NavLink>
                   </li>
                   <li>
-                    <a
-                      href="/professors"
+                    <NavLink
+                      to="/professors"
                       className="block py-2 px-3 text-gray-700 hover:bg-primary-300 rounded-lg"
                     >
                       اساتید
-                    </a>
+                    </NavLink>
                   </li>
                 </ul>
               </div>
