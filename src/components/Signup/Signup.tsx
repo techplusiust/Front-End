@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { useQuery } from "../../hooks/useQuery";
 import { eGender } from "../../models/enum/Enums";
 import signupimage from "../../assets/fonts/iranyekan/Images/signupimage.png";
-import { useUser } from "../../contexts/UserContext";
+
 
 const initialValues = {
   name: "",
@@ -65,12 +65,14 @@ const SignupForm = () => {
       if (response.data.success) {
         console.log("Signup successful. User data:", response.data);
       } else {
-        console.error("Signup error. Please check your details.", response.data.message);
+        console.error(
+          "Signup error. Please check your details.",
+          response.data.message
+        );
       }
     } catch (error) {
       console.error("Server connection error. Please try again later.", error);
     }
-
   };
 
   const formik = useFormik({
@@ -82,10 +84,17 @@ const SignupForm = () => {
   });
 
   return (
-    <div className="flex justify-between h-screen relative" lang="he-IL" dir="rtl">
+    <div
+      className="flex justify-between h-screen relative"
+      lang="he-IL"
+      dir="rtl"
+    >
       <div className="h-full overflow-y-scroll py-8 flex-1 flex flex-col justify-start items-center">
         <h1 className="text-blue-700 font-bold text-xl mb-4">ثبت نام</h1>
-        <form className=" w-1/2 flex flex-col items-center justify-center gap-1" onSubmit={formik.handleSubmit}>
+        <form
+          className=" w-1/2 flex flex-col items-center justify-center gap-1"
+          onSubmit={formik.handleSubmit}
+        >
           <Input
             {...formik.getFieldProps({ name: "name" })}
             name="name"
@@ -125,7 +134,11 @@ const SignupForm = () => {
             labelPlacement={"outside"}
             type={isVisible ? "text" : "password"}
             endContent={
-              <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+              <button
+                className="focus:outline-none"
+                type="button"
+                onClick={toggleVisibility}
+              >
                 {isVisible ? (
                   <span className="text-2xl text-default-400 pointer-events-none">
                     <EyeSlash variant="Bulk" />
@@ -160,8 +173,12 @@ const SignupForm = () => {
             errorMessage={<>{formik.errors.gender ?? ""}</>}
             isInvalid={!!formik.errors.gender}
           >
-            <SelectItem key={eGender.Male} value={eGender.Male}>آقا</SelectItem>
-            <SelectItem key={eGender.Female} value={eGender.Female}>خانم</SelectItem>
+            <SelectItem key={eGender.Male} value={eGender.Male}>
+              آقا
+            </SelectItem>
+            <SelectItem key={eGender.Female} value={eGender.Female}>
+              خانم
+            </SelectItem>
           </Select>
           <Select
             size="sm"
@@ -173,7 +190,9 @@ const SignupForm = () => {
             isInvalid={!!formik.errors.department}
           >
             {subjectOptions.map((item: any) => (
-              <SelectItem key={item.id} value={item.id}>{item.title}</SelectItem>
+              <SelectItem key={item.id} value={item.id}>
+                {item.title}
+              </SelectItem>
             ))}
           </Select>
           <Button
@@ -193,7 +212,11 @@ const SignupForm = () => {
         </form>
       </div>
       <div className="flex-1 bg-primary flex justify-center items-center">
-        <img src={signupimage} alt="Login" style={{ width: '768px', height: '825px' }}/>
+        <img
+          src={signupimage}
+          alt="Login"
+          style={{ width: "768px", height: "825px" }}
+        />
       </div>
     </div>
   );

@@ -2,12 +2,14 @@ import axios from "axios";
 import { Button, Input } from "@nextui-org/react";
 import { useFormik } from "formik";
 import { Eye, EyeSlash, TickCircle } from "iconsax-react";
-import {  useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import loginimage from "../../assets/fonts/iranyekan/Images/loginimage.png";
-import { useUser } from "../../contexts/UserContext";
-// import { useQuery } from "../../hooks/useQuery";
+import { useSetRecoilState } from "recoil";
+import { userAtom } from "../../recoil/userAtom";
+import { authAtom } from "../../recoil/authAtom";
+
 
 const initialValues = {
   email: "",
@@ -29,9 +31,10 @@ const validationSchema = Yup.object({
 const LoginForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  const { login } = useUser();
+  // const { login } = useUser();
+  const setUser = useSetRecoilState(userAtom);
+  const setAuth = useSetRecoilState(authAtom);
 
- 
   const onSubmit = async (values: any) => {
     const { email, password } = values;
     const userData = { email, password };
@@ -40,9 +43,19 @@ const LoginForm = () => {
       const response = await axios.post("https://localhost/login", userData);
       if (response.data.success) {
         console.log("Login successful. User data:", response.data);
-        login(response.data.user);
+        setUser({
+          username: email,
+          email: email,
+          department: "-",
+        });
+        setAuth({
+          isLoggedin: true,
+        });
       } else {
-        console.error("Login error. Please check your credentials.", response.data.message);
+        console.error(
+          "Login error. Please check your credentials.",
+          response.data.message
+        );
       }
     } catch (error) {
       console.error("Server connection error. Please try again later.", error);
@@ -117,7 +130,8 @@ const LoginForm = () => {
           >
             تایید
           </Button>
-          <p>آیا حساب کاربری دارید؟
+          <p>
+            آیا حساب کاربری دارید؟
             <Link to={`/signup`} className="text-blue-600">
               ثبت نام
             </Link>
@@ -125,12 +139,14 @@ const LoginForm = () => {
         </form>
       </div>
       <div className="flex-1 bg-primary flex justify-center items-center">
-        
-        <img src={loginimage} alt="Login" style={{ width: '770px', height: '825px' }}/>
+        <img
+          src={loginimage}
+          alt="Login"
+          style={{ width: "770px", height: "825px" }}
+        />
       </div>
     </div>
   );
 };
 
 export default LoginForm;
-
