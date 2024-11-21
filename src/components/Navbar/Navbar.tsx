@@ -38,7 +38,7 @@ const CustomNavbar: React.FC = () => {
   return (
     <Navbar isBordered style={{ direction: "rtl", backgroundColor: "#328bf1" }}>
       <div className="flex items-center justify-start">
-        <NavbarBrand className="mt-4 basis-16">
+        <NavbarBrand className=" basis-16 flex justify-center items-center">
           <AcmeLogo />
           <p className="font-bold text-inherit">Tech Plus</p>
         </NavbarBrand>
