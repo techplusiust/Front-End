@@ -9,7 +9,7 @@ import {
   DropdownTrigger,
   Avatar,
   DropdownMenu,
-  NavbarMenuItem,
+
 } from "@nextui-org/react";
 import { AcmeLogo } from "./AcmeLogo";
 import mg1 from "../../assets/fonts/iranyekan/Images/article7.webp";
@@ -37,7 +37,8 @@ const CustomNavbar: React.FC = () => {
 
   return (
     <Navbar
-      classNames={{ base: "bg-primary-300", wrapper: "max-w-full" }}
+      classNames={{ base: "bg-primary-300", wrapper: "max-w-full"}}
+      className="fixed"
       isBordered
     >
       <div className="flex items-center justify-start">
@@ -114,63 +115,129 @@ const CustomNavbar: React.FC = () => {
               </Dropdown>
             </>
           )}
-          <Button
-            className="toggle sm:hidden bg-white"
-            onClick={handleMobileMenuToggle}
-          >
-            {isMobileMenuOpen ? (
-              <MdClose style={{ width: "32px", height: "32px" }} />
-            ) : (
-              <FiMenu
-                style={{
-                  width: "32px",
-                  height: "32px",
-                }}
-              />
-            )}
-          </Button>
+         <Button
+        className="toggle sm:hidden bg-white py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+        aria-haspopup="dialog"
+        aria-expanded={isMobileMenuOpen}
+        aria-controls="hs-offcanvas-example"
+        onClick={handleMobileMenuToggle}
+        type="button"
+      >
+        {isMobileMenuOpen ? (
+          <MdClose style={{ width: "32px", height: "32px" }} />
+        ) : (
+          <FiMenu style={{ width: "32px", height: "32px" }} />
+        )}
+      </Button>
 
           {isMobileMenuOpen && (
-            <Navbar className="ml-auto" style={{ marginTop: "19rem" }}>
-              <NavbarMenuItem
-                className="bg-[#328bf1] sm:hidden flex flex-col items-center justify-center w-[10rem] h-[15rem] rounded"
-                style={{ marginLeft: "10rem" }}
-              >
-                <div
-                  style={{ margin: "12px" }}
-                  className="flex flex-col w-[100%]"
+            
+            // <Navbar className="ml-auto" style={{ marginTop: "19rem" }}>
+            //   <NavbarMenuItem
+            //     className="bg-[#328bf1] sm:hidden flex flex-col items-center justify-center w-[10rem] h-[15rem] rounded"
+            //     style={{ marginLeft: "10rem" }}
+            //   >
+            //     <div
+            //       style={{ margin: "12px" }}
+            //       className="flex flex-col w-[100%]"
+            //     >
+            //       <NavLink
+            //         key="profile"
+            //         to="/profile"
+            //         className="p-2 hover:bg-blue-200"
+            //       >
+            //         پروفایل
+            //       </NavLink>
+            //       <NavLink
+            //         key="courses"
+            //         to="/courses"
+            //         className="p-2 hover:bg-blue-200"
+            //       >
+            //         دوره ها
+            //       </NavLink>
+            //       <NavLink
+            //         key="exam"
+            //         to="/exam"
+            //         className="p-2 hover:bg-blue-200"
+            //       >
+            //         برنامه امتحانی
+            //       </NavLink>
+            //       <NavLink
+            //         key="professors"
+            //         to="/professors"
+            //         className="p-2 hover:bg-blue-200"
+            //       >
+            //         اساتید
+            //       </NavLink>
+            //     </div>
+            //    </NavbarMenuItem>
+            // </Navbar>
+
+            <div
+              id="hs-offcanvas-example"
+              className={`hs-overlay fixed top-0 left-0 h-full max-w-xs w-full z-50 bg-white shadow-lg transition-transform duration-300 ${
+                isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+              }`}
+              role="dialog"
+              tabIndex={-1}
+              aria-labelledby="hs-offcanvas-example-label"
+            >
+              {/* هدر منو */}
+              <div className="flex justify-between items-center py-3 px-4 border-b bg-white">
+                <h3
+                  id="hs-offcanvas-example-label"
+                  className="font-bold text-gray-800"
                 >
-                  <NavLink
-                    key="profile"
-                    to="/profile"
-                    className="p-2 hover:bg-blue-200"
-                  >
-                    پروفایل
-                  </NavLink>
-                  <NavLink
-                    key="courses"
-                    to="/courses"
-                    className="p-2 hover:bg-blue-200"
-                  >
-                    دوره ها
-                  </NavLink>
-                  <NavLink
-                    key="exam"
-                    to="/exam"
-                    className="p-2 hover:bg-blue-200"
-                  >
-                    برنامه امتحانی
-                  </NavLink>
-                  <NavLink
-                    key="professors"
-                    to="/professors"
-                    className="p-2 hover:bg-blue-200"
-                  >
-                    اساتید
-                  </NavLink>
-                </div>
-              </NavbarMenuItem>
-            </Navbar>
+                  منوی اصلی
+                </h3>
+                <button
+                  type="button"
+                  className="inline-flex justify-center items-center rounded-full bg-gray-100 p-2 hover:bg-gray-200 focus:outline-none"
+                  aria-label="Close"
+                  onClick={handleMobileMenuToggle}
+                >
+                  <MdClose className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* آیتم‌های منو */}
+              <div className="p-4 bg-white">
+                <ul className="flex flex-col space-y-3">
+                  <li>
+                    <a
+                      href="/profile"
+                      className="block py-2 px-3 text-gray-700 hover:bg-primary-300 rounded-lg"
+                    >
+                      پروفایل
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/courses"
+                      className="block py-2 px-3 text-gray-700 hover:bg-primary-300 rounded-lg"
+                    >
+                      دوره‌ها
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/exam"
+                      className="block py-2 px-3 text-gray-700 hover:bg-primary-300 rounded-lg"
+                    >
+                      برنامه امتحانی
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/professors"
+                      className="block py-2 px-3 text-gray-700 hover:bg-primary-300 rounded-lg"
+                    >
+                      اساتید
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           )}
         </NavbarContent>
       </div>
