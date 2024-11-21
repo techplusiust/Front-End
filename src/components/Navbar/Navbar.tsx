@@ -32,7 +32,7 @@ const Navbars: React.FC = () => {
   };
 
   const handleMobileMenuToggle = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
+    setMobileMenuOpen((isMobileMenuOpen) => !isMobileMenuOpen);
   };
 
   return (
@@ -74,9 +74,9 @@ const Navbars: React.FC = () => {
               <NavLink to="/login">
                 <Button color="success">Login</Button>
               </NavLink>
-              <NavLink to="/signup">
+              {/* <NavLink to="/signup">
                 <Button color="danger">Signup</Button>
-              </NavLink>
+              </NavLink> */}
             </>
           )}
           {auth.isLoggedin && (
@@ -111,7 +111,7 @@ const Navbars: React.FC = () => {
             </>
           )}
           <Button
-            className="toggle sm:flex md:hidden bg-white"
+            className="toggle sm:flex sm:hidden bg-white"
             onClick={handleMobileMenuToggle}
           >
             {isMobileMenuOpen ? (
@@ -127,31 +127,24 @@ const Navbars: React.FC = () => {
           </Button>
 
           {isMobileMenuOpen && (
-            //   <Offcanvas backdrop="static" show={isMobileMenuOpen} onHide={() => setMobileMenuOpen(false)}>
-            //   <Offcanvas.Header closeButton>
-            //     <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-            //   </Offcanvas.Header>
-            //   <Offcanvas.Body>
-            //     I will not close if you click outside of me.
-            //   </Offcanvas.Body>
-            // </Offcanvas>
-
-            <NavbarMenuItem className="bg-purple-600 md:hidden flex flex-col items-center justify-center mt-15 w-[10rem]">
-              <div className="mr-5">
-                <NavLink key="profile" to="/profile">
-                  پروفایل
-                </NavLink>
-                <NavLink key="courses" to="/courses">
-                  دوره ها
-                </NavLink>
-                <NavLink key="exam" to="/exam">
-                  برنامه امتحانی
-                </NavLink>
-                <NavLink key="professors" to="/professors">
-                  اساتید
-                </NavLink>
-              </div>
-            </NavbarMenuItem>
+            <Navbar className="ml-auto" style={{ marginTop: '19rem' }}>
+              <NavbarMenuItem className="bg-[#328bf1] sm:hidden flex flex-col items-center justify-center w-[10rem] h-[15rem] rounded" style={{marginLeft:'10rem'}}>
+                <div style={{ margin: '12px'}} className="flex flex-col w-[100%]">
+                  <NavLink key="profile" to="/profile" className="p-2 hover:bg-blue-200">
+                    پروفایل
+                  </NavLink>
+                  <NavLink key="courses" to="/courses" className="p-2 hover:bg-blue-200">
+                    دوره ها
+                  </NavLink>
+                  <NavLink key="exam" to="/exam" className="p-2 hover:bg-blue-200">
+                    برنامه امتحانی
+                  </NavLink>
+                  <NavLink key="professors" to="/professors" className="p-2 hover:bg-blue-200">
+                    اساتید
+                  </NavLink>
+                </div>
+              </NavbarMenuItem>
+          </Navbar>
           )}
         </NavbarContent>
       </div>
