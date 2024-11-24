@@ -45,15 +45,14 @@ export default function Landing() {
             className="carousel slide"
             data-ride="carousel"
           >
-            <div className="carousel-inner flex justify-center">
+            <div className="carousel-inner ">
               <div className="carousel-item active">
                 <div className="container ">
                   <div className="row flex">
-                    <div className="carous col-md-6 ">
+                    <div className=" col-md-6 ">
                       <div className="detail-box">
                         <h1 className="text-center ">
                         انتخاب واحد
-
                         </h1>
                         <p className="text-justify">
                         انتخاب واحد، آسان‌تر از همیشه!
@@ -68,7 +67,7 @@ export default function Landing() {
                         </div>
                       </div>
                     </div>
-                    <div className="carous col-md-6">
+                    <div className=" col-md-6">
                       <div className="img-box">
                         <img src={img2} alt="" />
                       </div>
@@ -98,27 +97,27 @@ export default function Landing() {
               </h2>
             </div>
             <div className="row flex">
-              <div className="boxy col-md-4 ml-2">
+              <div className=" col-md-4">
                 <div className="box">
                   <div className="img-box">
                     <img src={img3} alt="" />
                   </div>
                   <div className="detail-box">
-                    <h5>پیشنهاد هوشمند دروس</h5>
+                    <h5>پیشنهاد هوشمند دروس</h5><br/>
                     <p className="text-justify">
-                    سامانه ما با بررسی دقیق اطلاعات تحصیلی شما، از جمله رشته، مقطع، دروس گذرانده‌شده و پیش‌نیازها، لیستی از واحدهای پیشنهادی را به شما ارائه می‌دهد. این ویژگی به شما کمک می‌کند تا انتخاب‌هایی هوشمندانه و متناسب با نیازهای آموزشی خود داشته باشید و سریع‌تر به اتمام دوره تحصیلی خود نزدیک شوید.
+                  سامانه ما با بررسی دقیق اطلاعات تحصیلی شما، از جمله رشته، مقطع، دروس گذرانده‌شده و پیش‌نیازها، لیستی از واحدهای پیشنهادی را به شما ارائه می‌دهد. این ویژگی به شما کمک می‌کند تا انتخاب‌هایی هوشمندانه و متناسب با نیازهای آموزشی خود داشته باشید 
                     </p>
                     {/* <Link to="">Read More</Link> */}
                   </div>
                 </div>
               </div>
-              <div className="boxy col-md-4 ml-2">
+              <div className=" col-md-4">
                 <div className="box ">
                   <div className="img-box">
                     <img src={img4} alt="" />
                   </div>
                   <div className="detail-box">
-                    <h5>بررسی هم‌پوشانی کلاس‌ها</h5>
+                    <h5>بررسی هم‌پوشانی کلاس‌ها</h5><br/>
                     <p className="text-justify">
                     یکی از دغدغه‌های همیشگی دانشجویان، تداخل زمانی کلاس‌ها است. سامانه هوشمند ما، به‌طور خودکار تمام گزینه‌های انتخابی شما را بررسی کرده و از ایجاد هم‌پوشانی در زمان‌بندی کلاس‌ها جلوگیری می‌کند. این یعنی برنامه‌ای بی‌نقص و هماهنگ، بدون نیاز به تلاش اضافی.
                     </p>
@@ -126,13 +125,13 @@ export default function Landing() {
                   </div>
                 </div>
               </div>
-              <div className="boxy col-md-4 ml-2">
+              <div className="col-md-4">
                 <div className="box ">
                   <div className="img-box">
                     <img src={img5} alt="" />
                   </div>
                   <div className="detail-box">
-                    <h5>زمان‌بندی دقیق</h5>
+                    <h5>زمان‌بندی دقیق</h5><br/>
                     <p className="text-justify">
                     امکان مشاهده زمان‌های آزاد و خالی در برنامه تحصیلی، یکی از قابلیت‌های کلیدی این سامانه است. شما می‌توانید به راحتی ساعات خالی خود را پیدا کرده و دروس دلخواه را بر اساس این زمان‌بندی به برنامه خود اضافه کنید. این قابلیت به ویژه برای دانشجویان مشغول به کار، بسیار کاربردی است.
                     </p>
@@ -156,12 +155,12 @@ export default function Landing() {
             </h2>
           </div>
           <div className="row flex justify-between" dir="ltr">
-            <div className="custom col-md-6">
+            <div className="col-md-6">
               <div className="img-box">
                 <img src={img17} alt="" />
               </div>
             </div>
-            <div className="custom col-md-6">
+            <div className="col-md-6">
               <div className="detail-box text-center">
                 <p className="text-justify">
                 ما در تیم توسعه سامانه انتخاب واحد هوشمند، با هدف ساده‌تر کردن فرآیند برنامه‌ریزی تحصیلی برای دانشجویان، دست به طراحی و ایجاد سیستمی پیشرفته و کاربرپسند زده‌ایم. دغدغه اصلی ما، ایجاد تجربه‌ای بدون استرس، دقیق و سریع برای تمامی دانشجویان، از ترم اولی‌ها گرفته تا دانشجویان سال‌های پایانی است.
@@ -515,7 +514,7 @@ export default function Landing() {
                 </div>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3 info_col mr-9">
+            <div className="col-md-6 col-lg-2 info_col mr-9">
               <h4>مشترک شوید</h4>
               <form action="#">
                 <input type="text" placeholder="Enter email" />
