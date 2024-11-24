@@ -18,6 +18,7 @@ import img13 from "../../assets/fonts/iranyekan/Images/landingimage/team-3.jpg";
 import img14 from "../../assets/fonts/iranyekan/Images/landingimage/team-4.jpg";
 import img15 from "../../assets/fonts/iranyekan/Images/landingimage/client1.jpg";
 import img16 from "../../assets/fonts/iranyekan/Images/landingimage/client2.jpg";
+import img17 from "../../assets/fonts/iranyekan/Images/landingimage/انتخاب واحد2.jpg";
 import { FaFacebookF } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
 import { SlSocialLinkedin } from "react-icons/sl";
@@ -40,10 +41,8 @@ export default function Landing() {
           </div>
         </div>
 
+          <NavbarPage/>
         
-           <NavbarPage/>
-        
-
         <section className="slider_section">
           <div
             id="customCarousel1"
@@ -53,17 +52,19 @@ export default function Landing() {
             <div className="carousel-inner flex justify-center">
               <div className="carousel-item active">
                 <div className="container ">
-                  <div className="row flex" dir="ltr">
+                  <div className="row flex">
                     <div className="carous col-md-6 ">
                       <div className="detail-box">
-                        <h1>
+                        <h1 className="text-center ">
                         انتخاب واحد
                         </h1>
-                        <p>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-
+                        <p className="text-justify">
+                        انتخاب واحد، آسان‌تر از همیشه!
+به کمک سامانه هوشمند انتخاب واحد، در کمترین زمان و بدون سردرگمی برنامه تحصیلی خود را تنظیم کنید. ابزارها
+ و امکانات پیشرفته ما برای دانشجویان طراحی شده است تا تجربه‌ای سریع، مطمئن و بدون استرس داشته باشند
+ سامانه به طور خودکار اطلاعات مربوط به پیش‌نیازها، دروس ارائه‌شده و زمان‌های خالی را بررسی کرده و بهترین پیشنهادها را به شما ارائه می‌دهد. این یعنی دیگر نیازی به جستجوی دستی و نگرانی درباره انتخاب‌های نادرست ندارید
                         </p>
-                        <div className="btn-box">
+                        <div className="btn-box items-center">
                           <Link to="" className="btn1">
                           ادامه مطلب
                           </Link>
@@ -96,12 +97,8 @@ export default function Landing() {
           <div className="container ">
             <div className="heading_container heading_center">
               <h2 className="fonty">
-                Our <span>Services</span>
+                ویژگی های سامانه انتخاب واحد
               </h2>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration
-              </p>
             </div>
             <div className="row flex">
               <div className="boxy col-md-4 ml-2">
@@ -110,13 +107,11 @@ export default function Landing() {
                     <img src={img3} alt="" />
                   </div>
                   <div className="detail-box">
-                    <h5>Currency Wallet</h5>
-                    <p>
-                      fact that a reader will be distracted by the readable
-                      content of a page when looking at its layout. The point of
-                      using
+                    <h5>پیشنهاد هوشمند دروس</h5>
+                    <p className="text-justify">
+                    سامانه ما با بررسی دقیق اطلاعات تحصیلی شما، از جمله رشته، مقطع، دروس گذرانده‌شده و پیش‌نیازها، لیستی از واحدهای پیشنهادی را به شما ارائه می‌دهد. این ویژگی به شما کمک می‌کند تا انتخاب‌هایی هوشمندانه و متناسب با نیازهای آموزشی خود داشته باشید و سریع‌تر به اتمام دوره تحصیلی خود نزدیک شوید.
                     </p>
-                    <Link to="">Read More</Link>
+                    {/* <Link to="">Read More</Link> */}
                   </div>
                 </div>
               </div>
@@ -126,13 +121,11 @@ export default function Landing() {
                     <img src={img4} alt="" />
                   </div>
                   <div className="detail-box">
-                    <h5>Security Storage</h5>
-                    <p>
-                      fact that a reader will be distracted by the readable
-                      content of a page when looking at its layout. The point of
-                      using
+                    <h5>بررسی هم‌پوشانی کلاس‌ها</h5>
+                    <p className="text-justify">
+                    یکی از دغدغه‌های همیشگی دانشجویان، تداخل زمانی کلاس‌ها است. سامانه هوشمند ما، به‌طور خودکار تمام گزینه‌های انتخابی شما را بررسی کرده و از ایجاد هم‌پوشانی در زمان‌بندی کلاس‌ها جلوگیری می‌کند. این یعنی برنامه‌ای بی‌نقص و هماهنگ، بدون نیاز به تلاش اضافی.
                     </p>
-                    <Link to="">Read More</Link>
+                    {/* <Link to="">Read More</Link> */}
                   </div>
                 </div>
               </div>
@@ -142,19 +135,17 @@ export default function Landing() {
                     <img src={img5} alt="" />
                   </div>
                   <div className="detail-box">
-                    <h5>Expert Support</h5>
-                    <p>
-                      fact that a reader will be distracted by the readable
-                      content of a page when looking at its layout. The point of
-                      using
+                    <h5>زمان‌بندی دقیق</h5>
+                    <p className="text-justify">
+                    امکان مشاهده زمان‌های آزاد و خالی در برنامه تحصیلی، یکی از قابلیت‌های کلیدی این سامانه است. شما می‌توانید به راحتی ساعات خالی خود را پیدا کرده و دروس دلخواه را بر اساس این زمان‌بندی به برنامه خود اضافه کنید. این قابلیت به ویژه برای دانشجویان مشغول به کار، بسیار کاربردی است.
                     </p>
-                    <Link to="">Read More</Link>
+                    {/* <Link to="">Read More</Link> */}
                   </div>
                 </div>
               </div>
             </div>
             <div className="btn-box">
-              <Link to="">View All</Link>
+              <Link to="" style={{backgroundColor:'#070606'}}>مشاهده همه</Link>
             </div>
           </div>
        
@@ -164,44 +155,34 @@ export default function Landing() {
         <div className="container">
           <div className="heading_container heading_center">
             <h2 className="fonty">
-              About <span>Us</span>
+            درباره ما
             </h2>
-            <p>
-              Magni quod blanditiis non minus sed aut voluptatum illum quisquam
-              aspernatur ullam vel beatae rerum ipsum voluptatibus
-            </p>
           </div>
           <div className="row flex justify-between" dir="ltr">
             <div className="custom col-md-6">
               <div className="img-box">
-                <img src={img6} alt="" />
+                <img src={img17} alt="" />
               </div>
             </div>
             <div className="custom col-md-6">
               <div className="detail-box text-center">
-                <h3>We Are Finexo</h3>
-                <p>
-                  There are many variations of passages of Lorem Ipsum
-                  available, but the majority <br/>have suffered alteration in some
-                  form, by injected humour, or randomised words which don't look
-                  even slightly believable. If you are going to use a passage of
-                  Lorem Ipsum, you need to be sure there isn't anything
-                  embarrassing hidden in the middle of text. All
+                <p className="text-justify">
+                ما در تیم توسعه سامانه انتخاب واحد هوشمند، با هدف ساده‌تر کردن فرآیند برنامه‌ریزی تحصیلی برای دانشجویان، دست به طراحی و ایجاد سیستمی پیشرفته و کاربرپسند زده‌ایم. دغدغه اصلی ما، ایجاد تجربه‌ای بدون استرس، دقیق و سریع برای تمامی دانشجویان، از ترم اولی‌ها گرفته تا دانشجویان سال‌های پایانی است.
+با ترکیب دانش فنی، فناوری‌های نوین و آگاهی از نیازهای آموزشی، این سامانه طراحی شده تا به عنوان یک دستیار مطمئن و همراه، فرآیند انتخاب واحد را بهینه کند. ما معتقدیم که انتخاب واحد نباید یک فرآیند زمان‌بر یا پیچیده باشد، بلکه فرصتی برای دانشجویان است تا بتوانند به شکلی منظم و بدون نگرانی، برنامه‌ریزی خود را پیش ببرند
+ویژگی‌های منحصربه‌فرد این سامانه، از جمله پیشنهاد دروس متناسب با پیش‌نیازها، بررسی تداخل زمانی و اطلاع‌رسانی لحظه‌ای، نتیجه تلاش مداوم ما برای درک بهتر مشکلات دانشجویان و ارائه راه‌حل‌های کاربردی است.
+ما با تکیه بر بازخورد کاربران و بهبود مستمر، به دنبال آن هستیم که همیشه بهترین خدمات ممکن را ارائه دهیم. هدف ما این است که شما، دانشجوی گرامی، بتوانید بر روی مهم‌ترین اهداف خود تمرکز کنید و انتخاب واحد را به سامانه‌ای هوشمند و دقیق بسپارید
                 </p>
-                <p>
-                  Molestiae odio earum non qui cumque provident voluptates,
-                  repellendus exercitationem, possimus at iste corrupti officiis
-                  unde alias eius ducimus reiciendis soluta eveniet. Nobis ullam
-                  ab omnis quasi expedita.
+                <p className="text-justify font-bold">
+                با ما، انتخاب واحد دیگر یک چالش نیست، بلکه گامی ساده و لذت‌بخش به سوی موفقیت تحصیلی است
                 </p>
-                <Link to="">Read More</Link>
+                <Link to="" style={{backgroundColor:'#070606'}}>ادامه مطلب</Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="why_section layout_padding flex justify-center">
+      {/* <section className="why_section layout_padding flex justify-center">
       <div className="container">
         <div className="heading_container heading_center">
           <h2 className="fonty">
@@ -272,9 +253,9 @@ export default function Landing() {
           </Link>
         </div>
       </div>
-      </section>
+      </section> */}
 
-      <section className="team_section layout_padding flex justify-center">
+      {/* <section className="team_section layout_padding flex justify-center">
         <div className="container-fluid">
           <div className="heading_container heading_center">
             <h2 className="fonty">
@@ -386,13 +367,13 @@ export default function Landing() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       
       <section className="client_section layout_padding flex justify-center">
         <div className="container">
           <div className="heading_container heading_center psudo_white_primary mb_45">
             <h2 className="fonty">
-              What says our <span>Customers</span>
+            نظر دانشجویان درباره سامانه انتخاب واحد ما
             </h2>
           </div>
           <div className="carousel-wrap">
@@ -404,16 +385,13 @@ export default function Landing() {
                   </div>
                   <div className="detail-box">
                     <div className="client_id">
-                      <div className="client_info">
-                        <h6>LusDen</h6>
-                        <p>magna aliqua. Ut</p>
+                      <div className="client_info"> 
+                      <p>علی حسینی</p>
                       </div>
                       <i className="fa fa-quote-left" aria-hidden="true"></i>
                     </div>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis{" "}
+                    <br/>استفاده از سامانه انتخاب واحد، تجربه‌ای عالی و بدون استرس بود. پیشنهادات هوشمند دروس و جلوگیری از تداخل کلاس‌ها به من کمک کرد برنامه‌ام را سریع و دقیق بچینم
                     </p>
                   </div>
                 </div>
@@ -426,15 +404,13 @@ export default function Landing() {
                   <div className="detail-box">
                     <div className="client_id">
                       <div className="client_info">
-                        <h6>Zen Court</h6>
-                        <p>magna aliqua. Ut</p>
+                      <p>زهرا کمالی</p>
+                       
                       </div>
                       <i className="fa fa-quote-left" aria-hidden="true"></i>
                     </div>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis{" "}
+                    <br/>قبل از استفاده از این سامانه، همیشه نگران پر شدن ظرفیت کلاس‌ها بودم. اما اطلاع‌رسانی لحظه‌ای این سیستم باعث شد به‌موقع دروس موردنظرم را انتخاب کنم. فوق‌العاده کاربردی!
                     </p>
                   </div>
                 </div>
@@ -447,15 +423,12 @@ export default function Landing() {
                   <div className="detail-box">
                     <div className="client_id">
                       <div className="client_info">
-                        <h6>LusDen</h6>
-                        <p>magna aliqua. Ut</p>
+                      <p>محمد عباسی</p>
                       </div>
                       <i className="fa fa-quote-left" aria-hidden="true"></i>
                     </div>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis{" "}
+                  <br/>طراحی کاربرپسند این سامانه باعث شد حتی زمانی که در سفر بودم و به لپ‌تاپ دسترسی نداشتم، بتوانم به‌راحتی با موبایلم وارد شوم و انتخاب واحدم را انجام دهم  و بسیار کاربردی است
                     </p>
                   </div>
                 </div>
@@ -468,16 +441,13 @@ export default function Landing() {
                   <div className="detail-box">
                     <div className="client_id">
                       <div className="client_info">
-                        <h6>Zen Court</h6>
-                        <p>magna aliqua. Ut</p>
+                        
+                        <p>مهسا رضایی</p>
                       </div>
                       <i className="fa fa-quote-left" aria-hidden="true"></i>
                     </div>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis{" "}
-                    </p>
+                    سامانه انتخاب واحد جدید، بهترین هدیه‌ای بود که می‌توانستم دریافت کنم. این سامانه با ارائه یک راهکار هوشمند و کارآمد، به من کمک می‌کند تا بدون اتلاف وقت، برنامه درسی‌ام را تنظیم کنم و به اهداف تحصیلی‌ام برسم                    </p>
                   </div>
                 </div>
               </div>
@@ -491,7 +461,7 @@ export default function Landing() {
           <div dir="ltr" className="row flex">
             <div className="col-md-6 col-lg-3 info_col">
               <div className="info_contact">
-                <h4>آدرس</h4>
+                <h4 className="text-center">آدرس</h4>
                 <div className="contact_link_box">
                   <Link to="" className="flex">
                   <LiaMapMarkerAltSolid />
@@ -525,10 +495,8 @@ export default function Landing() {
             <div className="col-md-6 col-lg-3 info_col flex text-center mr-4">
               <div className="info_detail">
                 <h4>اطلاعات</h4>
-                <p className="text-balance">
-                ضروری است، و این اولین مولد واقعی در <br/> است
-                  اینترنت. از فرهنگ لغت بیش از 200 کلمه لاتین استفاده می کند،
-                  با یک مشت ترکیب شده است
+                <p className="text-justify">
+                سامانه انتخاب واحد هوشمند، ابزاری کاربردی و مدرن است که به شما امکان می‌دهد در کمترین زمان و با بالاترین دقت، برنامه تحصیلی خود را تنظیم کنید. از این سامانه برای مدیریت پیش‌نیازها، بررسی ظرفیت کلاس‌ها و جلوگیری از تداخل زمانی استفاده کنید. ما اینجاییم تا تجربه انتخاب واحد را برای شما آسان کنیم
                 </p>
               </div>
             </div>
@@ -568,8 +536,7 @@ export default function Landing() {
       <section className="footer_section flex justify-center">
         <div className="container">
           <p>
-            &copy; <span id="displayYear"></span> All Rights Reserved By
-            <Link to="https://html.design/">Free Html Templates</Link>
+            &copy; <span id="displayYear"> حقوق معنوی این سامانه محفوظ بوده و هرگونه استفاده غیرمجاز از آن پیگرد قانونی دارد </span>
           </p>
         </div>
       </section>
