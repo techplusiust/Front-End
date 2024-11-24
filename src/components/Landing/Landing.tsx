@@ -27,7 +27,6 @@ import { FaPhone } from "react-icons/fa";
 import { FaRegEnvelope } from "react-icons/fa6";
 
 
-
 export default function Landing() {
   return (
     <>
