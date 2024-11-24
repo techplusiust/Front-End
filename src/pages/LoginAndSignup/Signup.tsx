@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useQuery } from "../../hooks/useQuery";
 import { eGender } from "../../models/enum/Enums";
-import signupimage from "../../assets/fonts/iranyekan/Images/signupimage.png";
-
 
 const initialValues = {
   name: "",
@@ -85,15 +83,19 @@ const SignupForm = () => {
 
   return (
     <div
-      className="flex justify-between h-screen relative"
+      className="w-full max-w-md h-full px-4 py-6 mt-4"
       lang="he-IL"
       dir="rtl"
     >
-      <div className="h-full overflow-y-scroll py-8 flex-1 flex flex-col justify-start items-center">
-        <h1 className="text-blue-700 font-bold text-xl mb-4">ثبت نام</h1>
+      <div>
+        <h1 className="text-blue-700 font-bold text-xl">ثبت نام</h1>
         <form
-          className=" w-1/2 flex flex-col items-center justify-center gap-1"
           onSubmit={formik.handleSubmit}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "0px",
+          }}
         >
           <Input
             {...formik.getFieldProps({ name: "name" })}
@@ -202,6 +204,7 @@ const SignupForm = () => {
             type="submit"
             disabled={!formik.isValid}
             color="primary"
+            className="mt-2"
           >
             تایید
           </Button>
@@ -210,13 +213,6 @@ const SignupForm = () => {
             <p>آیا حساب کاربری دارید؟</p>
           </Link>
         </form>
-      </div>
-      <div className="flex-1 bg-primary flex justify-center items-center">
-        <img
-          src={signupimage}
-          alt="Login"
-          style={{ width: "768px", height: "825px" }}
-        />
       </div>
     </div>
   );

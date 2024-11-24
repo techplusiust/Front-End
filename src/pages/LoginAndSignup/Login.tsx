@@ -3,15 +3,8 @@ import { Button, Input } from "@nextui-org/react";
 import { useFormik } from "formik";
 import { Eye, EyeSlash, TickCircle } from "iconsax-react";
 import { useState } from "react";
-
-import { Link, useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import loginimage from "../../assets/fonts/iranyekan/Images/loginimage.png";
-import { useSetRecoilState } from "recoil";
-import { userAtom } from "../../recoil/userAtom";
-import { authAtom } from "../../recoil/authAtom";
-
 
 const initialValues = {
   email: "",
@@ -31,48 +24,27 @@ const validationSchema = Yup.object({
 });
 
 const LoginForm = () => {
-  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  const setUser = useSetRecoilState(userAtom);
-  const setAuth = useSetRecoilState(authAtom);
 
   const onSubmit = async (values: any) => {
     const { email, password } = values;
     const userData = { email, password };
-    // todo => remove after api
-    setUser({
-      username: email,
-      email: email,
-      department: "-",
-    });
-    setAuth({
-      isLoggedin: true,
-    });
-    navigate("/profile");
-    // todo => after api
-    // try {
-    //   const response = await axios.post("https://localhost/login", userData);
-    //   if (response.data.success) {
-    //     console.log("Login successful. User data:", response.data);
-    //     setUser({
-    //       username: email,
-    //       email: email,
-    //       department: "-",
-    //     });
-    //     setAuth({
-    //       isLoggedin: true,
-    //     });
-    //     navigate("/profile");
-    //   } else {
-    //     console.error(
-    //       "Login error. Please check your credentials.",
-    //       response.data.message
-    //     );
-    //   }
-    // } catch (error) {
-    //   console.error("Server connection error. Please try again later.", error);
-    // }
+
+    try {
+      const response = await axios.post("https://localhost/login", userData);
+      if (response.data.success) {
+        console.log("Login successful. User data:", response.data);
+        login(response.data.user);
+      } else {
+        console.error(
+          "Login error. Please check your credentials.",
+          response.data.message
+        );
+      }
+    } catch (error) {
+      console.error("Server connection error. Please try again later.", error);
+    }
   };
 
   const formik = useFormik({
@@ -84,16 +56,16 @@ const LoginForm = () => {
   });
 
   return (
-    <div
-      className="flex justify-between h-screen relative"
-      lang="he-IL"
-      dir="rtl"
-    >
-      <div className="h-full overflow-y-scroll py-8 flex-1 flex flex-col justify-center items-center">
+    <div className="w-full max-w-md h-full px-4 py-6 " lang="he-IL" dir="rtl">
+      <div>
         <h1 className="text-blue-700 font-bold text-xl mb-4">ورود</h1>
         <form
-          className=" w-1/2 flex flex-col items-center justify-center gap-3"
           onSubmit={formik.handleSubmit}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "0px",
+          }}
         >
           <Input
             {...formik.getFieldProps({ name: "email" })}
@@ -140,6 +112,7 @@ const LoginForm = () => {
             type="submit"
             disabled={!formik.isValid}
             color="primary"
+            className="my-2"
           >
             تایید
           </Button>
@@ -150,13 +123,6 @@ const LoginForm = () => {
             </Link>
           </p>
         </form>
-      </div>
-      <div className="flex-1 bg-primary flex justify-center items-center">
-        <img
-          src={loginimage}
-          alt="Login"
-          style={{ width: "770px", height: "825px" }}
-        />
       </div>
     </div>
   );
