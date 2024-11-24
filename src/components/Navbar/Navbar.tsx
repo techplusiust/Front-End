@@ -7,11 +7,10 @@ import {
   Button,
   Dropdown,
   DropdownTrigger,
-  Avatar,
   DropdownMenu,
 } from "@nextui-org/react";
 import { AcmeLogo } from "./AcmeLogo";
-import mg1 from "../../assets/fonts/iranyekan/Images/article7.webp";
+// import mg1 from "../../assets/fonts/iranyekan/Images/article7.webp";
 import { MdClose } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -36,16 +35,6 @@ const CustomNavbar: React.FC = () => {
   };
 
   return (
-    <Navbar isBordered style={{ direction: "ltr", width: "100%", maxWidth: "100vw" ,backgroundColor: "#328bf1", position:'fixed'}}>
-      <NavbarBrand style={{ marginLeft: "5px"}}>
-        <AcmeLogo />
-        <p className="font-bold text-inherit">ACME</p>
-      </NavbarBrand>
-
-      <NavbarContent className="hidden sm:flex gap-5"  style={{ marginLeft: "-35px" }}>
-        {pages.map((page) => (
-          <NavLink key={page} to={pageRoutes[page]}>
-            {page}
     <Navbar
       classNames={{ base: "bg-primary-300", wrapper: "max-w-full" }}
       className="fixed"

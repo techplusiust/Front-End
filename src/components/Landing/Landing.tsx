@@ -26,7 +26,7 @@ import { BsInstagram } from "react-icons/bs";
 import { LiaMapMarkerAltSolid } from "react-icons/lia";
 import { FaPhone } from "react-icons/fa";
 import { FaRegEnvelope } from "react-icons/fa6";
-import NavbarPage from "../../pages/NavbarPage";
+import NavbarPage from "../Navbar/Navbar";
 
 export default function Landing() {
   return (
@@ -38,9 +38,7 @@ export default function Landing() {
             <img src={img1} alt="" />
           </div>
         </div>
-
           <NavbarPage/>
-        
         <section className="slider_section">
           <div
             id="customCarousel1"
@@ -55,9 +53,6 @@ export default function Landing() {
                       <div className="detail-box">
                         <h1 className="text-center ">
                         انتخاب واحد
-                        <h1>
-                          Unit <br />
-                          Selection
 
                         </h1>
                         <p className="text-justify">
@@ -443,7 +438,6 @@ export default function Landing() {
                   <div className="detail-box">
                     <div className="client_id">
                       <div className="client_info">
-                        
                         <p>مهسا رضایی</p>
                       </div>
                       <i className="fa fa-quote-left" aria-hidden="true"></i>
@@ -506,20 +500,17 @@ export default function Landing() {
               <div className="info_link_box mr-9">
                 <h4>Links</h4>
                 <div className="info_links">
-                  <Link className="active" to="index.html">
-                    خانه
-                  </Link>
                   <Link className="" to="about.html">
-                    درباره ما
+                  پروفایل
                   </Link>
                   <Link className="" to="service.html">
-                    دستگاه ها
+                    دوره ها
                   </Link>
                   <Link className="" to="why.html">
-                  چرا ما
+                   برنامه امتحانی
                   </Link>
                   <Link className="" to="team.html">
-                    تیم
+                    اساتید
                   </Link>
                 </div>
               </div>
