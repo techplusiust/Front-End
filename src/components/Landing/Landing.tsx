@@ -29,7 +29,6 @@ import { FaRegEnvelope } from "react-icons/fa6";
 import NavbarPage from "../../pages/NavbarPage";
 
 
-
 export default function Landing() {
   return (
     <>
