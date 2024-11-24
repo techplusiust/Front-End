@@ -56,6 +56,10 @@ export default function Landing() {
                       <div className="detail-box">
                         <h1 className="text-center ">
                         انتخاب واحد
+                        <h1>
+                          Unit <br />
+                          Selection
+
                         </h1>
                         <p className="text-justify">
                         انتخاب واحد، آسان‌تر از همیشه!
