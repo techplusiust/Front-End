@@ -36,6 +36,16 @@ const CustomNavbar: React.FC = () => {
   };
 
   return (
+    <Navbar isBordered style={{ direction: "ltr", width: "100%", maxWidth: "100vw" ,backgroundColor: "#328bf1", position:'fixed'}}>
+      <NavbarBrand style={{ marginLeft: "5px"}}>
+        <AcmeLogo />
+        <p className="font-bold text-inherit">ACME</p>
+      </NavbarBrand>
+
+      <NavbarContent className="hidden sm:flex gap-5"  style={{ marginLeft: "-35px" }}>
+        {pages.map((page) => (
+          <NavLink key={page} to={pageRoutes[page]}>
+            {page}
     <Navbar
       classNames={{ base: "bg-primary-300", wrapper: "max-w-full" }}
       className="fixed"

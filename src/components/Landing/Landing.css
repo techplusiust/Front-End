@@ -254,6 +254,7 @@ a:focus {
           align-items: center;
   position: relative;
   padding: 45px 0 145px 0;
+  background-color: #328bf1;
 }
 
 .slider_section .row {
@@ -268,7 +269,7 @@ a:focus {
 }
 
 .slider_section .detail-box {
-  color: #00204a;
+  color: #6b2dbb;
 }
 
 .slider_section .detail-box h1 {
@@ -276,11 +277,11 @@ a:focus {
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 15px;
-  color: #ffffff;
+  color: #070606;
 }
 
 .slider_section .detail-box p {
-  color: #fefefe;
+  color: #faf9fd;
   font-size: 14px;
 }
 
@@ -290,18 +291,20 @@ a:focus {
   display: flex;
   margin: 0 -5px;
   margin-top: 25px;
+  
 }
 
-.slider_section .detail-box .btn-box a {
+.slider_section .detail-box .btn-box Link {
   margin: 5px;
   text-align: center;
   width: 165px;
+  background-color: #801446;
 }
 
 .slider_section .detail-box .btn-box .btn1 {
   display: inline-block;
   padding: 10px 15px;
-  background-color: #00bbf0;
+  background-color: #000000;
   color: #ffffff;
   border-radius: 0;
   -webkit-transition: all 0.3s;
@@ -316,7 +319,7 @@ a:focus {
 .slider_section .detail-box .btn-box .btn2 {
   display: inline-block;
   padding: 10px 15px;
-  background-color: #000000;
+  background-color: #e3e2ec;
   color: #ffffff;
   border-radius: 0;
   -webkit-transition: all 0.3s;
@@ -325,7 +328,7 @@ a:focus {
 }
 
 .slider_section .detail-box .btn-box .btn2:hover {
-  background-color: black;
+  background-color: rgb(161, 32, 32);
 }
 
 .slider_section .img-box {
@@ -380,7 +383,7 @@ a:focus {
 }
 
 .slider_section .carousel-indicators li {
-  background-color: #ffffff;
+  background-color: #ac3030;
   width: 12px;
   height: 12px;
   border-radius: 100%;
@@ -481,7 +484,7 @@ a:focus {
 }
 
 .about_section {
-  background-color: #00204a;
+  background-color: #2766d3;
   color: #ffffff;
 }
 
@@ -497,6 +500,7 @@ a:focus {
 
 .about_section .img-box img {
   max-width: 100%;
+  border-radius: 50%;
 }
 
 .about_section .detail-box h3 {
@@ -773,7 +777,7 @@ a:focus {
 
 /* client section end */
 .info_section {
-  background-color: #00204a;
+  background-color: #007fa4;
   color: #ffffff;
   padding: 45px 0 15px 0;
 }
@@ -916,13 +920,14 @@ a:focus {
 .fonty{
   font-size: 3rem;
   font-weight: bold;
+  color: #000000;
 }
 .info_section form button {
   width: 100%;
   text-align: center;
   display: inline-block;
   padding: 10px 55px;
-  background-color: #00bbf0;
+  background-color: #000000;
   color: #ffffff;
   border-radius: 0;
   -webkit-transition: all 0.3s;
