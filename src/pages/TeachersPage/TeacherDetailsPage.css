@@ -1,0 +1,53 @@
+.details-container {
+    max-width: 800px;
+    margin: 100px auto;
+    padding: 20px;
+  }
+  .reviews-section {
+    margin-top: 20px;
+  }
+  
+  .review-card {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .add-review {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .review-title{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+.teacher-info {
+    padding: 20px; 
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .add-review button {
+    background-color: #007bff; 
+    color: white; 
+    margin-top: 30px;
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 14px; 
+    transition: background-color 0.3s ease; 
+  }
+  
+  .add-review button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  
+  
