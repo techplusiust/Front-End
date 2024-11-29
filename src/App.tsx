@@ -6,12 +6,15 @@ import SignUpPage from "./pages/SignUpPage";
 import ProfilePage from "./pages/ProfilePage";
 import Schedule from "./pages/schedulePage";
 import LandingPage from "./pages/LandingPage";
+import TeachersPage from "./pages/TeachersPage/TeachersPage";
+import TeacherDetailsPage from "./pages/TeachersPage/TeacherDetailsPage";
 import { useRecoilValue } from "recoil";
 import { authAtom } from "./recoil/authAtom";
 import Layout from "./Layout/Layout";
 
 function App() {
   const auth = useRecoilValue(authAtom);
+
   return (
     <BrowserRouter>
       <ToastContainer />
@@ -42,6 +45,22 @@ function App() {
                 </Layout>
               }
             />
+            <Route
+              path="/professors"
+              element={
+                <Layout>
+                  <TeachersPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/professor/:id"
+              element={
+                <Layout>
+                  <TeacherDetailsPage />
+                </Layout>
+              }
+            />
             <Route path="*" element={<Navigate replace to="/" />} />
           </Route>
         ) : (
@@ -56,6 +75,22 @@ function App() {
             />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/professors"
+              element={
+                <Layout>
+                  <TeachersPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/professor/:id"
+              element={
+                <Layout>
+                  <TeacherDetailsPage />
+                </Layout>
+              }
+            />
             <Route path="*" element={<Navigate replace to="/" />} />
           </>
         )}
