@@ -7,16 +7,16 @@ import {
   Button,
   Dropdown,
   DropdownTrigger,
-  Avatar,
   DropdownMenu,
 } from "@nextui-org/react";
 import { AcmeLogo } from "./AcmeLogo";
-import mg1 from "../../assets/fonts/iranyekan/Images/article7.webp";
+// import mg1 from "../../assets/fonts/iranyekan/Images/article7.webp";
 import { MdClose } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { userAtom } from "../../recoil/userAtom";
 import { authAtom } from "../../recoil/authAtom";
+import { Profile } from "iconsax-react";
 
 const CustomNavbar: React.FC = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
@@ -87,7 +87,7 @@ const CustomNavbar: React.FC = () => {
             <>
               <Dropdown placement="bottom-end">
                 <DropdownTrigger>
-                  <Linkvatar src={mg1} size="md" />
+                  <span className="text-primary"><Profile variant="Bulk" size={32}/></span>
                 </DropdownTrigger>
                 <DropdownMenu aria-label="User menu actions">
                   <NavLink key="profile" to="/profile">

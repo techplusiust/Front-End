@@ -1,8 +1,9 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage";
+import AuthPage from "./pages/LoginAndSignup/index";
+import Login from "./pages/LoginAndSignup/Login";
+import Signup from "./pages/LoginAndSignup/Signup";
 import ProfilePage from "./pages/ProfilePage";
 import Schedule from "./pages/schedulePage";
 import LandingPage from "./pages/LandingPage";
@@ -73,8 +74,6 @@ function App() {
                 </Layout>
               }
             />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/login" element={<LoginPage />} />
             <Route
               path="/professors"
               element={
@@ -91,6 +90,13 @@ function App() {
                 </Layout>
               }
             />
+            <Route path="/login" element={<AuthPage />}>
+              <Route index element={<Login />} />
+            </Route>
+            <Route path="/signup" element={<AuthPage />}>
+              <Route index element={<Signup />} />
+            </Route>
+
             <Route path="*" element={<Navigate replace to="/" />} />
           </>
         )}
