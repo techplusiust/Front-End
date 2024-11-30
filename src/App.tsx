@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
       <ToastContainer />
       <Routes>
-        {auth.isLoggedin ? (
+        {/* {auth.isLoggedin ? ( */}
           <Route>
             <Route
               path="/profile"
@@ -44,7 +44,7 @@ function App() {
             />
             <Route path="*" element={<Navigate replace to="/" />} />
           </Route>
-        ) : (
+        {/* ) : ( */}
           <>
             <Route
               path="/"
@@ -58,7 +58,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="*" element={<Navigate replace to="/" />} />
           </>
-        )}
+        {/* )} */}
       </Routes>
     </BrowserRouter>
   );
