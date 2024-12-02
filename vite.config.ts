@@ -16,5 +16,8 @@ export default defineConfig({
       include: ["src/components"],
       reportsDirectory: "./coverage",
     },
+    // build: {
+    //   sourcemap: false, // این گزینه برای تولید فایل‌های نقشه
+    // }
   },
 });

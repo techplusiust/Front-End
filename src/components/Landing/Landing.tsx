@@ -51,7 +51,7 @@ export default function Landing() {
                   <div className="row flex">
                     <div className=" col-md-6 ">
                       <div className="detail-box">
-                        <h1 className="text-center ">
+                        <h1 className="text-center">
                         انتخاب واحد
                         </h1>
                         <p className="text-justify">
@@ -89,10 +89,10 @@ export default function Landing() {
         </section>
       </div>
 
-      <section className="service_section layout_padding flex justify-center">
-          <div className="container ">
+      <section className="service_section">
+          <div className="container flex flex-col">
             <div className="heading_container heading_center">
-              <h2 className="fonty">
+              <h2 className="fonty text-center">
                 ویژگی های سامانه انتخاب واحد
               </h2>
             </div>
@@ -144,11 +144,10 @@ export default function Landing() {
               <Link to="" style={{backgroundColor:'#070606'}}>مشاهده همه</Link>
             </div>
           </div>
-       
       </section>
 
       <section className="about_section layout_padding flex justify-center">
-        <div className="container">
+        <div className="container flex flex-col">
           <div className="heading_container heading_center">
             <h2 className="fonty">
             درباره ما
@@ -366,7 +365,7 @@ export default function Landing() {
       </section> */}
       
       <section className="client_section layout_padding flex justify-center">
-        <div className="container">
+        <div className="container flex flex-col">
           <div className="heading_container heading_center psudo_white_primary mb_45">
             <h2 className="fonty">
             نظر دانشجویان درباره سامانه انتخاب واحد ما
@@ -401,7 +400,6 @@ export default function Landing() {
                     <div className="client_id">
                       <div className="client_info">
                       <p>زهرا کمالی</p>
-                       
                       </div>
                       <i className="fa fa-quote-left" aria-hidden="true"></i>
                     </div>
@@ -506,7 +504,7 @@ export default function Landing() {
                     دوره ها
                   </Link>
                   <Link className="" to="why.html">
-                   برنامه امتحانی
+                  برنامه امتحانی
                   </Link>
                   <Link className="" to="team.html">
                     اساتید
@@ -525,8 +523,8 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="footer_section flex justify-center">
-        <div className="container">
+      <section className="footer_section flex justify-center ">
+        <div className="container h-[15px]">
           <p>
             &copy; <span id="displayYear"> حقوق معنوی این سامانه محفوظ بوده و هرگونه استفاده غیرمجاز از آن پیگرد قانونی دارد </span>
           </p>
