@@ -48,6 +48,7 @@ const SignupForm = () => {
   ]);
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
+
   const onSubmit = async (values: any) => {
     const { name, email, username, password1, gender, department } = values;
     const userData = {

@@ -65,6 +65,9 @@ const CustomNavbar: React.FC = () => {
           <NavLink key="professors" to="/professors">
             اساتید
           </NavLink>
+          <NavLink key="users" to="/users">
+            کاربران
+          </NavLink>
         </NavbarContent>
       </div>
       <div className="flex items-center justify-end">
@@ -78,16 +81,18 @@ const CustomNavbar: React.FC = () => {
                   ورود / ثبت نام
                 </Button>
               </NavLink>
-              {/* <NavLink to="/signup">
+              <NavLink to="/signup">
                 <Button color="danger">Signup</Button>
-              </NavLink> */}
+              </NavLink>
             </>
           )}
           {auth.isLoggedin && (
             <>
               <Dropdown placement="bottom-end">
                 <DropdownTrigger>
-                  <span className="text-primary"><Profile variant="Bulk" size={32}/></span>
+                  <span className="text-primary">
+                    <Profile variant="Bulk" size={32} />
+                  </span>
                 </DropdownTrigger>
                 <DropdownMenu aria-label="User menu actions">
                   <NavLink key="profile" to="/profile">
@@ -101,6 +106,9 @@ const CustomNavbar: React.FC = () => {
                   </NavLink>
                   <NavLink key="professors" to="/professors">
                     اساتید
+                  </NavLink>
+                  <NavLink key="users" to="/users">
+                    کاربران
                   </NavLink>
                   <NavLink
                     key="logout"

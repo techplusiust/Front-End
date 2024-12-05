@@ -12,6 +12,7 @@ import TeacherDetailsPage from "./pages/TeachersPage/TeacherDetailsPage";
 import { useRecoilValue } from "recoil";
 import { authAtom } from "./recoil/authAtom";
 import Layout from "./Layout/Layout";
+import UserPage from "./components/Admin/Users";
 
 function App() {
   const auth = useRecoilValue(authAtom);
@@ -20,8 +21,16 @@ function App() {
     <BrowserRouter>
       <ToastContainer />
       <Routes>
-        {/* {auth.isLoggedin ? ( */}
+        {auth.isLoggedin ? (
           <Route>
+            <Route
+              path="/users"
+              element={
+                <Layout>
+                  <UserPage />
+                </Layout>
+              }
+            />
             <Route
               path="/profile"
               element={
@@ -64,7 +73,7 @@ function App() {
             />
             <Route path="*" element={<Navigate replace to="/" />} />
           </Route>
-        {/* ) : ( */}
+        ) : (
           <>
             <Route
               path="/"
@@ -99,7 +108,7 @@ function App() {
 
             <Route path="*" element={<Navigate replace to="/" />} />
           </>
-        {/* )} */}
+        )}
       </Routes>
     </BrowserRouter>
   );
