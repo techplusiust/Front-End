@@ -137,49 +137,51 @@ const UserPage = () => {
   });
 
   return (
-    <div className="p-6">
-      <h1 className="text-xl font-bold mb-4 mt-14">مدیریت کاربران</h1>
-      <Input
-        className="mb-4"
-        placeholder="Search users..."
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <div className="space-y-4">
-        {filteredUsers.map((user, index) => (
-          <div
-            key={index}
-            className="grid grid-cols-5 items-center p-4 bg-gray-100 rounded-lg shadow"
-          >
-            <div className="col-span-2">
-              <p className="font-medium">{user.name}</p>
-              <p className="text-gray-600">{user.email}</p>
+    <>
+      <div className="container mx-auto">
+        <h1 className="text-xl font-bold mb-4 mt-20">مدیریت کاربران</h1>
+        <Input
+          className="mb-4"
+          placeholder="جستجو..."
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <div className="space-y-4">
+          {filteredUsers.map((user, index) => (
+            <div
+              key={index}
+              className="grid grid-cols-5 items-center p-4 bg-gray-100 rounded-lg shadow"
+            >
+              <div className="col-span-2">
+                <p className="font-medium">{user.name}</p>
+                <p className="text-gray-600">{user.email}</p>
+              </div>
+              <div className="col-span-1">
+                <p className="font-medium">
+                  {
+                    subjectOptions.find((item) => item.id === user.department)
+                      .title
+                  }
+                </p>
+              </div>
+              <div className="flex justify-end gap-2 col-span-2">
+                <Button
+                  color="primary"
+                  size="sm"
+                  onClick={() => handleEdit(user)}
+                >
+                  ویرایش
+                </Button>
+                <Button
+                  size="sm"
+                  color="danger"
+                  onClick={() => handleDelete(user)}
+                >
+                  حذف
+                </Button>
+              </div>
             </div>
-            <div className="col-span-1">
-              <p className="font-medium">
-                {
-                  subjectOptions.find((item) => item.id === user.department)
-                    .title
-                }
-              </p>
-            </div>
-            <div className="flex justify-end gap-2 col-span-2">
-              <Button
-                color="primary"
-                size="sm"
-                onClick={() => handleEdit(user)}
-              >
-                ویرایش
-              </Button>
-              <Button
-                size="sm"
-                color="danger"
-                onClick={() => handleDelete(user)}
-              >
-                حذف
-              </Button>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       <Modal
         isOpen={isOpenEditModalOpen}
@@ -277,7 +279,6 @@ const UserPage = () => {
         <ModalContent>
           {(onClose) => (
             <>
-              {" "}
               <ModalHeader>
                 <h2 className="text-lg font-bold">هشدار حذف کاربر</h2>
               </ModalHeader>
@@ -296,7 +297,7 @@ const UserPage = () => {
           )}
         </ModalContent>
       </Modal>
-    </div>
+    </>
   );
 };
 
