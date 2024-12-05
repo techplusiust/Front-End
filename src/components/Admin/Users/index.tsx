@@ -138,10 +138,12 @@ const UserPage = () => {
 
   return (
     <>
-      <div className="container mx-auto">
-        <h1 className="text-xl font-bold mb-4 mt-20">مدیریت کاربران</h1>
+      <div className="container mx-auto px-4 md:px-8">
+        <h1 className="text-xl font-bold mb-4 mt-10 text-center md:text-left">
+          مدیریت کاربران
+        </h1>
         <Input
-          className="mb-4"
+          className="mb-6"
           placeholder="جستجو..."
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -149,13 +151,13 @@ const UserPage = () => {
           {filteredUsers.map((user, index) => (
             <div
               key={index}
-              className="grid grid-cols-5 items-center p-4 bg-gray-100 rounded-lg shadow"
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 items-center p-4 bg-gray-100 rounded-lg shadow-lg gap-4"
             >
-              <div className="col-span-2">
+              <div className="sm:col-span-1 md:col-span-2">
                 <p className="font-medium">{user.name}</p>
                 <p className="text-gray-600">{user.email}</p>
               </div>
-              <div className="col-span-1">
+              <div className="hidden md:block md:col-span-1">
                 <p className="font-medium">
                   {
                     subjectOptions.find((item) => item.id === user.department)
@@ -163,7 +165,7 @@ const UserPage = () => {
                   }
                 </p>
               </div>
-              <div className="flex justify-end gap-2 col-span-2">
+              <div className="flex justify-end md:justify-end md:col-span-2 gap-2">
                 <Button
                   color="primary"
                   size="sm"
