@@ -12,7 +12,7 @@ const TeacherDetailsPage: React.FC = () => {
   const handleAddReview = () => {
     if (newReview.trim()) {
       setReviews([...reviews, newReview]);
-      setNewReview(""); 
+      setNewReview("");
     }
   };
 

@@ -13,7 +13,7 @@ export default defineConfig({
       enabled: true,
       provider: "v8",
       reporter: ["text", "html"],
-      include: ["src/components"],
+      include: ["src/components", "src/pages"],
       reportsDirectory: "./coverage",
     },
     // build: {
