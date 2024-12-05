@@ -4,7 +4,6 @@ import UserPage from ".";
 
 describe("UserPage Component", () => {
   beforeEach(() => {
-    // Reset mocks before each test
     vi.clearAllMocks();
   });
 
@@ -40,21 +39,6 @@ describe("UserPage Component", () => {
     expect(screen.getByLabelText("ایمیل")).toHaveValue("john@example.com");
   });
 
-  //   it("updates user details in the edit modal and closes on submit", () => {
-  //     render(<UserPage />);
-  //     const editButton = screen.getAllByText("ویرایش")[0];
-  //     fireEvent.click(editButton);
-
-  //     const nameInput = screen.getByLabelText("نام پروفایل");
-  //     fireEvent.change(nameInput, { target: { value: "John Updated" } });
-
-  //     const saveButton = screen.getByText("تایید");
-  //     fireEvent.click(saveButton);
-
-  //     expect(screen.queryByText("ویرایش کاربر")).not.toBeInTheDocument();
-  //     expect(screen.getByText("John Updated")).toBeInTheDocument();
-  //   });
-
   it("opens the delete confirmation modal and deletes the user", () => {
     render(<UserPage />);
     const deleteButton = screen.getAllByText("حذف")[0]; // First user's delete button
@@ -79,12 +63,10 @@ describe("UserPage Component", () => {
     const saveButton = screen.getByText("تایید");
     fireEvent.click(saveButton);
 
-    // Wait for the modal to close
     await waitFor(() =>
       expect(screen.queryByText("ویرایش کاربر")).not.toBeInTheDocument()
     );
 
-    // Confirm the updated name is displayed
     expect(screen.getByText("John Updated")).toBeInTheDocument();
   });
 
@@ -98,22 +80,8 @@ describe("UserPage Component", () => {
     const cancelButton = screen.getByText("انصراف");
     fireEvent.click(cancelButton);
 
-    // Wait for the modal to close
     await waitFor(() =>
       expect(screen.queryByText("هشدار حذف کاربر")).not.toBeInTheDocument()
     );
   });
-
-  //   it("closes the delete confirmation modal on cancel", () => {
-  //     render(<UserPage />);
-  //     const deleteButton = screen.getAllByText("حذف")[0];
-  //     fireEvent.click(deleteButton);
-
-  //     expect(screen.getByText("هشدار حذف کاربر")).toBeInTheDocument();
-
-  //     const cancelButton = screen.getByText("انصراف");
-  //     fireEvent.click(cancelButton);
-
-  //     expect(screen.queryByText("هشدار حذف کاربر")).not.toBeInTheDocument();
-  //   });
 });
