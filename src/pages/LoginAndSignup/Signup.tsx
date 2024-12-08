@@ -6,21 +6,22 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useQuery } from "../../hooks/useQuery";
-import { eGender } from "../../models/enum/Enums";
+// import { eGender } from "../../models/enum/Enums";
 
 const initialValues = {
-  name: "",
-  username: "",
+  fullname: "",
+  national_code: "", // replaced with username to make it simpler and more concise 
+  student_number: "",
   email: "",
   password1: "",
   password2: "",
-  gender: eGender.Male,
+  // gender: eGender.Male, Not useful 
   department: "",
 };
 
 const validationSchema = Yup.object({
   name: Yup.string().required("نام پروفایل را وارد نمایید"),
-  username: Yup.string().required("نام کاربری را وارد نمایید"),
+  national_code: Yup.string().required("کد ملی را وارد نمایید"),
   email: Yup.string()
     .email("فرمت ایمیل صحیح نیست")
     .required("ایمیل را وارد نمایید"),
@@ -49,10 +50,10 @@ const SignupForm = () => {
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
   const onSubmit = async (values: any) => {
-    const { name, email, username, password1, gender, department } = values;
+    const { name, email, national_code, password1, gender, department } = values;
     const userData = {
       name,
-      username,
+      national_code,
       email,
       password: password1,
       gender,
@@ -108,14 +109,14 @@ const SignupForm = () => {
             isInvalid={!!formik.errors.name}
           />
           <Input
-            {...formik.getFieldProps({ name: "username" })}
-            name="username"
-            label="نام کاربری"
+            {...formik.getFieldProps({ name: "national_code" })}
+            name="national_code"
+            label="کد ملی"
             size="sm"
             variant="bordered"
             labelPlacement={"outside"}
-            errorMessage={<>{formik.errors.username ?? ""}</>}
-            isInvalid={!!formik.errors.username}
+            errorMessage={<>{formik.errors.national_code ?? ""}</>}
+            isInvalid={!!formik.errors.national_code}
           />
           <Input
             {...formik.getFieldProps({ name: "email" })}
@@ -166,7 +167,7 @@ const SignupForm = () => {
             errorMessage={<>{formik.errors.password2 ?? ""}</>}
             isInvalid={!!formik.errors.password2}
           />
-          <Select
+{/*           <Select
             label={"جنسیت"}
             size="sm"
             variant="bordered"
@@ -181,7 +182,7 @@ const SignupForm = () => {
             <SelectItem key={eGender.Female} value={eGender.Female}>
               خانم
             </SelectItem>
-          </Select>
+          </Select> */}
           <Select
             size="sm"
             label={"رشته"}
