@@ -59,17 +59,31 @@ const SignupForm = () => {
       department,
     };
     try {
-      const response = await axios.post("https://127.0.0.1:8000/api/accounts/signup/", userData);
-      if (response.data.success) {
+      const response = await axios.post(
+        "https://127.0.0.1:8000/api/accounts/signup/",
+        userData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        // معمولاً 201 برای ایجاد کاربر جدید
         console.log("Signup successful. User data:", response.data);
+        // هدایت کاربر به صفحه دیگر در صورت موفقیت
       } else {
         console.error(
           "Signup error. Please check your details.",
           response.data.message
         );
       }
-    } catch (error) {
-      console.error("Server connection error. Please try again later.", error);
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message ||
+        "خطای اتصال به سرور. لطفاً دوباره تلاش کنید.";
+      console.error("Server connection error:", errorMessage);
     }
   };
 

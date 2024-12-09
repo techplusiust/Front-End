@@ -5,6 +5,7 @@ import { Eye, EyeSlash, TickCircle } from "iconsax-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   email: "",
@@ -26,24 +27,32 @@ const validationSchema = Yup.object({
 const LoginForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const navigate = useNavigate()
 
   const onSubmit = async (values: any) => {
     const { email, password } = values;
     const userData = { email, password };
 
     try {
-      const response = await axios.post("https://127.0.0.1:8000/api/accounts/login/", userData);
-      if (response.data.success) {
+      const response = await axios.post(
+        "https://127.0.0.1:8000/api/accounts/login/",
+        userData,
+        { headers: { "Content-Type": "application/json" } }
+      );
+  
+      if (response.status === 200 && response.data.success) {
         console.log("Login successful. User data:", response.data);
-        login(response.data.user);
+        localStorage.setItem("token", response.data.token);
+        navigate("/dashboard");
       } else {
-        console.error(
-          "Login error. Please check your credentials.",
-          response.data.message
-        );
+        const errorMessage =
+          response.data.message || "ورود ناموفق. لطفاً اطلاعات خود را بررسی کنید.";
+        console.error("Login error:", errorMessage);
       }
-    } catch (error) {
-      console.error("Server connection error. Please try again later.", error);
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message || "خطای اتصال به سرور. لطفاً دوباره تلاش کنید.";
+      console.error("Server connection error:", errorMessage);
     }
   };
 
