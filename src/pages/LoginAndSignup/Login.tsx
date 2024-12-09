@@ -43,7 +43,7 @@ const LoginForm = () => {
       if (response.status === 200 && response.data.success) {
         console.log("Login successful. User data:", response.data);
         localStorage.setItem("token", response.data.token);
-        navigate("/dashboard");
+        navigate("/");
       } else {
         const errorMessage =
           response.data.message || "ورود ناموفق. لطفاً اطلاعات خود را بررسی کنید.";
