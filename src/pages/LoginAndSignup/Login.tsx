@@ -32,7 +32,7 @@ const LoginForm = () => {
     const userData = { email, password };
 
     try {
-      const response = await axios.post("https://localhost/login", userData);
+      const response = await axios.post("https://127.0.0.1:8000/api/accounts/login/", userData);
       if (response.data.success) {
         console.log("Login successful. User data:", response.data);
         login(response.data.user);

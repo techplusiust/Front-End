@@ -59,7 +59,7 @@ const SignupForm = () => {
       department,
     };
     try {
-      const response = await axios.post("https://localhost/signup", userData);
+      const response = await axios.post("https://127.0.0.1:8000/api/accounts/signup/", userData);
       if (response.data.success) {
         console.log("Signup successful. User data:", response.data);
       } else {
