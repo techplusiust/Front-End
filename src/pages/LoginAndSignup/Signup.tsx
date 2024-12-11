@@ -62,7 +62,7 @@ const SignupForm = () => {
     };
     try {
       const response = await axios.post(
-        "https://127.0.0.1:8000/api/accounts/signup/",
+        "http://127.0.0.1:8000/api/accounts/signup/",
         userData,
         {
           headers: {
