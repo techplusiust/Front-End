@@ -10,20 +10,19 @@ import { useQuery } from "../../hooks/useQuery";
 import { eGender } from "../../models/enum/Enums";
 import { useNavigate } from "react-router-dom";
 
-
 const initialValues = {
   fullname: "",
-  national_code: "", // replaced with username to make it simpler and more concise 
+  national_code: "", // replaced with username to make it simpler and more concise
   student_number: "",
   email: "",
   password1: "",
   password2: "",
-  // gender: eGender.Male, Not useful 
+  // gender: eGender.Male, Not useful
   department: "",
 };
 
 const validationSchema = Yup.object({
-  name: Yup.string().required("نام پروفایل را وارد نمایید"),
+  fullname: Yup.string().required("نام پروفایل را وارد نمایید"),
   national_code: Yup.string().required("کد ملی را وارد نمایید"),
   email: Yup.string()
     .email("فرمت ایمیل صحیح نیست")
@@ -50,13 +49,15 @@ const SignupForm = () => {
       title: "مهندسی کامپیوتر",
     },
   ]);
+  const [apiResponse, setApiResponse] = useState<any>(null);
   const navigate = useNavigate();
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
   const onSubmit = async (values: any) => {
-    const { name, email, national_code, password1, gender, department } = values;
+    const { fullname, email, national_code, password1, gender, department } =
+      values;
     const userData = {
-      name,
+      fullname,
       national_code,
       email,
       password: password1,
@@ -73,11 +74,12 @@ const SignupForm = () => {
           },
         }
       );
-
+      console.log("API Response:", response.data);
       if (response.status === 201) {
         // معمولاً 201 برای ایجاد کاربر جدید
         console.log("Signup successful. User data:", response.data);
-        navigate('/login')
+        setApiResponse(response.data);
+        navigate("/login");
         // هدایت کاربر به صفحه دیگر در صورت موفقیت
       } else {
         console.error(
@@ -90,6 +92,10 @@ const SignupForm = () => {
         error.response?.data?.message ||
         "خطای اتصال به سرور. لطفاً دوباره تلاش کنید.";
       console.error("Server connection error:", errorMessage);
+      console.error("Error response:", error.response);
+      console.error("Error message:", error.message);
+
+      setApiResponse(error.response?.data || { message: errorMessage });
     }
   };
 
@@ -118,14 +124,14 @@ const SignupForm = () => {
           }}
         >
           <Input
-            {...formik.getFieldProps({ name: "name" })}
-            name="name"
+            {...formik.getFieldProps({ name: "fullname" })}
+            name="fullname"
             label="نام پروفایل"
             size="sm"
             variant="bordered"
             labelPlacement={"outside"}
-            errorMessage={<>{formik.errors.name ?? ""}</>}
-            isInvalid={!!formik.errors.name}
+            errorMessage={<>{formik.errors.fullname ?? ""}</>}
+            isInvalid={!!formik.errors.fullname}
           />
           <Input
             {...formik.getFieldProps({ name: "national_code" })}
@@ -186,7 +192,7 @@ const SignupForm = () => {
             errorMessage={<>{formik.errors.password2 ?? ""}</>}
             isInvalid={!!formik.errors.password2}
           />
-{/*           <Select
+          {/*           <Select
             label={"جنسیت"}
             size="sm"
             variant="bordered"
@@ -222,7 +228,7 @@ const SignupForm = () => {
             fullWidth
             startContent={<TickCircle variant="Bulk" />}
             type="submit"
-            disabled={!formik.isValid}
+            // disabled={!formik.isValid}
             color="primary"
             className="mt-2"
           >

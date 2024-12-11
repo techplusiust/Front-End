@@ -39,7 +39,7 @@ const LoginForm = () => {
         userData,
         { headers: { "Content-Type": "application/json" } }
       );
-  
+      console.log("API Response:", response.data);
       if (response.status === 200 && response.data.success) {
         console.log("Login successful. User data:", response.data);
         localStorage.setItem("token", response.data.token);
@@ -119,7 +119,7 @@ const LoginForm = () => {
             fullWidth
             startContent={<TickCircle variant="Bulk" />}
             type="submit"
-            disabled={!formik.isValid}
+            // disabled={!formik.isValid}
             color="primary"
             className="my-2"
           >
