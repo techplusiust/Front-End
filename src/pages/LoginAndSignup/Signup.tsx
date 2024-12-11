@@ -6,7 +6,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useQuery } from "../../hooks/useQuery";
-// import { eGender } from "../../models/enum/Enums";
+
+import { eGender } from "../../models/enum/Enums";
+import { useNavigate } from "react-router-dom";
+
 
 const initialValues = {
   fullname: "",
@@ -47,6 +50,7 @@ const SignupForm = () => {
       title: "مهندسی کامپیوتر",
     },
   ]);
+  const navigate = useNavigate();
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
   const onSubmit = async (values: any) => {
@@ -60,17 +64,32 @@ const SignupForm = () => {
       department,
     };
     try {
-      const response = await axios.post("https://localhost/signup", userData);
-      if (response.data.success) {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/accounts/signup/",
+        userData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        // معمولاً 201 برای ایجاد کاربر جدید
         console.log("Signup successful. User data:", response.data);
+        navigate('/login')
+        // هدایت کاربر به صفحه دیگر در صورت موفقیت
       } else {
         console.error(
           "Signup error. Please check your details.",
           response.data.message
         );
       }
-    } catch (error) {
-      console.error("Server connection error. Please try again later.", error);
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message ||
+        "خطای اتصال به سرور. لطفاً دوباره تلاش کنید.";
+      console.error("Server connection error:", errorMessage);
     }
   };
 
