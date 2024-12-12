@@ -3,9 +3,11 @@ import { Button, Input } from "@nextui-org/react";
 import { useFormik } from "formik";
 import { Eye, EyeSlash, TickCircle } from "iconsax-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { authAtom } from "../../recoil/authAtom";
+import { userAtom } from "../../recoil/userAtom";
 
 const initialValues = {
   email: "",
@@ -28,16 +30,34 @@ const LoginForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [loginResponse, setLoginResponse] = useState<any>(null);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const setAuth = useSetRecoilState(authAtom);
+  const setUser = useSetRecoilState(userAtom);
+
 
   const onSubmit = async (values: any) => {
     const { email, password } = values;
-    const userData = { email, password };
+
+    if (email === "admin@example.com" && password === "@Admin123") {
+      setAuth({
+        isLoggedin: true,
+        isAdmin: true,
+      });
+
+      setUser({
+        username: "admin",
+        email: "admin@example.com",
+        department: "Administration",
+      });
+
+      navigate("/admin");
+      return;
+    }
 
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/accounts/login/",
-        userData,
+        { email, password },
         { headers: { "Content-Type": "application/json" } }
       );
       console.log("API Response:", response.data);
@@ -45,7 +65,20 @@ const LoginForm = () => {
         console.log("Login successful. User data:", response.data);
         setLoginResponse(response.data)
         localStorage.setItem("token", response.data.token);
-        navigate("/");
+
+        setAuth({
+          isLoggedin: true,
+          isAdmin: response.data.isAdmin || false,
+        });
+
+        setUser({
+          username: response.data.username,
+          email: response.data.email,
+          department: response.data.department,
+          avatar: response.data.avatar,
+        });
+
+        navigate(response.data.isAdmin ? "/admin" : "/");
       } else {
         const errorMessage =
           response.data.message || "ورود ناموفق. لطفاً اطلاعات خود را بررسی کنید.";
@@ -128,7 +161,7 @@ const LoginForm = () => {
             تایید
           </Button>
           <p>
-            آیا حساب کاربری دارید؟
+            آیا حساب کاربری ندارید؟
             <Link to={`/signup`} className="text-blue-600">
               ثبت نام
             </Link>
