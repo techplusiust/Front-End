@@ -12,18 +12,19 @@ import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   fullname: "",
-  national_code: "", // replaced with username to make it simpler and more concise
+  national_code: "",
   student_number: "",
   email: "",
   password1: "",
   password2: "",
-  // gender: eGender.Male, Not useful
   department: "",
 };
+
 
 const validationSchema = Yup.object({
   fullname: Yup.string().required("نام پروفایل را وارد نمایید"),
   national_code: Yup.string().required("کد ملی را وارد نمایید"),
+  student_number: Yup.string().required("شماره دانشجویی را وارد نمایید"),
   email: Yup.string()
     .email("فرمت ایمیل صحیح نیست")
     .required("ایمیل را وارد نمایید"),
@@ -36,7 +37,7 @@ const validationSchema = Yup.object({
   password2: Yup.string()
     .required("رمز عبور را مجدد وارد نمایید")
     .oneOf([Yup.ref("password1"), ""], "رمز عبور تکرار شده مغایرت دارد"),
-  gender: Yup.string().required("جنسیت را وارد نمایید"),
+  // gender: Yup.string().required("جنسیت را وارد نمایید"),
   department: Yup.string().required("رشته تحصیلی را وارد نمایید"),
 });
 
@@ -54,14 +55,14 @@ const SignupForm = () => {
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
   const onSubmit = async (values: any) => {
-    const { fullname, email, national_code, password1, gender, department } =
-      values;
+    const { fullname, national_code, student_number, email, password1, password2, department } = values;
     const userData = {
       fullname,
       national_code,
+      student_number,
       email,
-      password: password1,
-      gender,
+      password1,
+      password2,
       department,
     };
     try {
@@ -142,6 +143,16 @@ const SignupForm = () => {
             labelPlacement={"outside"}
             errorMessage={<>{formik.errors.national_code ?? ""}</>}
             isInvalid={!!formik.errors.national_code}
+          />
+          <Input
+            {...formik.getFieldProps({ name: "student_number" })}
+            name="student_number"
+            label="شماره دانشجویی"
+            size="sm"
+            variant="bordered"
+            labelPlacement={"outside"}
+            errorMessage={<>{formik.errors.student_number ?? ""}</>}
+            isInvalid={!!formik.errors.student_number}
           />
           <Input
             {...formik.getFieldProps({ name: "email" })}

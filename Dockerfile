@@ -1,5 +1,5 @@
 # مرحله اول: Build پروژه
-FROM node:18.20.1 AS build
+FROM node:18-alpine AS build
 
 # تنظیم دایرکتوری کاری
 WORKDIR /usr/local/app
@@ -15,7 +15,7 @@ COPY . .
 RUN npm run build
 
 # مرحله دوم: سرو کردن اپلیکیشن با Nginx
-FROM nginx:latest
+FROM nginx:1.23.4-alpine
 
 # کپی خروجی Build به Nginx
 COPY --from=build /usr/local/app/build /usr/share/nginx/html
