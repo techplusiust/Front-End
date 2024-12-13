@@ -31,6 +31,7 @@ const ProfileSidebar = () => {
     setUser(null);
     setAuth({
       isLoggedin: false,
+      isAdmin: false,
     });
     // todo => after api
     // try {

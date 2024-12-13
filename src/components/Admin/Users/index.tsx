@@ -31,17 +31,17 @@ interface IUserDto {
 const mockUsers: IUserDto[] = [
   {
     id: 1,
-    name: "John Doe",
-    username: "johndoe",
-    email: "john@example.com",
-    gender: eGender.Male,
+    name: "فرگل نصیری",
+    username: "fargol123",
+    email: "fargol@example.com",
+    gender: eGender.Female,
     department: "1",
   },
   {
     id: 2,
-    name: "Jane Smith",
-    username: "janesmith",
-    email: "jane@example.com",
+    name: "هانیه",
+    username: "haniyeh",
+    email: "haniyeh@example.com",
     gender: eGender.Female,
     department: "1",
   },
@@ -138,8 +138,8 @@ const UserPage = () => {
 
   return (
     <>
-      <div className="container mx-auto px-4 md:px-8">
-        <h1 className="text-xl font-bold mb-4 mt-10 text-center md:text-left">
+      <div className="container mx-auto px-4 mt-2 md:px-8">
+        <h1 className="text-xl font-bold mb-4 text-center md:text-right">
           مدیریت کاربران
         </h1>
         <Input
