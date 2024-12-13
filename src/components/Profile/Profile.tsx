@@ -86,11 +86,10 @@ const ProfileSidebar = () => {
           />
         </div>
         <h1 className="text-blue-700 font-bold text-xl mt-2">
-          {user?.username || "نام کاربری"}
+          {user?.email || "نام کاربری"}
         </h1>
         <Divider className=" mb-8 mt-8" />
         <Spacer y={1} />
-        <p>نام کاربری: {user?.username || "نام کاربری"}</p> <Spacer y={0.5} />
         <p>ایمیل: {user?.email || "ایمیل"}</p>
         <Spacer y={0.5} />
         <p>رشته: {user?.department || "رشته تحصیلی"}</p>

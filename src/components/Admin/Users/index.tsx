@@ -22,7 +22,6 @@ enum eGender {
 interface IUserDto {
   id: number;
   name: string;
-  username: string;
   email: string;
   gender: eGender;
   department: string;
@@ -32,7 +31,6 @@ const mockUsers: IUserDto[] = [
   {
     id: 1,
     name: "فرگل نصیری",
-    username: "fargol123",
     email: "fargol@example.com",
     gender: eGender.Female,
     department: "1",
@@ -40,7 +38,6 @@ const mockUsers: IUserDto[] = [
   {
     id: 2,
     name: "هانیه",
-    username: "haniyeh",
     email: "haniyeh@example.com",
     gender: eGender.Female,
     department: "1",
@@ -96,7 +93,6 @@ const UserPage = () => {
 
   const validationSchema = Yup.object({
     name: Yup.string().required("نام پروفایل را وارد نمایید"),
-    username: Yup.string().required("نام کاربری را وارد نمایید"),
     email: Yup.string()
       .email("فرمت ایمیل صحیح نیست")
       .required("ایمیل را وارد نمایید"),
@@ -104,7 +100,7 @@ const UserPage = () => {
   });
 
   const onSubmit = async (values: IUserDto) => {
-    const { name, email, username, department, id } = values;
+    const { name, email, department, id } = values;
 
     const tempUsers = [...users];
     const userIndex = tempUsers.findIndex((item) => item.id === id);
@@ -113,7 +109,6 @@ const UserPage = () => {
       ...tempUser,
       name,
       email,
-      username,
       department,
     };
     tempUsers[userIndex] = updatedUser;
@@ -125,7 +120,6 @@ const UserPage = () => {
     initialValues: editUser || {
       id: 0,
       name: "",
-      username: "",
       email: "",
       gender: eGender.Male,
       department: "1",
@@ -211,16 +205,6 @@ const UserPage = () => {
                       labelPlacement={"outside"}
                       errorMessage={<>{formik.errors.name ?? ""}</>}
                       isInvalid={!!formik.errors.name}
-                    />
-                    <Input
-                      {...formik.getFieldProps({ name: "username" })}
-                      name="username"
-                      label="نام کاربری"
-                      size="sm"
-                      variant="bordered"
-                      labelPlacement={"outside"}
-                      errorMessage={<>{formik.errors.username ?? ""}</>}
-                      isInvalid={!!formik.errors.username}
                     />
                     <Input
                       {...formik.getFieldProps({ name: "email" })}
