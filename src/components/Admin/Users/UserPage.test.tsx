@@ -15,18 +15,18 @@ describe("UserPage Component", () => {
 
   it("displays a list of users", () => {
     render(<UserPage />);
-    expect(screen.getByText("John Doe")).toBeInTheDocument();
-    expect(screen.getByText("john@example.com")).toBeInTheDocument();
-    expect(screen.getByText("Jane Smith")).toBeInTheDocument();
+    expect(screen.getByText("فرگل نصیری")).toBeInTheDocument();
+    expect(screen.getByText("fargol@example.com")).toBeInTheDocument();
+    expect(screen.getByText("هانیه")).toBeInTheDocument();
   });
 
   it("filters users based on the search input", () => {
     render(<UserPage />);
     const searchInput = screen.getByPlaceholderText("جستجو...");
-    fireEvent.change(searchInput, { target: { value: "Jane" } });
+    fireEvent.change(searchInput, { target: { value: "هانیه" } });
 
-    expect(screen.queryByText("John Doe")).not.toBeInTheDocument();
-    expect(screen.getByText("Jane Smith")).toBeInTheDocument();
+    expect(screen.queryByText("فرگل نصیری")).not.toBeInTheDocument();
+    expect(screen.getByText("هانیه")).toBeInTheDocument();
   });
 
   it("opens the edit modal with user details on edit button click", () => {
@@ -35,8 +35,8 @@ describe("UserPage Component", () => {
     fireEvent.click(editButton);
 
     expect(screen.getByText("ویرایش کاربر")).toBeInTheDocument();
-    expect(screen.getByLabelText("نام پروفایل")).toHaveValue("John Doe");
-    expect(screen.getByLabelText("ایمیل")).toHaveValue("john@example.com");
+    expect(screen.getByLabelText("نام پروفایل")).toHaveValue("فرگل نصیری");
+    expect(screen.getByLabelText("ایمیل")).toHaveValue("fargol@example.com");
   });
 
   it("opens the delete confirmation modal and deletes the user", () => {
@@ -49,7 +49,7 @@ describe("UserPage Component", () => {
     const confirmButton = screen.getByText("تایید");
     fireEvent.click(confirmButton);
 
-    expect(screen.queryByText("John Doe")).not.toBeInTheDocument();
+    expect(screen.queryByText("فرگل نصیری")).not.toBeInTheDocument();
   });
 
   it("updates user details in the edit modal and closes on submit", async () => {
