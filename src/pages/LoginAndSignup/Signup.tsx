@@ -6,21 +6,25 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useQuery } from "../../hooks/useQuery";
+
 import { eGender } from "../../models/enum/Enums";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
-  name: "",
-  username: "",
+  fullname: "",
+  national_code: "",
+  student_number: "",
   email: "",
   password1: "",
   password2: "",
-  gender: eGender.Male,
   department: "",
 };
 
+
 const validationSchema = Yup.object({
-  name: Yup.string().required("نام پروفایل را وارد نمایید"),
-  username: Yup.string().required("نام کاربری را وارد نمایید"),
+  fullname: Yup.string().required("نام پروفایل را وارد نمایید"),
+  national_code: Yup.string().required("کد ملی را وارد نمایید"),
+  student_number: Yup.string().required("شماره دانشجویی را وارد نمایید"),
   email: Yup.string()
     .email("فرمت ایمیل صحیح نیست")
     .required("ایمیل را وارد نمایید"),
@@ -33,7 +37,7 @@ const validationSchema = Yup.object({
   password2: Yup.string()
     .required("رمز عبور را مجدد وارد نمایید")
     .oneOf([Yup.ref("password1"), ""], "رمز عبور تکرار شده مغایرت دارد"),
-  gender: Yup.string().required("جنسیت را وارد نمایید"),
+  // gender: Yup.string().required("جنسیت را وارد نمایید"),
   department: Yup.string().required("رشته تحصیلی را وارد نمایید"),
 });
 
@@ -46,31 +50,54 @@ const SignupForm = () => {
       title: "مهندسی کامپیوتر",
     },
   ]);
+  const [apiResponse, setApiResponse] = useState<any>(null);
+  const navigate = useNavigate();
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
 
   const onSubmit = async (values: any) => {
-    const { name, email, username, password1, gender, department } = values;
+    const { fullname, national_code, student_number, email, password1, password2, department } = values;
     const userData = {
-      name,
-      username,
+      fullname,
+      national_code,
+      student_number,
       email,
-      password: password1,
-      gender,
+      password1,
+      password2,
       department,
     };
     try {
-      const response = await axios.post("https://localhost/signup", userData);
-      if (response.data.success) {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/accounts/signup/",
+        userData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("API Response:", response.data);
+      if (response.status === 201) {
+        // معمولاً 201 برای ایجاد کاربر جدید
         console.log("Signup successful. User data:", response.data);
+        setApiResponse(response.data);
+        navigate("/login");
+        // هدایت کاربر به صفحه دیگر در صورت موفقیت
       } else {
         console.error(
           "Signup error. Please check your details.",
           response.data.message
         );
       }
-    } catch (error) {
-      console.error("Server connection error. Please try again later.", error);
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message ||
+        "خطای اتصال به سرور. لطفاً دوباره تلاش کنید.";
+      console.error("Server connection error:", errorMessage);
+      console.error("Error response:", error.response);
+      console.error("Error message:", error.message);
+
+      setApiResponse(error.response?.data || { message: errorMessage });
     }
   };
 
@@ -99,24 +126,34 @@ const SignupForm = () => {
           }}
         >
           <Input
-            {...formik.getFieldProps({ name: "name" })}
-            name="name"
+            {...formik.getFieldProps({ name: "fullname" })}
+            name="fullname"
             label="نام پروفایل"
             size="sm"
             variant="bordered"
             labelPlacement={"outside"}
-            errorMessage={<>{formik.errors.name ?? ""}</>}
-            isInvalid={!!formik.errors.name}
+            errorMessage={<>{formik.errors.fullname ?? ""}</>}
+            isInvalid={!!formik.errors.fullname}
           />
           <Input
-            {...formik.getFieldProps({ name: "username" })}
-            name="username"
-            label="نام کاربری"
+            {...formik.getFieldProps({ name: "national_code" })}
+            name="national_code"
+            label="کد ملی"
             size="sm"
             variant="bordered"
             labelPlacement={"outside"}
-            errorMessage={<>{formik.errors.username ?? ""}</>}
-            isInvalid={!!formik.errors.username}
+            errorMessage={<>{formik.errors.national_code ?? ""}</>}
+            isInvalid={!!formik.errors.national_code}
+          />
+          <Input
+            {...formik.getFieldProps({ name: "student_number" })}
+            name="student_number"
+            label="شماره دانشجویی"
+            size="sm"
+            variant="bordered"
+            labelPlacement={"outside"}
+            errorMessage={<>{formik.errors.student_number ?? ""}</>}
+            isInvalid={!!formik.errors.student_number}
           />
           <Input
             {...formik.getFieldProps({ name: "email" })}
@@ -167,7 +204,7 @@ const SignupForm = () => {
             errorMessage={<>{formik.errors.password2 ?? ""}</>}
             isInvalid={!!formik.errors.password2}
           />
-          <Select
+          {/*           <Select
             label={"جنسیت"}
             size="sm"
             variant="bordered"
@@ -182,7 +219,7 @@ const SignupForm = () => {
             <SelectItem key={eGender.Female} value={eGender.Female}>
               خانم
             </SelectItem>
-          </Select>
+          </Select> */}
           <Select
             size="sm"
             label={"رشته"}
@@ -203,7 +240,7 @@ const SignupForm = () => {
             fullWidth
             startContent={<TickCircle variant="Bulk" />}
             type="submit"
-            disabled={!formik.isValid}
+            // disabled={!formik.isValid}
             color="primary"
             className="mt-2"
           >
