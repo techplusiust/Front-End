@@ -59,9 +59,9 @@ const LoginForm = () => {
         { headers: { "Content-Type": "application/json" } }
       );
       console.log("API Response:", response.data);
-      if (response.status === 200 && response.data.success) {
+      if (response.status === 200) {
         console.log("Login successful. User data:", response.data);
-        setLoginResponse(response.data);
+        // setLoginResponse(response.data);
         localStorage.setItem("token", response.data.token);
 
         setAuth({
