@@ -16,7 +16,7 @@ const TeachersPage: React.FC = () => {
   return (
     <div className="container">
       {teachers.map((teacher) => (
-        <Card key={teacher.id} isHoverable variant="bordered" className="card">
+        <Card key={teacher.id} isHoverable style={{ border: "1px solid #ddd" }} className="card">
           <div className="header">
             <Avatar src={teacher.image} size="lg" />
             <div>

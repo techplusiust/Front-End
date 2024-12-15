@@ -26,6 +26,7 @@ const CustomNavbar: React.FC = () => {
   const logout = () => {
     setAuth({
       isLoggedin: false,
+      isAdmin: false,
     });
     setUser(null);
   };
