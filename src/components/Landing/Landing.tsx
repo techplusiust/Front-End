@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "../Landing/Landing.css";
 import {Link} from 'react-router-dom';
 
@@ -7,15 +7,15 @@ import img2 from "../../assets/fonts/iranyekan/Images/landingimage/slider-img.pn
 import img3 from "../../assets/fonts/iranyekan/Images/landingimage/s1.png";
 import img4 from "../../assets/fonts/iranyekan/Images/landingimage/s2.png";
 import img5 from "../../assets/fonts/iranyekan/Images/landingimage/s3.png";
-import img6 from "../../assets/fonts/iranyekan/Images/landingimage/about-img.png";
-import img7 from "../../assets/fonts/iranyekan/Images/landingimage/w1.png";
-import img8 from "../../assets/fonts/iranyekan/Images/landingimage/w2.png";
-import img9 from "../../assets/fonts/iranyekan/Images/landingimage/w3.png";
-import img10 from "../../assets/fonts/iranyekan/Images/landingimage/w4.png";
-import img11 from "../../assets/fonts/iranyekan/Images/landingimage/team-1.jpg";
-import img12 from "../../assets/fonts/iranyekan/Images/landingimage/team-2.jpg";
-import img13 from "../../assets/fonts/iranyekan/Images/landingimage/team-3.jpg";
-import img14 from "../../assets/fonts/iranyekan/Images/landingimage/team-4.jpg";
+// import img6 from "../../assets/fonts/iranyekan/Images/landingimage/about-img.png";
+// import img7 from "../../assets/fonts/iranyekan/Images/landingimage/w1.png";
+// import img8 from "../../assets/fonts/iranyekan/Images/landingimage/w2.png";
+// import img9 from "../../assets/fonts/iranyekan/Images/landingimage/w3.png";
+// import img10 from "../../assets/fonts/iranyekan/Images/landingimage/w4.png";
+// import img11 from "../../assets/fonts/iranyekan/Images/landingimage/team-1.jpg";
+// import img12 from "../../assets/fonts/iranyekan/Images/landingimage/team-2.jpg";
+// import img13 from "../../assets/fonts/iranyekan/Images/landingimage/team-3.jpg";
+// import img14 from "../../assets/fonts/iranyekan/Images/landingimage/team-4.jpg";
 import img15 from "../../assets/fonts/iranyekan/Images/landingimage/client1.jpg";
 import img16 from "../../assets/fonts/iranyekan/Images/landingimage/client2.jpg";
 import img17 from "../../assets/fonts/iranyekan/Images/landingimage/انتخاب واحد2.jpg";

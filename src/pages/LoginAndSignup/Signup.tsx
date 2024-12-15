@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useQuery } from "../../hooks/useQuery";
 
-import { eGender } from "../../models/enum/Enums";
+// import { eGender } from "../../models/enum/Enums";
 import { useNavigate } from "react-router-dom";
 
 const initialValues = {
@@ -41,16 +41,17 @@ const validationSchema = Yup.object({
   department: Yup.string().required("رشته تحصیلی را وارد نمایید"),
 });
 
+const initialSubjectOptions = [
+  {
+    id: "1",
+    title: "مهندسی کامپیوتر",
+  },
+];
+
 const SignupForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  const [subjectOptions, setSubjectOptions] = useState<any[]>([
-    {
-      id: "1",
-      title: "مهندسی کامپیوتر",
-    },
-  ]);
-  const [apiResponse, setApiResponse] = useState<any>(null);
+  const subjectOptions = initialSubjectOptions;
   const navigate = useNavigate();
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
@@ -79,7 +80,6 @@ const SignupForm = () => {
       if (response.status === 201) {
         // معمولاً 201 برای ایجاد کاربر جدید
         console.log("Signup successful. User data:", response.data);
-        setApiResponse(response.data);
         navigate("/login");
         // هدایت کاربر به صفحه دیگر در صورت موفقیت
       } else {
@@ -96,7 +96,7 @@ const SignupForm = () => {
       console.error("Error response:", error.response);
       console.error("Error message:", error.message);
 
-      setApiResponse(error.response?.data || { message: errorMessage });
+      // setApiResponse(error.response?.data || { message: errorMessage });
     }
   };
 

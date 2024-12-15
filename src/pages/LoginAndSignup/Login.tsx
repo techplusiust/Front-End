@@ -28,7 +28,7 @@ const validationSchema = Yup.object({
 
 const LoginForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [loginResponse, setLoginResponse] = useState<any>(null);
+  
   const toggleVisibility = () => setIsVisible(!isVisible);
   const navigate = useNavigate();
   const setAuth = useSetRecoilState(authAtom);
@@ -63,7 +63,7 @@ const LoginForm = () => {
       console.log("API Response:", response.data);
       if (response.status === 200 && response.data.success) {
         console.log("Login successful. User data:", response.data);
-        setLoginResponse(response.data)
+        // setLoginResponse(response.data)
         localStorage.setItem("token", response.data.token);
 
         setAuth({
