@@ -1,59 +1,58 @@
-.container {
-    max-width: 1200px;
-    margin: 100px auto 20px auto;
-    padding: 20px;
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-  
-  .card img {
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
-    display: block;
-  }
-  
-  .card {
-    padding: 16px;
-    direction: rtl;
-    text-align: right;
-  }
-  
-  .header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-  
-  .header div {
-    margin-right: 10px;
-  }
-  
-  .title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .description {
-    font-size: 0.875rem;
-    color: gray;
-    margin: 0;
-  }
+.container_teachers {
+  max-width: 1200px;
+  margin: 100px auto 20px auto;
+  padding: 20px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  display: block;
+}
+
+.card {
+  padding: 16px;
+  direction: rtl;
+  text-align: right;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.header div {
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: gray;
+  margin: 0;
+}
 /* استایل دکمه */
 .card .btn {
-    background-color: #007bff; /* رنگ آبی */
-    color: #fff; /* رنگ متن سفید */
-    margin-top: 16px; /* فاصله از بالا */
-    border: none; /* حذف حاشیه دکمه */
-    padding: 10px 20px; /* فاصله داخلی دکمه */
-    border-radius: 5px; /* گوشه‌های گرد */
-    cursor: pointer; /* نشانگر موس */
-    transition: background-color 0.3s ease; /* انیمیشن تغییر رنگ */
-  }
-  
-  .card .btn:hover {
-    background-color: #0056b3; /* رنگ آبی تیره‌تر در حالت هاور */
-  }
-    
+  background-color: #007bff; /* رنگ آبی */
+  color: #fff; /* رنگ متن سفید */
+  margin-top: 16px; /* فاصله از بالا */
+  border: none; /* حذف حاشیه دکمه */
+  padding: 10px 20px; /* فاصله داخلی دکمه */
+  border-radius: 5px; /* گوشه‌های گرد */
+  cursor: pointer; /* نشانگر موس */
+  transition: background-color 0.3s ease; /* انیمیشن تغییر رنگ */
+}
+
+.card .btn:hover {
+  background-color: #0056b3; /* رنگ آبی تیره‌تر در حالت هاور */
+}

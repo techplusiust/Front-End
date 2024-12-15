@@ -28,12 +28,11 @@ const validationSchema = Yup.object({
 
 const LoginForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  
+
   const toggleVisibility = () => setIsVisible(!isVisible);
   const navigate = useNavigate();
   const setAuth = useSetRecoilState(authAtom);
   const setUser = useSetRecoilState(userAtom);
-
 
   const onSubmit = async (values: any) => {
     const { email, password } = values;
@@ -45,7 +44,6 @@ const LoginForm = () => {
       });
 
       setUser({
-        username: "admin",
         email: "admin@example.com",
         department: "Administration",
       });
@@ -61,9 +59,9 @@ const LoginForm = () => {
         { headers: { "Content-Type": "application/json" } }
       );
       console.log("API Response:", response.data);
-      if (response.status === 200 && response.data.success) {
+      if (response.status === 200) {
         console.log("Login successful. User data:", response.data);
-        // setLoginResponse(response.data)
+        // setLoginResponse(response.data);
         localStorage.setItem("token", response.data.token);
 
         setAuth({
@@ -72,7 +70,6 @@ const LoginForm = () => {
         });
 
         setUser({
-          username: response.data.username,
           email: response.data.email,
           department: response.data.department,
           avatar: response.data.avatar,
@@ -81,12 +78,14 @@ const LoginForm = () => {
         navigate(response.data.isAdmin ? "/admin" : "/");
       } else {
         const errorMessage =
-          response.data.message || "ورود ناموفق. لطفاً اطلاعات خود را بررسی کنید.";
+          response.data.message ||
+          "ورود ناموفق. لطفاً اطلاعات خود را بررسی کنید.";
         console.error("Login error:", errorMessage);
       }
     } catch (error: any) {
       const errorMessage =
-        error.response?.data?.message || "خطای اتصال به سرور. لطفاً دوباره تلاش کنید.";
+        error.response?.data?.message ||
+        "خطای اتصال به سرور. لطفاً دوباره تلاش کنید.";
       console.error("Server connection error:", errorMessage);
     }
   };

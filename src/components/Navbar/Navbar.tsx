@@ -79,16 +79,18 @@ const CustomNavbar: React.FC = () => {
                   ورود / ثبت نام
                 </Button>
               </NavLink>
-              {/* <NavLink to="/signup">
+              <NavLink to="/signup">
                 <Button color="danger">Signup</Button>
-              </NavLink> */}
+              </NavLink>
             </>
           )}
           {auth.isLoggedin && (
             <>
               <Dropdown placement="bottom-end">
                 <DropdownTrigger>
-                  <span className="text-primary"><Profile variant="Bulk" size={32}/></span>
+                  <span className="text-primary">
+                    <Profile variant="Bulk" size={32} />
+                  </span>
                 </DropdownTrigger>
                 <DropdownMenu aria-label="User menu actions">
                   <NavLink key="profile" to="/profile">
