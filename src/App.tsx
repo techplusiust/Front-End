@@ -12,7 +12,8 @@ import Schedule from "./pages/schedulePage";
 import LandingPage from "./pages/LandingPage";
 import TeachersPage from "./pages/TeachersPage/TeachersPage";
 import TeacherDetailsPage from "./pages/TeachersPage/TeacherDetailsPage";
-import AdminDashboard from "./pages/AdminPanel/index"; 
+import UserPage from "./components/Admin/Users";
+import AdminDashboard from "./pages/AdminPanel/index";
 import CourseList from "./pages/AdminPanel/CourseList";
 import Reports from "./pages/AdminPanel/Reports";
 import Comments from "./pages/AdminPanel/Comments";
@@ -78,6 +79,7 @@ function App() {
                 <Route path="courses" element={<CourseList />} />
                 <Route path="reports" element={<Reports />} />
                 <Route path="Comments" element={<Comments />} />
+                <Route path="users" element={<UserPage />} />
               </Route>
             )}
             <Route path="*" element={<Navigate replace to="/" />} />

@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Avatar, Button } from "@nextui-org/react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import { generateTeachers } from "../../utils/generateProfiles";
 import "./TeachersPage.css";
 
@@ -14,9 +14,14 @@ const TeachersPage: React.FC = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container_teachers">
       {teachers.map((teacher) => (
-        <Card key={teacher.id} isHoverable style={{ border: "1px solid #ddd" }} className="card">
+        <Card
+          key={teacher.id}
+          isHoverable
+          style={{ border: "1px solid #ddd" }}
+          className="card"
+        >
           <div className="header">
             <Avatar src={teacher.image} size="lg" />
             <div>
@@ -26,7 +31,11 @@ const TeachersPage: React.FC = () => {
           </div>
           <p>موضوع تدریس: {teacher.subject}</p>
           <p>روزهای حضور: {teacher.daysAvailable}</p>
-          <Button size="sm" className="btn" onClick={() => handleViewDetails(teacher)}>
+          <Button
+            size="sm"
+            className="btn"
+            onClick={() => handleViewDetails(teacher)}
+          >
             مشاهده نظرات / ثبت نظر
           </Button>
         </Card>
