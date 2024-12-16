@@ -82,9 +82,9 @@ const CustomNavbar: React.FC = () => {
                   ورود / ثبت نام
                 </Button>
               </NavLink>
-              <NavLink to="/signup">
+              {/* <NavLink to="/signup">
                 <Button color="danger">Signup</Button>
-              </NavLink>
+              </NavLink> */}
             </>
           )}
           {auth.isLoggedin && (

@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./Landing.css";
 import { Link } from "react-router-dom";
 
@@ -7,15 +7,6 @@ import img2 from "../../assets/fonts/iranyekan/Images/landingimage/slider-img.pn
 import img3 from "../../assets/fonts/iranyekan/Images/landingimage/s1.png";
 import img4 from "../../assets/fonts/iranyekan/Images/landingimage/s2.png";
 import img5 from "../../assets/fonts/iranyekan/Images/landingimage/s3.png";
-// import img6 from "../../assets/fonts/iranyekan/Images/landingimage/about-img.png";
-// import img7 from "../../assets/fonts/iranyekan/Images/landingimage/w1.png";
-// import img8 from "../../assets/fonts/iranyekan/Images/landingimage/w2.png";
-// import img9 from "../../assets/fonts/iranyekan/Images/landingimage/w3.png";
-// import img10 from "../../assets/fonts/iranyekan/Images/landingimage/w4.png";
-// import img11 from "../../assets/fonts/iranyekan/Images/landingimage/team-1.jpg";
-// import img12 from "../../assets/fonts/iranyekan/Images/landingimage/team-2.jpg";
-// import img13 from "../../assets/fonts/iranyekan/Images/landingimage/team-3.jpg";
-// import img14 from "../../assets/fonts/iranyekan/Images/landingimage/team-4.jpg";
 import img15 from "../../assets/fonts/iranyekan/Images/landingimage/client1.jpg";
 import img16 from "../../assets/fonts/iranyekan/Images/landingimage/client2.jpg";
 import img17 from "../../assets/fonts/iranyekan/Images/landingimage/انتخاب واحد2.jpg";
@@ -209,193 +200,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* <section className="why_section layout_padding flex justify-center">
-      <div className="container">
-        <div className="heading_container heading_center">
-          <h2 className="fonty">
-            Why Choose <span>Us</span>
-          </h2>
-        </div>
-        <div className="why_container ">
-          <div className="why box">
-            <div className="img-box">
-              <img src={img7} alt=""/>
-            </div>
-            <div className="detail-box">
-              <h5>
-                Expert Management
-              </h5>
-              <p>
-                Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia id, aspernatur nihil.
-                Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat veritatis unde reiciendis possimus animi autem natus
-              </p>
-            </div>
-          </div>
-          <div className="why box">
-            <div className="img-box">
-              <img src={img8} alt=""/>
-            </div>
-            <div className="detail-box">
-              <h5>
-                Secure Investment
-              </h5>
-              <p>
-                Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia id, aspernatur nihil.
-                Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat veritatis unde reiciendis possimus animi autem natus
-              </p>
-            </div>
-          </div>
-          <div className="why box">
-            <div className="img-box">
-              <img src={img9} alt=""/>
-            </div>
-            <div className="detail-box">
-              <h5>
-                Instant Trading
-              </h5>
-              <p>
-                Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia id, aspernatur nihil.
-                Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat veritatis unde reiciendis possimus animi autem natus
-              </p>
-            </div>
-          </div>
-          <div className="why box">
-            <div className="img-box">
-              <img src={img10} alt=""/>
-            </div>
-            <div className="detail-box">
-              <h5>
-                Happy Customers
-              </h5>
-              <p>
-                Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia id, aspernatur nihil.
-                Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat veritatis unde reiciendis possimus animi autem natus
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="btn-box">
-          <Link to="">
-            Read More
-          </Link>
-        </div>
-      </div>
-      </section> */}
-
-      {/* <section className="team_section layout_padding flex justify-center">
-        <div className="container-fluid">
-          <div className="heading_container heading_center">
-            <h2 className="fonty">
-              Our <span> Team</span>
-            </h2>
-          </div>
-          <div className="team_container">
-            <div className="row flex justify-center">
-              <div className="team col-lg-3 col-sm-6 me-3">
-                <div className="box w-[290px]">
-                  <div className="img-box">
-                    <img src={img11} className="img1" alt="" />
-                  </div>
-                  <div className="detail-box">
-                    <h5>Joseph Brown</h5>
-                    <p>Marketing Head</p>
-                  </div>
-                  <div className="info_social flex justify-center">
-                    <Link to="" className="ml-2">
-                      <FaFacebookF />
-                    </Link>
-                    <Link to="" className="ml-2">
-                      <RiTwitterXFill />
-                    </Link>
-                    <Link to="" className="ml-2">
-                      <SlSocialLinkedin />
-                    </Link>
-                    <Link to="" className="ml-2">
-                      <BsInstagram />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className="team col-lg-3 col-sm-6 me-3">
-                <div className="box w-[290px]">
-                  <div className="img-box">
-                    <img src={img12} className="img1" alt="" />
-                  </div>
-                  <div className="detail-box">
-                    <h5>Nancy White</h5>
-                    <p>Marketing Head</p>
-                  </div>
-                  <div className="info_social flex justify-center">
-                    <Link to="" className="ml-2">
-                      <FaFacebookF />
-                    </Link>
-                    <Link to="" className="ml-2">
-                      <RiTwitterXFill />
-                    </Link>
-                    <Link to="" className="ml-2">
-                      <SlSocialLinkedin />
-                    </Link>
-                    <Link to="" className="ml-2">
-                      <BsInstagram />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className="teamcol-lg-3 col-sm-6 me-3">
-                <div className="box w-[290px]">
-                  <div className="img-box">
-                    <img src={img13} className="img1" alt="" />
-                  </div>
-                  <div className="detail-box">
-                    <h5>Earl Martinez</h5>
-                    <p>Marketing Head</p>
-                  </div>
-                  <div className="info_social flex justify-center">
-                    <Link to="" className="ml-2">
-                      <FaFacebookF />
-                    </Link>
-                    <Link to="" className="ml-2">
-                      <RiTwitterXFill />
-                    </Link>
-                    <Link to="" className="ml-2">
-                      <SlSocialLinkedin />
-                    </Link>
-                    <Link to="" className="ml-2">
-                      <BsInstagram />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className="team col-lg-3 col-sm-6 me-3">
-                <div className="box w-[290px]">
-                  <div className="img-box">
-                    <img src={img14} className="img1" alt="" />
-                  </div>
-                  <div className="detail-box">
-                    <h5>Josephine Allard</h5>
-                    <p>Marketing Head</p>
-                  </div>
-                  <div className="info_social flex justify-center">
-                    <Link to="" className="ml-2">
-                      <FaFacebookF />
-                    </Link>
-                    <Link to="" className="ml-2">
-                      <RiTwitterXFill />
-                    </Link>
-                    <Link to="" className="ml-2">
-                      <SlSocialLinkedin />
-                    </Link>
-                    <Link to="" className="ml-2">
-                      <BsInstagram />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
       <section className="client_section layout_padding flex justify-center">
         <div className="container flex flex-col">
           <div className="heading_container heading_center psudo_white_primary mb_45">
@@ -585,23 +389,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-
-      <script
-        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      ></script> */}
-
-      {/* <script type="text/javascript" src="js/bootstrap.js"></script> */}
-
-      {/* <script
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-      ></script>
-
-      <script type="text/javascript" src="js/custom.js"></script>
-
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script> */}
     </>
   );
 }
