@@ -66,13 +66,16 @@ const CustomNavbar: React.FC = () => {
           <NavLink key="professors" to="/professors">
             اساتید
           </NavLink>
+          <NavLink key="admin" to="/admin">
+            ادمین
+          </NavLink>
         </NavbarContent>
       </div>
       <div className="flex items-center justify-end">
         <NavbarContent
           style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }}
         >
-          {!auth.isLoggedin && (
+          {auth.isLoggedin && (
             <>
               <NavLink to="/login">
                 <Button variant="solid" color="primary">

@@ -108,16 +108,16 @@ function App() {
                 </Layout>
               }
             />
-            <Route path="/login" element={<AuthPage />}>
-              <Route index element={<Login />} />
-            </Route>
-            <Route path="/signup" element={<AuthPage />}>
-              <Route index element={<Signup />} />
-            </Route>
 
             <Route path="*" element={<Navigate replace to="/" />} />
           </>
         )}
+        <Route path="/login" element={<AuthPage />}>
+              <Route index element={<Login />} />
+        </Route>
+        <Route path="/signup" element={<AuthPage />}>
+              <Route index element={<Signup />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
