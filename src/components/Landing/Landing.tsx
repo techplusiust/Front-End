@@ -35,11 +35,11 @@ export default function Landing() {
             className="carousel slide"
             data-ride="carousel"
           >
-            <div className="carousel-inner ">
+            <div className="carousel-inner">
               <div className="carousel-item active">
                 <div className="container ">
                   <div className="row flex">
-                    <div className=" col-md-6 ">
+                    <div className=" col-md-6 custom ">
                       <div className="detail-box">
                         <h1 className="text-center">انتخاب واحد</h1>
                         <p className="text-justify">
@@ -60,7 +60,7 @@ export default function Landing() {
                         </div>
                       </div>
                     </div>
-                    <div className=" col-md-6">
+                    <div className=" col-md-6 custom">
                       <div className="img-box">
                         <img src={img2} alt="" />
                       </div>
@@ -88,7 +88,7 @@ export default function Landing() {
             <h2 className="fonty text-center">ویژگی های سامانه انتخاب واحد</h2>
           </div>
           <div className="row flex">
-            <div className=" col-md-4">
+            <div className=" col-md-4 boxy me-3">
               <div className="box">
                 <div className="img-box">
                   <img src={img3} alt="" />
@@ -107,7 +107,7 @@ export default function Landing() {
                 </div>
               </div>
             </div>
-            <div className=" col-md-4">
+            <div className=" col-md-4 boxy me-3">
               <div className="box ">
                 <div className="img-box">
                   <img src={img4} alt="" />
@@ -126,7 +126,7 @@ export default function Landing() {
                 </div>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 boxy me-3">
               <div className="box ">
                 <div className="img-box">
                   <img src={img5} alt="" />
@@ -146,7 +146,7 @@ export default function Landing() {
               </div>
             </div>
           </div>
-          <div className="btn-box">
+          <div className="btn-box mb-3">
             <Link to="" style={{ backgroundColor: "#070606" }}>
               مشاهده همه
             </Link>
@@ -160,12 +160,12 @@ export default function Landing() {
             <h2 className="fonty">درباره ما</h2>
           </div>
           <div className="row flex justify-between" dir="ltr">
-            <div className="col-md-6">
+            <div className="col-md-6 why">
               <div className="img-box">
                 <img src={img17} alt="" />
               </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 why">
               <div className="detail-box text-center">
                 <p className="text-justify">
                   ما در تیم توسعه سامانه انتخاب واحد هوشمند، با هدف ساده‌تر کردن
