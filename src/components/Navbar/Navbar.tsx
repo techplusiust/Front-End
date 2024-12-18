@@ -27,6 +27,7 @@ const CustomNavbar: React.FC = () => {
     setAuth({
       isLoggedin: false,
       isAdmin: false,
+      role: null,
     });
     setUser(null);
   };
@@ -66,9 +67,11 @@ const CustomNavbar: React.FC = () => {
           <NavLink key="professors" to="/professors">
             اساتید
           </NavLink>
-          <NavLink key="admin" to="/admin">
-            ادمین
-          </NavLink>
+          {auth.isAdmin && auth.role === "admin" && (
+            <NavLink key="admin" to="/admin">
+               ادمین
+            </NavLink>
+          )}
         </NavbarContent>
       </div>
       <div className="flex items-center justify-end">
@@ -108,6 +111,11 @@ const CustomNavbar: React.FC = () => {
                   <NavLink key="professors" to="/professors">
                     اساتید
                   </NavLink>
+                 {/* {auth.role === "admin" ? (
+                    <NavLink key="admin" to="/admin">
+                      ادمین
+                    </NavLink>
+                  ) : null} */}
                   <NavLink
                     key="logout"
                     color="danger"

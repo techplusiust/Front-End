@@ -41,6 +41,7 @@ const LoginForm = () => {
       setAuth({
         isLoggedin: true,
         isAdmin: true,
+        role: "admin",
       });
 
       setUser({
@@ -51,6 +52,7 @@ const LoginForm = () => {
       navigate("/admin");
       return;
     }
+
 
     try {
       const response = await axios.post(
@@ -67,6 +69,7 @@ const LoginForm = () => {
         setAuth({
           isLoggedin: true,
           isAdmin: response.data.isAdmin || false,
+          role: response.data.isAdmin ? "admin" : "user",
         });
 
         setUser({
