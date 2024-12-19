@@ -53,11 +53,11 @@ export default function Landing() {
                           این یعنی دیگر نیازی به جستجوی دستی و نگرانی درباره
                           انتخاب‌های نادرست ندارید
                         </p>
-                        <div className="btn-box items-center">
+                        {/* <div className="btn-box items-center">
                           <Link to="" className="btn1">
                             ادامه مطلب
                           </Link>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     <div className=" col-md-6 custom">
@@ -146,11 +146,11 @@ export default function Landing() {
               </div>
             </div>
           </div>
-          <div className="btn-box mb-3">
+          {/* <div className="btn-box mb-3">
             <Link to="" style={{ backgroundColor: "#070606" }}>
               مشاهده همه
             </Link>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -191,9 +191,9 @@ export default function Landing() {
                   با ما، انتخاب واحد دیگر یک چالش نیست، بلکه گامی ساده و لذت‌بخش
                   به سوی موفقیت تحصیلی است
                 </p>
-                <Link to="" style={{ backgroundColor: "#070606" }}>
+                {/* <Link to="" style={{ backgroundColor: "#070606" }}>
                   ادامه مطلب
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

@@ -45,7 +45,7 @@ const mockUsers: IUserDto[] = [
 ];
 
 const UserPage = () => {
-  const [subjectOptions, setSubjectOptions] = useState<any[]>([
+  const [subjectOptions] = useState<any[]>([
     {
       id: "1",
       title: "مهندسی کامپیوتر",
