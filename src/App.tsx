@@ -17,6 +17,7 @@ import AdminDashboard from "./pages/AdminPanel/index";
 import CourseList from "./pages/AdminPanel/CourseList";
 import Reports from "./pages/AdminPanel/Reports";
 import Comments from "./pages/AdminPanel/Comments";
+import FeedbackFormPage from "./pages/FeedbackFormPage";
 
 function App() {
   const auth = useRecoilValue(authAtom);
@@ -91,6 +92,14 @@ function App() {
               element={
                 <Layout>
                   <LandingPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/feedbackform"
+              element={
+                <Layout>
+                  <FeedbackFormPage />
                 </Layout>
               }
             />
