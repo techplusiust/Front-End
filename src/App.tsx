@@ -18,6 +18,8 @@ import CourseList from "./pages/AdminPanel/CourseList";
 import Reports from "./pages/AdminPanel/Reports";
 import Comments from "./pages/AdminPanel/Comments";
 import FeedbackFormPage from "./pages/FeedbackFormPage";
+import EditUserFormPage from "./pages/EditUserFormPage";
+
 
 function App() {
   const auth = useRecoilValue(authAtom);
@@ -100,6 +102,14 @@ function App() {
               element={
                 <Layout>
                   <FeedbackFormPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/edituser"
+              element={
+                <Layout>
+                  <EditUserFormPage />
                 </Layout>
               }
             />
