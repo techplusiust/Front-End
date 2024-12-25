@@ -1,26 +1,39 @@
 import * as React from "react";
-import { NavLink } from "react-router-dom";
 import {
   Navbar,
   NavbarBrand,
   NavbarContent,
   Button,
+  NavbarItem,
+  Link,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+  Input,
   Dropdown,
   DropdownTrigger,
+  Avatar,
   DropdownMenu,
+  DropdownItem,
 } from "@nextui-org/react";
 import { AcmeLogo } from "./AcmeLogo";
-// import mg1 from "../../assets/fonts/iranyekan/Images/article7.webp";
-import { MdClose } from "react-icons/md";
-import { FiMenu } from "react-icons/fi";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { userAtom } from "../../recoil/userAtom";
 import { authAtom } from "../../recoil/authAtom";
-import { Profile } from "iconsax-react";
+
+const menuItems = [
+  {
+    href: "schedule",
+    title: "برنامه کلاس ها",
+  },
+  {
+    href: "professors",
+    title: "اساتید",
+  },
+];
 
 const CustomNavbar: React.FC = () => {
-  const [isMobileMenuOpen, setMobileMenuOpen] = React.useState<boolean>(false);
-  const setUser = useSetRecoilState(userAtom);
+  const [user, setUser] = useRecoilState(userAtom);
   const [auth, setAuth] = useRecoilState(authAtom);
 
   const logout = () => {
@@ -32,178 +45,112 @@ const CustomNavbar: React.FC = () => {
     setUser(null);
   };
 
-  const handleMobileMenuToggle = () => {
-    setMobileMenuOpen((isMobileMenuOpen) => !isMobileMenuOpen);
-  };
-
   return (
     <Navbar
-      classNames={{ base: "bg-primary-300", wrapper: "max-w-full" }}
-      className="fixed"
-      isBordered
+      classNames={{
+        base: "bg-primary-100",
+        item: [
+          "flex",
+          "relative",
+          "h-full",
+          "items-center",
+          "data-[active=true]:after:content-['']",
+          "data-[active=true]:after:absolute",
+          "data-[active=true]:after:bottom-0",
+          "data-[active=true]:after:left-0",
+          "data-[active=true]:after:right-0",
+          "data-[active=true]:after:h-[2px]",
+          "data-[active=true]:after:rounded-[2px]",
+          "data-[active=true]:after:bg-primary",
+        ],
+      }}
     >
-      <div className="flex items-center justify-start">
-        <NavbarBrand className="basis-16 flex justify-center items-center">
+      <NavbarContent>
+        {auth.isLoggedin && (
+          <NavbarContent className="sm:hidden" justify="start">
+            <NavbarMenuToggle />
+          </NavbarContent>
+        )}
+        {!auth.isLoggedin && (
+          <NavbarItem>
+            <Button
+              as={Link}
+              className="hover:text-white"
+              color="primary"
+              href="/login"
+              variant="solid"
+            >
+              ورود / ثبت نام
+            </Button>
+          </NavbarItem>
+        )}
+        {auth.isLoggedin && (
+          <NavbarContent as="div" className="items-center" justify="start">
+            <Dropdown placement="bottom-end">
+              <DropdownTrigger>
+                <Avatar
+                  isBordered
+                  as="button"
+                  className="transition-transform"
+                  color="secondary"
+                  name={user?.email}
+                  size="sm"
+                />
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Profile Actions" variant="flat">
+                {auth.isAdmin && auth.role === "admin" ? (
+                  <>
+                    <DropdownItem key="profile" href="/profile">
+                      پروفایل
+                    </DropdownItem>
+                    <DropdownItem key="admin" href="/admin">
+                      ادمین
+                    </DropdownItem>
+                  </>
+                ) : (
+                  <DropdownItem key="profile" href="/profile">
+                    پروفایل
+                  </DropdownItem>
+                )}
+                <DropdownItem onClick={logout} key="logout" color="danger">
+                  خروج
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarContent>
+        )}
+      </NavbarContent>
+      {auth.isLoggedin && (
+        <NavbarContent className="hidden sm:flex gap-8" justify="center">
+          {menuItems.map((item, index) => (
+            <NavbarItem key={`${item.href}-${index}`}>
+              <Link aria-current="page" href={item.href}>
+                {item.title}
+              </Link>
+            </NavbarItem>
+          ))}
+        </NavbarContent>
+      )}
+      <NavbarBrand className="justify-end">
+        <Link aria-current="page" href={"/"}>
           <AcmeLogo />
           <p className="font-bold text-inherit">Tech Plus</p>
-        </NavbarBrand>
-
-        <NavbarContent
-          className="hidden sm:flex gap-4 p-3 ml-11 whitespace-nowrap basis-16"
-          style={{
-            marginLeft: "45px",
-            flexBasis: "4rem",
-          }}
-        >
-          <NavLink key="profile" to="/profile">
-            پروفایل
-          </NavLink>
-          <NavLink key="schedule" to="/schedule">
-            دوره ها
-          </NavLink>
-          <NavLink key="exam" to="/exam">
-            برنامه امتحانی
-          </NavLink>
-          <NavLink key="professors" to="/professors">
-            اساتید
-          </NavLink>
-          {auth.isAdmin && auth.role === "admin" && (
-            <NavLink key="admin" to="/admin">
-              ادمین
-            </NavLink>
-          )}
-        </NavbarContent>
-      </div>
-      <div className="flex items-center justify-end">
-        <NavbarContent
-          style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }}
-        >
-          {auth.isLoggedin && (
-            <>
-              <NavLink to="/login">
-                <Button variant="solid" color="primary">
-                  ورود / ثبت نام
-                </Button>
-              </NavLink>
-            </>
-          )}
-          {auth.isLoggedin && (
-            <>
-              <Dropdown placement="bottom-end">
-                <DropdownTrigger>
-                  <span className="text-primary">
-                    <Profile variant="Bulk" size={32} />
-                  </span>
-                </DropdownTrigger>
-                <DropdownMenu aria-label="User menu actions">
-                  <NavLink key="profile" to="/profile">
-                    پروفایل
-                  </NavLink>
-                  <NavLink key="schedule" to="/schedule">
-                    دوره ها
-                  </NavLink>
-                  <NavLink key="exam" to="/exam">
-                    برنامه امتحانی
-                  </NavLink>
-                  <NavLink key="professors" to="/professors">
-                    اساتید
-                  </NavLink>
-                  <NavLink
-                    key="logout"
-                    color="danger"
-                    to="/404"
-                    onClick={logout}
-                  >
-                    خروج
-                  </NavLink>
-                </DropdownMenu>
-              </Dropdown>
-            </>
-          )}
-          <Button
-            className="toggle sm:hidden bg-white py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-            aria-haspopup="dialog"
-            aria-expanded={isMobileMenuOpen}
-            aria-controls="hs-offcanvas-example"
-            onClick={handleMobileMenuToggle}
-            type="button"
-          >
-            {isMobileMenuOpen ? (
-              <MdClose style={{ width: "32px", height: "32px" }} />
-            ) : (
-              <FiMenu style={{ width: "32px", height: "32px" }} />
-            )}
-          </Button>
-
-          {isMobileMenuOpen && (
-            <div
-              id="hs-offcanvas-example"
-              className={`hs-overlay fixed top-0 left-0 h-full max-w-xs w-full z-50 bg-white shadow-lg transition-transform duration-300 ${
-                isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-              }`}
-              role="dialog"
-              tabIndex={-1}
-              aria-labelledby="hs-offcanvas-example-label"
+        </Link>
+      </NavbarBrand>
+      <NavbarMenu>
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item.href}-${index}`}>
+            <Link
+              className="w-full"
+              color={"foreground"}
+              href={item.title}
+              size="lg"
             >
-              {/* هدر منو */}
-              <div className="flex justify-between items-center py-3 px-4 border-b bg-white">
-                <h3
-                  id="hs-offcanvas-example-label"
-                  className="font-bold text-gray-800"
-                >
-                  منوی اصلی
-                </h3>
-                <button
-                  type="button"
-                  className="inline-flex justify-center items-center rounded-full bg-gray-100 p-2 hover:bg-gray-200 focus:outline-none"
-                  aria-label="Close"
-                  onClick={handleMobileMenuToggle}
-                >
-                  <MdClose className="w-6 h-6" />
-                </button>
-              </div>
-
-              {/* آیتم‌های منو */}
-              <div className="p-4 bg-white">
-                <ul className="flex flex-col space-y-3">
-                  <li>
-                    <NavLink
-                      to="/profile"
-                      className="block py-2 px-3 text-gray-700 hover:bg-primary-300 rounded-lg"
-                    >
-                      پروفایل
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/schedule"
-                      className="block py-2 px-3 text-gray-700 hover:bg-primary-300 rounded-lg"
-                    >
-                      دوره‌ها
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/exam"
-                      className="block py-2 px-3 text-gray-700 hover:bg-primary-300 rounded-lg"
-                    >
-                      برنامه امتحانی
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/professors"
-                      className="block py-2 px-3 text-gray-700 hover:bg-primary-300 rounded-lg"
-                    >
-                      اساتید
-                    </NavLink>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          )}
-        </NavbarContent>
-      </div>
+              {item.title}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
     </Navbar>
   );
 };

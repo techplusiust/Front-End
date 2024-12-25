@@ -20,7 +20,6 @@ import Comments from "./pages/AdminPanel/Comments";
 import FeedbackFormPage from "./pages/FeedbackFormPage";
 import EditUserFormPage from "./pages/EditUserFormPage";
 
-
 function App() {
   const auth = useRecoilValue(authAtom);
 
@@ -30,6 +29,14 @@ function App() {
       <Routes>
         {auth.isLoggedin ? (
           <Route>
+            <Route
+              path="/"
+              element={
+                <Layout>
+                  <LandingPage />
+                </Layout>
+              }
+            />
             <Route
               path="/profile"
               element={
@@ -47,14 +54,6 @@ function App() {
               }
             />
             <Route
-              path="/"
-              element={
-                <Layout>
-                  <LandingPage />
-                </Layout>
-              }
-            />
-            <Route
               path="/professors"
               element={
                 <Layout>
@@ -67,33 +66,6 @@ function App() {
               element={
                 <Layout>
                   <TeacherDetailsPage />
-                </Layout>
-              }
-            />
-            {auth.isAdmin && (
-              <Route
-                path="/admin"
-                element={
-                  <Layout>
-                    <AdminDashboard />
-                  </Layout>
-                }
-              >
-                <Route path="courses" element={<CourseList />} />
-                <Route path="reports" element={<Reports />} />
-                <Route path="Comments" element={<Comments />} />
-                <Route path="users" element={<UserPage />} />
-              </Route>
-            )}
-            <Route path="*" element={<Navigate replace to="/" />} />
-          </Route>
-        ) : (
-          <>
-            <Route
-              path="/"
-              element={
-                <Layout>
-                  <LandingPage />
                 </Layout>
               }
             />
@@ -113,31 +85,42 @@ function App() {
                 </Layout>
               }
             />
+            {auth.isAdmin && (
+              <Route
+                path="/admin"
+                element={
+                  <Layout>
+                    <AdminDashboard />
+                  </Layout>
+                }
+              >
+                <Route path="courses" element={<CourseList />} />
+                <Route path="reports" element={<Reports />} />
+                <Route path="Comments" element={<Comments />} />
+                <Route path="users" element={<UserPage />} />
+                <Route path="" element={<CourseList />} />
+              </Route>
+            )}
+            <Route path="*" element={<Navigate replace to="/" />} />
+          </Route>
+        ) : (
+          <>
             <Route
-              path="/professors"
+              path="/"
               element={
                 <Layout>
-                  <TeachersPage />
+                  <LandingPage />
                 </Layout>
               }
             />
-            <Route
-              path="/professor/:id"
-              element={
-                <Layout>
-                  <TeacherDetailsPage />
-                </Layout>
-              }
-            />
-
             <Route path="*" element={<Navigate replace to="/" />} />
           </>
         )}
         <Route path="/login" element={<AuthPage />}>
-              <Route index element={<Login />} />
+          <Route index element={<Login />} />
         </Route>
         <Route path="/signup" element={<AuthPage />}>
-              <Route index element={<Signup />} />
+          <Route index element={<Signup />} />
         </Route>
       </Routes>
     </BrowserRouter>

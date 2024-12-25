@@ -4,7 +4,7 @@ import "./Sidebar.css";
 
 const Sidebar: React.FC = () => {
   return (
-    <div className="sidebar">
+    <div className="sidebar bg-primary-50">
       <ul>
         <li>
           <NavLink

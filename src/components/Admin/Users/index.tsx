@@ -132,7 +132,7 @@ const UserPage = () => {
 
   return (
     <>
-      <div className="container mx-auto px-4 mt-2 md:px-8">
+      <div className="container mx-auto px-4 mt-4 md:px-8">
         <h1 className="text-xl font-bold mb-4 text-center md:text-right">
           مدیریت کاربران
         </h1>

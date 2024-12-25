@@ -1,4 +1,3 @@
-
 import "./Landing.css";
 import { Link } from "react-router-dom";
 
@@ -17,7 +16,6 @@ import { BsInstagram } from "react-icons/bs";
 import { LiaMapMarkerAltSolid } from "react-icons/lia";
 import { FaPhone } from "react-icons/fa";
 import { FaRegEnvelope } from "react-icons/fa6";
-import NavbarPage from "../Navbar/Navbar";
 
 export default function Landing() {
   return (
@@ -28,7 +26,6 @@ export default function Landing() {
             <img src={img1} alt="" />
           </div>
         </div>
-        <NavbarPage />
         <section className="slider_section">
           <div
             id="customCarousel1"
@@ -388,7 +385,6 @@ export default function Landing() {
           </p>
         </div>
       </section>
-
     </>
   );
 }
