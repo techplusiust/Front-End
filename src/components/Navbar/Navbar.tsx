@@ -69,7 +69,7 @@ const CustomNavbar: React.FC = () => {
           </NavLink>
           {auth.isAdmin && auth.role === "admin" && (
             <NavLink key="admin" to="/admin">
-               ادمین
+              ادمین
             </NavLink>
           )}
         </NavbarContent>
@@ -85,9 +85,6 @@ const CustomNavbar: React.FC = () => {
                   ورود / ثبت نام
                 </Button>
               </NavLink>
-              {/* <NavLink to="/signup">
-                <Button color="danger">Signup</Button>
-              </NavLink> */}
             </>
           )}
           {auth.isLoggedin && (
@@ -111,11 +108,6 @@ const CustomNavbar: React.FC = () => {
                   <NavLink key="professors" to="/professors">
                     اساتید
                   </NavLink>
-                 {/* {auth.role === "admin" ? (
-                    <NavLink key="admin" to="/admin">
-                      ادمین
-                    </NavLink>
-                  ) : null} */}
                   <NavLink
                     key="logout"
                     color="danger"
@@ -144,47 +136,6 @@ const CustomNavbar: React.FC = () => {
           </Button>
 
           {isMobileMenuOpen && (
-            // <Navbar className="ml-auto" style={{ marginTop: "19rem" }}>
-            //   <NavbarMenuItem
-            //     className="bg-[#328bf1] sm:hidden flex flex-col items-center justify-center w-[10rem] h-[15rem] rounded"
-            //     style={{ marginLeft: "10rem" }}
-            //   >
-            //     <div
-            //       style={{ margin: "12px" }}
-            //       className="flex flex-col w-[100%]"
-            //     >
-            //       <NavLink
-            //         key="profile"
-            //         to="/profile"
-            //         className="p-2 hover:bg-blue-200"
-            //       >
-            //         پروفایل
-            //       </NavLink>
-            //       <NavLink
-            //         key="courses"
-            //         to="/courses"
-            //         className="p-2 hover:bg-blue-200"
-            //       >
-            //         دوره ها
-            //       </NavLink>
-            //       <NavLink
-            //         key="exam"
-            //         to="/exam"
-            //         className="p-2 hover:bg-blue-200"
-            //       >
-            //         برنامه امتحانی
-            //       </NavLink>
-            //       <NavLink
-            //         key="professors"
-            //         to="/professors"
-            //         className="p-2 hover:bg-blue-200"
-            //       >
-            //         اساتید
-            //       </NavLink>
-            //     </div>
-            //    </NavbarMenuItem>
-            // </Navbar>
-
             <div
               id="hs-offcanvas-example"
               className={`hs-overlay fixed top-0 left-0 h-full max-w-xs w-full z-50 bg-white shadow-lg transition-transform duration-300 ${
