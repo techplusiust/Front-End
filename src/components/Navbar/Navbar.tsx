@@ -9,7 +9,6 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Input,
   Dropdown,
   DropdownTrigger,
   Avatar,
@@ -17,7 +16,7 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 import { AcmeLogo } from "./AcmeLogo";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { userAtom } from "../../recoil/userAtom";
 import { authAtom } from "../../recoil/authAtom";
 
