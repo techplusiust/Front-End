@@ -20,7 +20,7 @@ import { authAtom } from "../../recoil/authAtom";
 
 const ProfileSidebar = () => {
   const [user, setUser] = useRecoilState(userAtom);
-  const setAuth = useSetRecoilState(authAtom);
+  const [auth, setAuth] = useRecoilState(authAtom);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const handleOpenDeleteProfile = () => {
@@ -102,14 +102,15 @@ const ProfileSidebar = () => {
           >
             تغییر رمز ورود
           </Button>
-
-          <Button
-            color="danger"
-            onClick={() => handleOpenDeleteProfile()}
-            style={{ flex: 1 }}
-          >
-            حذف پروفایل
-          </Button>
+          {!auth.isAdmin && (
+            <Button
+              color="danger"
+              onClick={() => handleOpenDeleteProfile()}
+              style={{ flex: 1 }}
+            >
+              حذف پروفایل
+            </Button>
+          )}
         </div>
       </Card>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
