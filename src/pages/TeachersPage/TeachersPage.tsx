@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./TeachersPage.css";
 
+// changed
 
 interface Professor {
   id: number;
