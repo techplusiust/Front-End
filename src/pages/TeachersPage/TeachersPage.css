@@ -43,16 +43,64 @@
 }
 /* استایل دکمه */
 .card .btn {
-  background-color: #007bff; /* رنگ آبی */
-  color: #fff; /* رنگ متن سفید */
-  margin-top: 16px; /* فاصله از بالا */
-  border: none; /* حذف حاشیه دکمه */
-  padding: 10px 20px; /* فاصله داخلی دکمه */
-  border-radius: 5px; /* گوشه‌های گرد */
-  cursor: pointer; /* نشانگر موس */
-  transition: background-color 0.3s ease; /* انیمیشن تغییر رنگ */
+
+    background-color: #007bff; /* رنگ آبی */
+    color: #fff; /* رنگ متن سفید */
+    margin-top: 16px; /* فاصله از بالا */
+    border: none; /* حذف حاشیه دکمه */
+    padding: 10px 20px; /* فاصله داخلی دکمه */
+    border-radius: 5px; /* گوشه‌های گرد */
+    cursor: pointer; /* نشانگر موس */
+    transition: background-color 0.3s ease; /* انیمیشن تغییر رنگ */
+  }
+  
+  .card .btn:hover {
+    background-color: #0056b3; /* رنگ آبی تیره‌تر در حالت هاور */
+  }
+
+  /* Pagination styles */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Wrap buttons to the next line on smaller screens */
+  margin: 20px 0;
+  gap: 10px; /* Space between buttons */
+  padding-bottom: 24px;
 }
 
-.card .btn:hover {
-  background-color: #0056b3; /* رنگ آبی تیره‌تر در حالت هاور */
+.pagination-btn {
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px; /* Slightly smaller font for better fit */
+}
+
+.pagination-btn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.pagination-btn.active {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  border: 1px solid #007bff;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .pagination-container {
+    gap: 5px; /* Reduce gap on smaller screens */
+  }
+
+  .pagination-btn {
+    padding: 6px 12px; /* Smaller padding for better fit */
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }
+
 }
