@@ -20,7 +20,7 @@ import { authAtom } from "../../recoil/authAtom";
 
 const ProfileSidebar = () => {
   const [user, setUser] = useRecoilState(userAtom);
-  const setAuth = useSetRecoilState(authAtom);
+  const [auth, setAuth] = useRecoilState(authAtom);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const handleOpenDeleteProfile = () => {
@@ -31,6 +31,7 @@ const ProfileSidebar = () => {
     setUser(null);
     setAuth({
       isLoggedin: false,
+      isAdmin: false,
     });
     // todo => after api
     // try {
@@ -85,11 +86,10 @@ const ProfileSidebar = () => {
           />
         </div>
         <h1 className="text-blue-700 font-bold text-xl mt-2">
-          {user?.username || "نام کاربری"}
+          {user?.email || "نام کاربری"}
         </h1>
         <Divider className=" mb-8 mt-8" />
         <Spacer y={1} />
-        <p>نام کاربری: {user?.username || "نام کاربری"}</p> <Spacer y={0.5} />
         <p>ایمیل: {user?.email || "ایمیل"}</p>
         <Spacer y={0.5} />
         <p>رشته: {user?.department || "رشته تحصیلی"}</p>
@@ -102,14 +102,15 @@ const ProfileSidebar = () => {
           >
             تغییر رمز ورود
           </Button>
-
-          <Button
-            color="danger"
-            onClick={() => handleOpenDeleteProfile()}
-            style={{ flex: 1 }}
-          >
-            حذف پروفایل
-          </Button>
+          {!auth.isAdmin && (
+            <Button
+              color="danger"
+              onClick={() => handleOpenDeleteProfile()}
+              style={{ flex: 1 }}
+            >
+              حذف پروفایل
+            </Button>
+          )}
         </div>
       </Card>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>

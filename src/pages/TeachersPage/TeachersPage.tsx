@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Avatar, Button } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 import "./TeachersPage.css";
 
 interface Professor {
@@ -102,6 +103,7 @@ const TeachersPage: React.FC = () => {
           ))}
         </div>
       )}
+
     </div>
   );
 };

@@ -1,6 +1,9 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRecoilValue } from "recoil";
+import { authAtom } from "./recoil/authAtom";
+import Layout from "./Layout/Layout";
 import AuthPage from "./pages/LoginAndSignup/index";
 import Login from "./pages/LoginAndSignup/Login";
 import Signup from "./pages/LoginAndSignup/Signup";
@@ -9,9 +12,13 @@ import Schedule from "./pages/schedulePage";
 import LandingPage from "./pages/LandingPage";
 import TeachersPage from "./pages/TeachersPage/TeachersPage";
 import TeacherDetailsPage from "./pages/TeachersPage/TeacherDetailsPage";
-import { useRecoilValue } from "recoil";
-import { authAtom } from "./recoil/authAtom";
-import Layout from "./Layout/Layout";
+import UserPage from "./components/Admin/Users";
+import AdminDashboard from "./pages/AdminPanel/index";
+import CourseList from "./pages/AdminPanel/CourseList";
+import Reports from "./pages/AdminPanel/Reports";
+import Comments from "./pages/AdminPanel/Comments";
+import FeedbackFormPage from "./pages/FeedbackFormPage";
+import EditUserFormPage from "./pages/EditUserFormPage";
 
 function App() {
   const auth = useRecoilValue(authAtom);
@@ -22,6 +29,14 @@ function App() {
       <Routes>
         {auth.isLoggedin ? (
           <Route>
+            <Route
+              path="/"
+              element={
+                <Layout>
+                  <LandingPage />
+                </Layout>
+              }
+            />
             <Route
               path="/profile"
               element={
@@ -39,14 +54,6 @@ function App() {
               }
             />
             <Route
-              path="/"
-              element={
-                <Layout>
-                  <LandingPage />
-                </Layout>
-              }
-            />
-            <Route
               path="/professors"
               element={
                 <Layout>
@@ -62,6 +69,38 @@ function App() {
                 </Layout>
               }
             />
+            <Route
+              path="/feedbackform"
+              element={
+                <Layout>
+                  <FeedbackFormPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/edituser"
+              element={
+                <Layout>
+                  <EditUserFormPage />
+                </Layout>
+              }
+            />
+            {auth.isAdmin && (
+              <Route
+                path="/admin"
+                element={
+                  <Layout>
+                    <AdminDashboard />
+                  </Layout>
+                }
+              >
+                <Route path="courses" element={<CourseList />} />
+                <Route path="reports" element={<Reports />} />
+                <Route path="Comments" element={<Comments />} />
+                <Route path="users" element={<UserPage />} />
+                <Route path="" element={<CourseList />} />
+              </Route>
+            )}
             <Route path="*" element={<Navigate replace to="/" />} />
           </Route>
         ) : (
@@ -74,32 +113,15 @@ function App() {
                 </Layout>
               }
             />
-            <Route
-              path="/professors"
-              element={
-                <Layout>
-                  <TeachersPage />
-                </Layout>
-              }
-            />
-            <Route
-              path="/professor/:id"
-              element={
-                <Layout>
-                  <TeacherDetailsPage />
-                </Layout>
-              }
-            />
-            <Route path="/login" element={<AuthPage />}>
-              <Route index element={<Login />} />
-            </Route>
-            <Route path="/signup" element={<AuthPage />}>
-              <Route index element={<Signup />} />
-            </Route>
-
             <Route path="*" element={<Navigate replace to="/" />} />
           </>
         )}
+        <Route path="/login" element={<AuthPage />}>
+          <Route index element={<Login />} />
+        </Route>
+        <Route path="/signup" element={<AuthPage />}>
+          <Route index element={<Signup />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

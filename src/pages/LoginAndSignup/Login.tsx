@@ -3,8 +3,11 @@ import { Button, Input } from "@nextui-org/react";
 import { useFormik } from "formik";
 import { Eye, EyeSlash, TickCircle } from "iconsax-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { useSetRecoilState } from "recoil";
+import { authAtom } from "../../recoil/authAtom";
+import { userAtom } from "../../recoil/userAtom";
 
 const initialValues = {
   email: "",
@@ -25,25 +28,69 @@ const validationSchema = Yup.object({
 
 const LoginForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
+
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const navigate = useNavigate();
+  const setAuth = useSetRecoilState(authAtom);
+  const setUser = useSetRecoilState(userAtom);
 
   const onSubmit = async (values: any) => {
     const { email, password } = values;
-    const userData = { email, password };
+
+    if (email === "admin@example.com" && password === "@Admin123") {
+      setAuth({
+        isLoggedin: true,
+        isAdmin: true,
+        role: "admin",
+      });
+
+      setUser({
+        email: "admin@example.com",
+        department: "Administration",
+      });
+
+      navigate("/admin");
+      return;
+    }
+
+
 
     try {
-      const response = await axios.post("https://localhost/login", userData);
-      if (response.data.success) {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/accounts/login/",
+        { email, password },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      console.log("API Response:", response.data);
+      if (response.status === 200) {
         console.log("Login successful. User data:", response.data);
-        login(response.data.user);
+        // setLoginResponse(response.data);
+        localStorage.setItem("token", response.data.token);
+
+        setAuth({
+          isLoggedin: true,
+          isAdmin: response.data.isAdmin || false,
+          role: response.data.isAdmin ? "admin" : "user",
+        });
+
+        setUser({
+          email: response.data.email,
+          department: response.data.department,
+          avatar: response.data.avatar,
+        });
+
+        navigate(response.data.isAdmin ? "/admin" : "/");
       } else {
-        console.error(
-          "Login error. Please check your credentials.",
-          response.data.message
-        );
+        const errorMessage =
+          response.data.message ||
+          "ورود ناموفق. لطفاً اطلاعات خود را بررسی کنید.";
+        console.error("Login error:", errorMessage);
       }
-    } catch (error) {
-      console.error("Server connection error. Please try again later.", error);
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message ||
+        "خطای اتصال به سرور. لطفاً دوباره تلاش کنید.";
+      console.error("Server connection error:", errorMessage);
     }
   };
 
@@ -110,14 +157,14 @@ const LoginForm = () => {
             fullWidth
             startContent={<TickCircle variant="Bulk" />}
             type="submit"
-            disabled={!formik.isValid}
+            // disabled={!formik.isValid}
             color="primary"
             className="my-2"
           >
             تایید
           </Button>
           <p>
-            آیا حساب کاربری دارید؟
+            آیا حساب کاربری ندارید؟
             <Link to={`/signup`} className="text-blue-600">
               ثبت نام
             </Link>
