@@ -131,7 +131,6 @@ const CourseList: React.FC = () => {
               <button onClick={() => getCourseById(course.id)}>
                 مشاهده جزئیات
               </button>
-
               <p>
                 <strong>زمان کلاس:</strong> {course.first_day_of_week}{" "}
                 {course.first_day_time}
