@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {
   Modal,
   Button,
@@ -67,7 +67,23 @@ const UserPage = () => {
     onClose: onCloseDeleteModalOpen,
   } = useDisclosure();
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/api/accounts/users/`);
+        if (!response.ok) throw new Error("Failed to fetch users");
+        const data = await response.json();
+        setUsers(data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
   const [userToDelete, setUserToDelete] = useState<IUserDto | null>(null);
+  const [token] = useState("your-admin-token");
 
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(search.toLowerCase())
@@ -83,13 +99,35 @@ const UserPage = () => {
     onOpenDeleteModalOpen();
   };
 
-  const handleDeleteConfirm = () => {
+  const handleDeleteConfirm = async () => {
     if (userToDelete) {
-      setUsers(users.filter((u) => u !== userToDelete));
+      try {
+        const response = await fetch(
+          `http://127.0.0.1:8000/api/accounts/users/${userToDelete.id}/delete/`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (!response.ok) throw new Error("Failed to delete user");
+        setUsers(users.filter((u) => u.id !== userToDelete.id));
+      } catch (error) {
+        console.error("Error deleting user:", error);
+      }
+      onCloseDeleteModalOpen();
+      setUserToDelete(null);
     }
-    onCloseDeleteModalOpen();
-    setUserToDelete(null);
   };
+
+  // const handleDeleteConfirm = () => {
+  //   if (userToDelete) {
+  //     setUsers(users.filter((u) => u !== userToDelete));
+  //   }
+  //   onCloseDeleteModalOpen();
+  //   setUserToDelete(null);
+  // };
 
   const validationSchema = Yup.object({
     name: Yup.string().required("نام پروفایل را وارد نمایید"),
@@ -102,18 +140,38 @@ const UserPage = () => {
   const onSubmit = async (values: IUserDto) => {
     const { name, email, department, id } = values;
 
-    const tempUsers = [...users];
-    const userIndex = tempUsers.findIndex((item) => item.id === id);
-    const tempUser = users[userIndex];
-    const updatedUser = {
-      ...tempUser,
-      name,
-      email,
-      department,
-    };
-    tempUsers[userIndex] = updatedUser;
-    setUsers([...tempUsers]);
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:8000/api/accounts/users/${id}/edit/`,
+        {
+          method: "PUT",
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ name, email, department }),
+        }
+      );
+      if (!response.ok) throw new Error("Failed to update user");
+      const updatedUser = await response.json();
+      setUsers(users.map((u) => (u.id === id ? updatedUser : u)));
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
     onCloseEditModalOpen();
+
+    // const tempUsers = [...users];
+    // const userIndex = tempUsers.findIndex((item) => item.id === id);
+    // const tempUser = users[userIndex];
+    // const updatedUser = {
+    //   ...tempUser,
+    //   name,
+    //   email,
+    //   department,
+    // };
+    // tempUsers[userIndex] = updatedUser;
+    // setUsers([...tempUsers]);
+    // onCloseEditModalOpen();
   };
 
   const formik = useFormik({
