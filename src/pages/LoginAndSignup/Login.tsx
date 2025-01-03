@@ -9,6 +9,7 @@ import { useSetRecoilState } from "recoil";
 import { authAtom } from "../../recoil/authAtom";
 import { userAtom } from "../../recoil/userAtom";
 
+
 const initialValues = {
   email: "",
   password: "",
@@ -37,23 +38,21 @@ const LoginForm = () => {
   const onSubmit = async (values: any) => {
     const { email, password } = values;
 
-    if (email === "admin@example.com" && password === "@Admin123") {
-      setAuth({
-        isLoggedin: true,
-        isAdmin: true,
-        role: "admin",
-      });
+    // if (email === "admin@example.com" && password === "@Admin123") {
+    //   setAuth({
+    //     isLoggedin: true,
+    //     isAdmin: true,
+    //     role: "admin",
+    //   });
 
-      setUser({
-        email: "admin@example.com",
-        department: "Administration",
-      });
+    //   setUser({
+    //     email: "admin@example.com",
+    //     department: "Administration",
+    //   });
 
-      navigate("/admin");
-      return;
-    }
-
-
+    //   navigate("/admin");
+    //   return;
+    // }
 
     try {
       const response = await axios.post(
@@ -69,14 +68,14 @@ const LoginForm = () => {
 
         setAuth({
           isLoggedin: true,
-          isAdmin: response.data.isAdmin || false,
-          role: response.data.isAdmin ? "admin" : "user",
+          isAdmin: email === "admin@example.com" || false,
+          role: email === "admin@example.com" ? "admin" : "user",
         });
 
         setUser({
-          email: response.data.email,
-          department: response.data.department,
-          avatar: response.data.avatar,
+          email: response.data.user.email,
+          department: response.data.user.department,
+          avatar: "",
         });
 
         navigate(response.data.isAdmin ? "/admin" : "/");

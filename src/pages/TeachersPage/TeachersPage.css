@@ -1,4 +1,4 @@
-.container {
+.container_teachers {
   max-width: 1200px;
   margin: 0 auto 20px auto;
   padding: 20px;
@@ -94,13 +94,13 @@
 
 /* Responsive styles for smaller screens */
 @media (max-width: 1024px) {
-  .container {
+  .container_teachers {
     grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
   }
 }
 
 @media (max-width: 768px) {
-  .container {
+  .container_teachers {
     grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
   }
 
@@ -114,11 +114,10 @@
   }
 }
 
-
 /* changed */
 
 @media (max-width: 480px) {
-  .container {
+  .container_teachers {
     grid-template-columns: 1fr; /* 1 column on very small screens */
   }
 }

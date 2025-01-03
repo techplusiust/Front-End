@@ -68,9 +68,14 @@ const TeachersPage: React.FC = () => {
 
   return (
     <div>
-      <div className="container">
+      <div className="container_teachers">
         {paginatedProfessors.map((professor) => (
-          <Card key={professor.id} isHoverable variant="bordered" className="card">
+          <Card
+            key={professor.id}
+            isHoverable
+            variant="bordered"
+            className="card"
+          >
             <div className="header">
               <Avatar size="lg" text={professor.name.fa[0]} />
               <div>
@@ -96,7 +101,9 @@ const TeachersPage: React.FC = () => {
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
-              className={`pagination-btn ${currentPage === index + 1 ? "active" : ""}`}
+              className={`pagination-btn ${
+                currentPage === index + 1 ? "active" : ""
+              }`}
               onClick={() => handlePageChange(index + 1)}
             >
               {index + 1}
