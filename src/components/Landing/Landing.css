@@ -391,6 +391,10 @@ a:focus {
 
 .service_section {
   width: 100%;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-right: 0.5rem;
+  margin-left: auto;
 }
 
 .service_section .box {
@@ -775,7 +779,8 @@ a:focus {
 .info_section {
   background-color: #007fa4;
   color: #ffffff;
-  padding: 45px 0 15px 0;
+  padding: 45px 0 25px 0;
+  
 }
 
 .info_section h4 {
@@ -889,7 +894,7 @@ a:focus {
 }
 
 .custom {
-  flex-basis: 40rem;
+  flex-basis: 47rem;
 }
 
 .boxy {
@@ -911,9 +916,23 @@ a:focus {
 .carous {
   flex-basis: 50rem;
 }
+
+.text-right-justify {
+  text-align: justify;
+  direction: rtl;
+}
+
+.about-text { 
+  text-align: justify;
+  direction: rtl;
+  line-height: 1.8; /* فاصله خطوط */
+  max-width: 600px; /* حداکثر عرض متن */
+  margin: 0 auto; /* مرکزچین کردن متن */
+}
 .info_section form input::placeholder {
   color: #ffffff;
 }
+
 .fonty {
   font-size: 3rem;
   font-weight: bold;
@@ -990,7 +1009,7 @@ a:focus {
 
 @media (max-width: 768px) {
   .about_section .img-box {
-    margin-bottom: 45px;
+    margin-bottom: 70px;
   }
 }
 
