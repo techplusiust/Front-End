@@ -14,7 +14,7 @@ import {
 
 import { useEffect } from "react";
 import "./ProfileSidebar.css";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { userAtom } from "../../recoil/userAtom";
 import { authAtom } from "../../recoil/authAtom";
 

@@ -31,7 +31,9 @@ const TeachersPage: React.FC = () => {
   useEffect(() => {
     const fetchProfessors = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/professors/all/");
+        const response = await axios.get(
+          "http://127.0.0.1:8000/api/professors/all/"
+        );
         setProfessors(response.data);
         setLoading(false);
       } catch (err) {
@@ -70,14 +72,9 @@ const TeachersPage: React.FC = () => {
     <div>
       <div className="container_teachers">
         {paginatedProfessors.map((professor) => (
-          <Card
-            key={professor.id}
-            isHoverable
-            variant="bordered"
-            className="card"
-          >
+          <Card key={professor.id} isHoverable className="card">
             <div className="header">
-              <Avatar size="lg" text={professor.name.fa[0]} />
+              <Avatar size="lg" content={professor.name.fa[0]} />
               <div>
                 <h4 className="title">{professor.name.fa}</h4>
                 <p className="description">{professor.department.fa}</p>
