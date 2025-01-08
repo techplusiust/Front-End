@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./Comments.css";
+import { useTranslation } from "react-i18next";
 
 interface Comment {
   id: number;
   text: string;
   rating: number | null;
 }
+
 
 const initialComments: Comment[] = [
     { id: 1, text: "بسیار خوب و کاربردی بود!", rating: null },
@@ -40,62 +42,66 @@ const initialComments: Comment[] = [
     { id: 30, text: "تنظیمات حساب کاربری آسان و سریع است.", rating: null },
   ];
 
-const Comments: React.FC = () => {
-  const [comments, setComments] = useState<Comment[]>(initialComments);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-
-  const filteredComments = comments.filter((comment) =>
-    comment.text.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const handleRating = (id: number, rating: number) => {
-    setComments((prevComments) =>
-      prevComments.map((comment) =>
-        comment.id === id ? { ...comment, rating } : comment
-      )
+  const Comments: React.FC = () => {
+    const { t } = useTranslation();
+    const [comments, setComments] = useState<Comment[]>(initialComments);
+    const [searchTerm, setSearchTerm] = useState<string>("");
+  
+    const filteredComments = comments.filter((comment) =>
+      comment.text.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  
+    const handleRating = (id: number, rating: number) => {
+      setComments((prevComments) =>
+        prevComments.map((comment) =>
+          comment.id === id ? { ...comment, rating } : comment
+        )
+      );
+    };
+  
+    return (
+      <div className="comments">
+        <h1 className="comments-title">{t("comments.title")}</h1>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder={t("comments.search_placeholder")}
+          className="comments-search"
+        />
+        <div className="comment-cards">
+          {filteredComments.length > 0 ? (
+            filteredComments.map((comment) => (
+              <div key={comment.id} className="comment-card">
+                <p className="comment-text">{comment.text}</p>
+                <div className="comment-rating">
+                  <strong>{t("comments.rating_label")}:</strong>
+                  {[1, 2, 3, 4, 5].map((score) => (
+                    <button
+                      key={score}
+                      className={`rating-button ${
+                        comment.rating === score ? "selected" : ""
+                      }`}
+                      onClick={() => handleRating(comment.id, score)}
+                    >
+                      {score}
+                    </button>
+                  ))}
+                </div>
+                {comment.rating && (
+                  <p className="rating-result">
+                    {t("comments.your_rating")}: {comment.rating}
+                  </p>
+                )}
+              </div>
+            ))
+          ) : (
+            <p className="no-results">{t("comments.no_results")}</p>
+          )}
+        </div>
+      </div>
     );
   };
-
-  return (
-    <div className="comments">
-      <h1 className="comments-title">نظرات کاربران</h1>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="جستجو در نظرات..."
-        className="comments-search"
-      />
-      <div className="comment-cards">
-        {filteredComments.length > 0 ? (
-          filteredComments.map((comment) => (
-            <div key={comment.id} className="comment-card">
-              <p className="comment-text">{comment.text}</p>
-              <div className="comment-rating">
-                <strong>امتیاز:</strong>
-                {[1, 2, 3, 4, 5].map((score) => (
-                  <button
-                    key={score}
-                    className={`rating-button ${
-                      comment.rating === score ? "selected" : ""
-                    }`}
-                    onClick={() => handleRating(comment.id, score)}
-                  >
-                    {score}
-                  </button>
-                ))}
-              </div>
-              {comment.rating && (
-                <p className="rating-result">امتیاز شما: {comment.rating}</p>
-              )}
-            </div>
-          ))
-        ) : (
-          <p className="no-results">هیچ نظری یافت نشد.</p>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default Comments;
+  
+  export default Comments;
+  

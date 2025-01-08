@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card, Avatar, Button, Textarea } from "@nextui-org/react";
+import { useTranslation } from "react-i18next";
 import "./TeacherDetailsPage.css";
 
 const TeacherDetailsPage: React.FC = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const teacher = location.state;
   const [reviews, setReviews] = useState<string[]>(teacher.reviews || []);
@@ -26,12 +28,16 @@ const TeacherDetailsPage: React.FC = () => {
             <p className="description">{teacher.degree}</p>
           </div>
         </div>
-        <p>موضوع تدریس: {teacher.subject}</p>
-        <p>روزهای حضور: {teacher.daysAvailable}</p>
+        <p>
+          {t("teacher_details.subject")}: {teacher.subject}
+        </p>
+        <p>
+          {t("teacher_details.days_available")}: {teacher.daysAvailable}
+        </p>
       </Card>
 
       <div className="reviews-section">
-        <h3 className="review-title">نظرات:</h3>
+        <h3 className="review-title">{t("teacher_details.reviews_title")}</h3>
         {reviews.length > 0 ? (
           reviews.map((review, index) => (
             <Card key={index} className="review-card">
@@ -39,18 +45,18 @@ const TeacherDetailsPage: React.FC = () => {
             </Card>
           ))
         ) : (
-          <p>هنوز نظری ثبت نشده است.</p>
+          <p>{t("teacher_details.no_reviews")}</p>
         )}
 
         <div className="add-review">
           <Textarea
-            placeholder="نظر خود را وارد کنید..."
+            placeholder={t("teacher_details.add_review_placeholder")}
             fullWidth
             value={newReview}
             onChange={(e) => setNewReview(e.target.value)}
           />
           <Button size="sm" onClick={handleAddReview}>
-            ثبت نظر
+            {t("teacher_details.submit_review")}
           </Button>
         </div>
       </div>

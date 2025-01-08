@@ -1,0 +1,94 @@
+{
+  "schedule": "برنامه کلاس‌ها",
+  "professors": "اساتید",
+  "profile": "پروفایل",
+  "admin": "ادمین",
+  "logout": "خروج",
+  "login": "ورود / ثبت نام",
+
+  "user_management": {
+    "title": "مدیریت کاربران",
+    "search_placeholder": "جستجو...",
+    "edit_user": "ویرایش کاربر",
+    "delete_user": "حذف کاربر",
+    "name": "نام",
+    "email": "ایمیل",
+    "department": "رشته",
+    "confirm": "تایید",
+    "cancel": "انصراف",
+    "delete_confirmation": "هشدار حذف",
+    "delete_user_confirmation_text": "آیا از حذف این کاربر اطمینان دارید؟",
+    "name_required": "نام ضروری است",
+    "email_invalid": "فرمت ایمیل نادرست است",
+    "email_required": "ایمیل ضروری است",
+    "department_required": "رشته ضروری است",
+    "computer_engineering": "مهندسی کامپیوتر"
+  },
+  "comments": {
+    "title": "نظرات کاربران",
+    "search_placeholder": "جستجو در نظرات...",
+    "rating_label": "امتیاز",
+    "your_rating": "امتیاز شما",
+    "no_results": "هیچ نظری یافت نشد"
+  },
+
+  "course_list": {
+    "title": "لیست درس‌ها",
+    "search_placeholder": "نام درس، استاد یا دانشکده را جستجو کنید...",
+    "professor": "استاد",
+    "schedule": "زمان کلاس",
+    "exam": "زمان امتحان",
+    "faculty": "دانشکده",
+    "no_results": "نتیجه‌ای یافت نشد."
+  },
+
+  "reports": {
+    "title": "گزارش کاربران",
+    "search_placeholder": "جستجو بر اساس نام...",
+    "join_date": "تاریخ عضویت",
+    "delete_date": "تاریخ حذف پروفایل",
+    "not_deleted": "حذف نشده",
+    "recent_activity": "سه فعالیت اخیر در سایت",
+    "entry": "ورود",
+    "exit": "خروج",
+    "no_results": "هیچ گزارشی یافت نشد."
+  },
+
+  "sidebar": {
+    "courses": "لیست درس‌ها",
+    "users": "لیست کاربران",
+    "reports": "گزارش‌ها",
+    "comments": "نظرات"
+  },
+  "teacher_details": {
+    "subject": "موضوع تدریس",
+    "days_available": "روزهای حضور",
+    "reviews_title": "نظرات",
+    "no_reviews": "هنوز نظری ثبت نشده است.",
+    "add_review_placeholder": "نظر خود را وارد کنید...",
+    "submit_review": "ثبت نظر"
+  },
+
+  "teachers": {
+    "subject": "موضوع تدریس",
+    "days_available": "روزهای حضور",
+    "view_and_review": "مشاهده نظرات / ثبت نظر"
+  },
+  "schedule": {
+    "title": "زمان بندی کلاس‌ها",
+    "select_group": "انتخاب گروه آموزشی",
+    "all_groups": "همه گروه‌ها",
+    "group_base": "پایه",
+    "group_specialized": "تخصصی",
+    "group_general": "عمومی",
+    "group_optional": "اختیاری",
+    "group_compensatory": "جبرانی",
+    "select_lesson": "انتخاب درس",
+    "select_class": "انتخاب کلاس",
+    "units": "واحد",
+    "exam_date": "تاریخ امتحان",
+    "day": "روز",
+    "time": "زمان",
+    "location": "مکان"
+  }
+}

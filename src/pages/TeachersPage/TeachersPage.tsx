@@ -2,11 +2,13 @@ import React from "react";
 import { Card, Avatar, Button } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import { generateTeachers } from "../../utils/generateProfiles";
+import { useTranslation } from "react-i18next";
 import "./TeachersPage.css";
 
 const teachers = generateTeachers(20);
 
 const TeachersPage: React.FC = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleViewDetails = (teacher: any) => {
@@ -29,14 +31,18 @@ const TeachersPage: React.FC = () => {
               <p className="description">{teacher.degree}</p>
             </div>
           </div>
-          <p>موضوع تدریس: {teacher.subject}</p>
-          <p>روزهای حضور: {teacher.daysAvailable}</p>
+          <p>
+            {t("teachers.subject")}: {teacher.subject}
+          </p>
+          <p>
+            {t("teachers.days_available")}: {teacher.daysAvailable}
+          </p>
           <Button
             size="sm"
             className="btn"
             onClick={() => handleViewDetails(teacher)}
           >
-            مشاهده نظرات / ثبت نظر
+            {t("teachers.view_and_review")}
           </Button>
         </Card>
       ))}

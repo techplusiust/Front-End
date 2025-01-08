@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CourseList.css";
+import { useTranslation } from "react-i18next";
 
 interface Course {
   id: number;
@@ -9,7 +10,6 @@ interface Course {
   professor: string;
   faculty: string;
 }
-
 const coursesData: Course[] = [
     { id: 1, name: "ریاضیات مهندسی", schedule: "یکشنبه و سه‌شنبه - ساعت 10 تا 12", exam: "20 تیر - ساعت 09:00", professor: "دکتر علی حسینی", faculty: "دانشکده فنی" },
     { id: 2, name: "مدارهای الکتریکی", schedule: "دوشنبه و چهارشنبه - ساعت 14 تا 16", exam: "15 تیر - ساعت 14:00", professor: "دکتر زهرا احمدی", faculty: "دانشکده فنی" },
@@ -43,44 +43,53 @@ const coursesData: Course[] = [
     { id: 30, name: "مدیریت منابع انسانی", schedule: "شنبه و دوشنبه - ساعت 10 تا 12", exam: "21 تیر - ساعت 14:00", professor: "دکتر قاسمی", faculty: "دانشکده مدیریت" }
   ];
   
-
-const CourseList: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
-
-  const filteredCourses = coursesData.filter((course) =>
-    `${course.name} ${course.professor} ${course.faculty}`
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase())
-  );
-
-  return (
-    <div className="course-list">
-      <h1 className="course-list-title">لیست درس‌ها</h1>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="نام درس، استاد یا دانشکده را جستجو کنید..."
-        className="course-search"
-      />
-
-      <div className="course-cards">
-        {filteredCourses.length > 0 ? (
-          filteredCourses.map((course) => (
-            <div key={course.id} className="course-card">
-              <h2 className="course-name">{course.name}</h2>
-              <p><strong>استاد:</strong> {course.professor}</p>
-              <p><strong>زمان کلاس:</strong> {course.schedule}</p>
-              <p><strong>زمان امتحان:</strong> {course.exam}</p>
-              <p><strong>دانشکده:</strong> {course.faculty}</p>
-            </div>
-          ))
-        ) : (
-          <p className="no-results">نتیجه‌ای یافت نشد.</p>
-        )}
+  const CourseList: React.FC = () => {
+    const { t } = useTranslation();
+    const [searchTerm, setSearchTerm] = useState<string>("");
+  
+    const filteredCourses = coursesData.filter((course) =>
+      `${course.name} ${course.professor} ${course.faculty}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    );
+  
+    return (
+      <div className="course-list">
+        <h1 className="course-list-title">{t("course_list.title")}</h1>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder={t("course_list.search_placeholder")}
+          className="course-search"
+        />
+  
+        <div className="course-cards">
+          {filteredCourses.length > 0 ? (
+            filteredCourses.map((course) => (
+              <div key={course.id} className="course-card">
+                <h2 className="course-name">{course.name}</h2>
+                <p>
+                  <strong>{t("course_list.professor")}:</strong> {course.professor}
+                </p>
+                <p>
+                  <strong>{t("course_list.schedule")}:</strong> {course.schedule}
+                </p>
+                <p>
+                  <strong>{t("course_list.exam")}:</strong> {course.exam}
+                </p>
+                <p>
+                  <strong>{t("course_list.faculty")}:</strong> {course.faculty}
+                </p>
+              </div>
+            ))
+          ) : (
+            <p className="no-results">{t("course_list.no_results")}</p>
+          )}
+        </div>
       </div>
-    </div>
-  );
-};
-
-export default CourseList;
+    );
+  };
+  
+  export default CourseList;
+  

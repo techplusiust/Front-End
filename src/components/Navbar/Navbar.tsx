@@ -19,21 +19,43 @@ import { AcmeLogo } from "./AcmeLogo";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../../recoil/userAtom";
 import { authAtom } from "../../recoil/authAtom";
+import { languageAtom } from "../../recoil/languageAtom";
+import { useTranslation } from "react-i18next";
+
+// Import translations dynamically based on the language
+import enTranslations from "../../lang/en.json";
+import faTranslations from "../../lang/fa.json";
 
 const menuItems = [
   {
     href: "schedule",
-    title: "برنامه کلاس ها",
+    title: "schedule",
   },
   {
     href: "professors",
-    title: "اساتید",
+    title: "professors",
   },
+];
+
+const languages = [
+  { code: "fa", label: "فارسی" },
+  { code: "en", label: "English" },
 ];
 
 const CustomNavbar: React.FC = () => {
   const [user, setUser] = useRecoilState(userAtom);
   const [auth, setAuth] = useRecoilState(authAtom);
+  const [language, setLanguage] = useRecoilState(languageAtom);
+  const { t, i18n } = useTranslation();
+
+  React.useEffect(() => {
+    if (language === "fa") {
+      i18n.addResources("fa", "translation", faTranslations);
+    } else {
+      i18n.addResources("en", "translation", enTranslations);
+    }
+    i18n.changeLanguage(language);
+  }, [language, i18n]);
 
   const logout = () => {
     setAuth({
@@ -42,6 +64,10 @@ const CustomNavbar: React.FC = () => {
       role: null,
     });
     setUser(null);
+  };
+
+  const handleLanguageChange = (code: string) => {
+    setLanguage(code);
   };
 
   return (
@@ -65,24 +91,48 @@ const CustomNavbar: React.FC = () => {
       }}
     >
       <NavbarContent>
-        {auth.isLoggedin && (
-          <NavbarContent className="sm:hidden" justify="start">
-            <NavbarMenuToggle />
-          </NavbarContent>
-        )}
-        {!auth.isLoggedin && (
-          <NavbarItem>
-            <Button
-              as={Link}
-              className="hover:text-white"
-              color="primary"
-              href="/login"
-              variant="solid"
-            >
-              ورود / ثبت نام
-            </Button>
-          </NavbarItem>
-        )}
+        <NavbarContent className="flex items-center gap-4">
+          <Dropdown>
+            <DropdownTrigger>
+              <Button
+                size="sm"
+                color="primary"
+                variant="flat"
+                className="p-0"
+                aria-label="Language Selector"
+              >
+                <img
+                  src="/path-to-globe-icon.png"
+                  alt="Change Language"
+                  className="w-6 h-6"
+                />
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu>
+              {languages.map((lang) => (
+                <DropdownItem
+                  key={lang.code}
+                  onClick={() => handleLanguageChange(lang.code)}
+                >
+                  {lang.label}
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
+          {!auth.isLoggedin && (
+            <NavbarItem>
+              <Button
+                as={Link}
+                className="hover:text-white"
+                color="primary"
+                href="/login"
+                variant="solid"
+              >
+                {t("login")}
+              </Button>
+            </NavbarItem>
+          )}
+        </NavbarContent>
         {auth.isLoggedin && (
           <NavbarContent as="div" className="items-center" justify="start">
             <Dropdown placement="bottom-end">
@@ -100,19 +150,19 @@ const CustomNavbar: React.FC = () => {
                 {auth.isAdmin && auth.role === "admin" ? (
                   <>
                     <DropdownItem key="profile" href="/profile">
-                      پروفایل
+                      {t("profile")}
                     </DropdownItem>
                     <DropdownItem key="admin" href="/admin">
-                      ادمین
+                      {t("admin")}
                     </DropdownItem>
                   </>
                 ) : (
                   <DropdownItem key="profile" href="/profile">
-                    پروفایل
+                    {t("profile")}
                   </DropdownItem>
                 )}
                 <DropdownItem onClick={logout} key="logout" color="danger">
-                  خروج
+                  {t("logout")}
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
@@ -124,7 +174,7 @@ const CustomNavbar: React.FC = () => {
           {menuItems.map((item, index) => (
             <NavbarItem key={`${item.href}-${index}`}>
               <Link aria-current="page" href={item.href}>
-                {item.title}
+                {t(item.title)}
               </Link>
             </NavbarItem>
           ))}
@@ -142,10 +192,10 @@ const CustomNavbar: React.FC = () => {
             <Link
               className="w-full"
               color={"foreground"}
-              href={item.title}
+              href={item.href}
               size="lg"
             >
-              {item.title}
+              {t(item.title)}
             </Link>
           </NavbarMenuItem>
         ))}

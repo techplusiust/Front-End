@@ -1,8 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
+import { useTranslation } from "react-i18next";
 
 const Sidebar: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="sidebar bg-primary-50">
       <ul>
@@ -13,7 +16,7 @@ const Sidebar: React.FC = () => {
               isActive ? "sidebar-link active" : "sidebar-link"
             }
           >
-            لیست درس‌ها
+            {t("sidebar.courses")}
           </NavLink>
         </li>
         <li>
@@ -23,7 +26,7 @@ const Sidebar: React.FC = () => {
               isActive ? "sidebar-link active" : "sidebar-link"
             }
           >
-            لیست کاربران
+            {t("sidebar.users")}
           </NavLink>
         </li>
         <li>
@@ -33,7 +36,7 @@ const Sidebar: React.FC = () => {
               isActive ? "sidebar-link active" : "sidebar-link"
             }
           >
-            گزارش‌ها
+            {t("sidebar.reports")}
           </NavLink>
         </li>
         <li>
@@ -43,7 +46,7 @@ const Sidebar: React.FC = () => {
               isActive ? "sidebar-link active" : "sidebar-link"
             }
           >
-            نظرات
+            {t("sidebar.comments")}
           </NavLink>
         </li>
       </ul>
