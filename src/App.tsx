@@ -19,6 +19,7 @@ import Reports from "./pages/AdminPanel/Reports";
 import Comments from "./pages/AdminPanel/Comments";
 import FeedbackFormPage from "./pages/FeedbackFormPage";
 import EditUserFormPage from "./pages/EditUserFormPage";
+import NotFound from "./components/NotFound/index";
 
 function App() {
   const auth = useRecoilValue(authAtom);
@@ -96,12 +97,12 @@ function App() {
               >
                 <Route path="courses" element={<CourseList />} />
                 <Route path="reports" element={<Reports />} />
-                <Route path="Comments" element={<Comments />} />
+                <Route path="comments" element={<Comments />} />
                 <Route path="users" element={<UserPage />} />
                 <Route path="" element={<CourseList />} />
               </Route>
             )}
-            <Route path="*" element={<Navigate replace to="/" />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         ) : (
           <>
@@ -113,7 +114,7 @@ function App() {
                 </Layout>
               }
             />
-            <Route path="*" element={<Navigate replace to="/" />} />
+            <Route path="*" element={<NotFound />} />
           </>
         )}
         <Route path="/login" element={<AuthPage />}>

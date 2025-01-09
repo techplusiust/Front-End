@@ -4,7 +4,7 @@
   padding: 20px;
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns */
 }
 
 .card img {
@@ -41,18 +41,83 @@
   color: gray;
   margin: 0;
 }
-/* استایل دکمه */
+
+/* Button styles */
 .card .btn {
-  background-color: #007bff; /* رنگ آبی */
-  color: #fff; /* رنگ متن سفید */
-  margin-top: 16px; /* فاصله از بالا */
-  border: none; /* حذف حاشیه دکمه */
-  padding: 10px 20px; /* فاصله داخلی دکمه */
-  border-radius: 5px; /* گوشه‌های گرد */
-  cursor: pointer; /* نشانگر موس */
-  transition: background-color 0.3s ease; /* انیمیشن تغییر رنگ */
+  background-color: #007bff;
+  color: #fff;
+  margin-top: 16px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .card .btn:hover {
-  background-color: #0056b3; /* رنگ آبی تیره‌تر در حالت هاور */
+  background-color: #0056b3;
+}
+
+/* Pagination styles */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  gap: 10px;
+  padding-bottom: 24px;
+}
+
+.pagination-btn {
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.pagination-btn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.pagination-btn.active {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  border: 1px solid #007bff;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 1024px) {
+  .container_teachers {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .container_teachers {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+  }
+
+  .pagination-container {
+    gap: 5px;
+  }
+
+  .pagination-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* changed */
+
+@media (max-width: 480px) {
+  .container_teachers {
+    grid-template-columns: 1fr; /* 1 column on very small screens */
+  }
 }

@@ -21,7 +21,10 @@ const Schedule: React.FC = () => {
     handleCourseTimeToggle,
     daysOfWeek,
     timeSlots,
+    coursesData,
+    facultiesData,
   } = Logic();
+
   return (
     <div className="p-6 h-screen">
       <div className="flex gap-2 relative overflow-hidden h-full">
@@ -40,22 +43,17 @@ const Schedule: React.FC = () => {
               }}
               className="mb-4 max-w-xs"
             >
-              <SelectItem key="">{t("schedule.all_groups")}</SelectItem>
-              <SelectItem key="پایه" value="پایه">
-                {t("schedule.group_base")}
-              </SelectItem>
-              <SelectItem key="تخصصی" value="تخصصی">
-                {t("schedule.group_specialized")}
-              </SelectItem>
-              <SelectItem key="عمومی" value="عمومی">
-                {t("schedule.group_general")}
-              </SelectItem>
-              <SelectItem key="اختیاری" value="اختیاری">
-                {t("schedule.group_optional")}
-              </SelectItem>
-              <SelectItem key="جبرانی" value="جبرانی">
-                {t("schedule.group_compensatory")}
-              </SelectItem>
+              <SelectItem key="">همه گروه‌ها</SelectItem>
+              <>
+                {facultiesData.map((item) => (
+                  <SelectItem
+                    key={item.department_fa}
+                    value={item.department_fa}
+                  >
+                    {item.department_fa}
+                  </SelectItem>
+                ))}
+              </>
             </Select>
             <Select
               multiple={false}
@@ -66,7 +64,9 @@ const Schedule: React.FC = () => {
               className="mb-4 max-w-xs"
             >
               {lessonsByGroup.map((item) => (
-                <SelectItem key={item.name}>{item.name}</SelectItem>
+                <SelectItem key={item.course_name_fa}>
+                  {item.course_name_fa}
+                </SelectItem>
               ))}
             </Select>
           </div>
@@ -75,45 +75,28 @@ const Schedule: React.FC = () => {
           <div className="overflow-y-auto flex-1">
             {filteredCourses.map((course) => (
               <Card
-                key={course.complete_course_number}
+                key={course.id}
                 className="mb-6 p-4 shadow-lg border rounded-lg"
               >
                 <div className="font-semibold mb-2 text-xs">
-                  {course.name} ({t("schedule.units")}: {course.total_unit},{" "}
-                  {t("schedule.exam_date")}:{" "}
-                  {course.exam_times
-                    .map((item) =>
-                      formatDate(`${item.date}T${item.exam_start_time}`)
-                    )
-                    .join(", ")}
-                  )
+                  {course.course_name_fa} , تاریخ امتحان:{" "}
+                  {formatDate(`${course.exam_date}T${course.exam_start_time}`)}
                 </div>
 
-                {/* Checkbox Group for Classes */}
-                {course.course_times.map((courseTime, index) => (
-                  <Checkbox
-                    size="sm"
-                    key={index}
-                    isSelected={
-                      selectedClassTimes[course.complete_course_number]?.has(
-                        index
-                      ) || false
-                    }
-                    onChange={() =>
-                      handleCourseTimeToggle(
-                        course.complete_course_number,
-                        index
-                      )
-                    }
-                  >
-                    <span className="mr-2 text-xs">
-                      {t("schedule.day")}: {daysOfWeek[courseTime.course_day]},{" "}
-                      {t("schedule.time")}: {courseTime.course_start_time} -{" "}
-                      {courseTime.course_end_time} ({t("schedule.location")}:{" "}
-                      {courseTime.place})
-                    </span>
-                  </Checkbox>
-                ))}
+                <Checkbox
+                  size="sm"
+                  key={`Checkbox_${course.id}`}
+                  isSelected={
+                    selectedClassTimes[course.id]?.has(course.id) || false
+                  }
+                  onChange={() => handleCourseTimeToggle(course.id)}
+                >
+                  <span className="mr-2 text-xs">
+                    روز: {daysOfWeek[course.first_day_of_week]}, زمان:{" "}
+                    {course.first_day_time} - مدت: {course.first_day_duration}{" "}
+                    ساعت
+                  </span>
+                </Checkbox>
               </Card>
             ))}
           </div>
@@ -135,19 +118,22 @@ const Schedule: React.FC = () => {
                 {daysOfWeek.map((_, dayIndex) => (
                   <div key={dayIndex} className="relative border-b-1">
                     {filteredCourses.flatMap((course) => {
-                      const selectedIndexes =
-                        selectedClassTimes[course.complete_course_number];
+                      const selectedIndexes = selectedClassTimes[course.id];
                       if (!selectedIndexes) return null;
 
                       return Array.from(selectedIndexes).flatMap(
                         (selectedIndex) => {
-                          const selectedCourseTime =
-                            course.course_times[selectedIndex];
-                          if (selectedCourseTime.course_day !== dayIndex)
+                          const selectedCourseTime = coursesData.find(
+                            (item) => item.id === selectedIndex
+                          );
+                          if (
+                            selectedCourseTime &&
+                            selectedCourseTime.first_day_of_week !== dayIndex
+                          )
                             return null;
 
                           const courseStart = new DateObject({
-                            date: `1403/01/01 ${selectedCourseTime.course_start_time}`,
+                            date: `1403/01/01 ${selectedCourseTime?.first_day_time}`,
                             format: "YYYY/MM/DD HH:mm:ss",
                             calendar: persian,
                             locale: persian_fa,
@@ -164,17 +150,17 @@ const Schedule: React.FC = () => {
                             courseStart.toDate().getTime()
                           ) {
                             const rowSpan = calculateRowSpan(
-                              selectedCourseTime.course_start_time,
-                              selectedCourseTime.course_end_time
+                              selectedCourseTime?.first_day_time ?? "",
+                              selectedCourseTime?.first_day_duration ?? 0
                             );
 
                             return (
                               <div
-                                key={`${course.complete_course_number}-${selectedIndex}`}
+                                key={`${course.id}-${selectedIndex}`}
                                 className="text-center bg-gray-200 rounded-lg p-2 absolute inset-0 text-xs"
                                 style={{ height: rowSpan * 24 - 0.15 }}
                               >
-                                {course.name} ({selectedCourseTime.place})
+                                {course.course_name_fa}
                               </div>
                             );
                           }

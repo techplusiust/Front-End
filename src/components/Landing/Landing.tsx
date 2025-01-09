@@ -34,9 +34,9 @@ export default function Landing() {
           >
             <div className="carousel-inner">
               <div className="carousel-item active">
-                <div className="container ">
+                <div className="container">
                   <div className="row flex">
-                    <div className=" col-md-6 custom ">
+                    <div className=" col-md-6 custom mr-3">
                       <div className="detail-box">
                         <h1 className="text-center">انتخاب واحد</h1>
                         <p className="text-justify">
@@ -57,7 +57,7 @@ export default function Landing() {
                         </div> */}
                       </div>
                     </div>
-                    <div className=" col-md-6 custom">
+                    <div className=" col-md-6 custom ">
                       <div className="img-box">
                         <img src={img2} alt="" />
                       </div>
@@ -85,7 +85,7 @@ export default function Landing() {
             <h2 className="fonty text-center">ویژگی های سامانه انتخاب واحد</h2>
           </div>
           <div className="row flex">
-            <div className=" col-md-4 boxy me-3">
+            <div className=" col-md-4 boxy me-3 ">
               <div className="box">
                 <div className="img-box">
                   <img src={img3} alt="" />
@@ -104,7 +104,7 @@ export default function Landing() {
                 </div>
               </div>
             </div>
-            <div className=" col-md-4 boxy me-3">
+            <div className=" col-md-4 boxy me-3 ">
               <div className="box ">
                 <div className="img-box">
                   <img src={img4} alt="" />
@@ -157,14 +157,14 @@ export default function Landing() {
             <h2 className="fonty">درباره ما</h2>
           </div>
           <div className="row flex justify-between" dir="ltr">
-            <div className="col-md-6 why">
+            <div className="col-md-6 why ml-4">
               <div className="img-box">
                 <img src={img17} alt="" />
               </div>
             </div>
-            <div className="col-md-6 why">
+            <div className="col-md-6 why me-5">
               <div className="detail-box text-center">
-                <p className="text-justify">
+                <p className="text-right-justify">
                   ما در تیم توسعه سامانه انتخاب واحد هوشمند، با هدف ساده‌تر کردن
                   فرآیند برنامه‌ریزی تحصیلی برای دانشجویان، دست به طراحی و ایجاد
                   سیستمی پیشرفته و کاربرپسند زده‌ایم. دغدغه اصلی ما، ایجاد
@@ -184,7 +184,7 @@ export default function Landing() {
                   مهم‌ترین اهداف خود تمرکز کنید و انتخاب واحد را به سامانه‌ای
                   هوشمند و دقیق بسپارید
                 </p>
-                <p className="text-justify font-bold">
+                <p className="text-center font-bold">
                   با ما، انتخاب واحد دیگر یک چالش نیست، بلکه گامی ساده و لذت‌بخش
                   به سوی موفقیت تحصیلی است
                 </p>
@@ -296,9 +296,9 @@ export default function Landing() {
       </section>
 
       <section className="info_section layout_padding2 flex justify-center">
-        <div className="container ">
+        <div className="container ml-[200px]">
           <div dir="ltr" className="row flex">
-            <div className="col-md-6 col-lg-3 info_col">
+            <div className="col-md-6 col-lg-3 info_col ml-5 pl-4">
               <div className="info_contact">
                 <h4 className="text-center">آدرس</h4>
                 <div className="contact_link_box">
@@ -331,10 +331,10 @@ export default function Landing() {
                 </Link>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3 info_col flex text-center mr-4">
+            <div className="col-md-6 col-lg-3 info_col flex text-center mr-auto pl-4">
               <div className="info_detail">
                 <h4>اطلاعات</h4>
-                <p className="text-justify">
+                <p className="about-text">
                   سامانه انتخاب واحد هوشمند، ابزاری کاربردی و مدرن است که به شما
                   امکان می‌دهد در کمترین زمان و با بالاترین دقت، برنامه تحصیلی
                   خود را تنظیم کنید. از این سامانه برای مدیریت پیش‌نیازها، بررسی
@@ -343,32 +343,32 @@ export default function Landing() {
                 </p>
               </div>
             </div>
-            <div className="col-md-6 col-lg-2 info_col">
+            <div className="col-md-6 col-lg-2 info_col pl-4">
               <div className="info_link_box mr-9">
                 <h4>Links</h4>
                 <div className="info_links">
-                  <Link className="" to="about.html">
+                  <Link className="" to="/profile">
                     پروفایل
                   </Link>
-                  <Link className="" to="service.html">
+                  <Link className="" to="/courses">
                     دوره ها
                   </Link>
-                  <Link className="" to="why.html">
-                    برنامه امتحانی
+                  <Link className="" to="/schedule">
+                    برنامه کلاس ها
                   </Link>
-                  <Link className="" to="team.html">
+                  <Link className="" to="/professors">
                     اساتید
                   </Link>
                 </div>
               </div>
             </div>
-            <div className="col-md-6 col-lg-2 info_col mr-9">
+            {/* <div className="col-md-6 col-lg-2 info_col mr-9">
               <h4>مشترک شوید</h4>
               <form action="#">
                 <input type="text" placeholder="Enter email" />
                 <button type="submit">Subscribe</button>
               </form>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
