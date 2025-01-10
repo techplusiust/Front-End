@@ -3,10 +3,10 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - Developer
+      - main
   pull_request:
     branches:
-      - Developer
+      - main
 
 jobs:
   build:
@@ -67,10 +67,12 @@ jobs:
       run: |
         echo "${SSH_PRIVATE_KEY}" > /tmp/private_key
         chmod 600 /tmp/private_key
-        ssh -o StrictHostKeyChecking=no -i /tmp/private_key ${SSH_USERNAME}@${SSH_HOST} << EOF
+        ssh -o StrictHostKeyChecking=no -i /tmp/private_key ${SSH_USERNAME}@${SSH_HOST} << 'EOF'
+          sudo docker stop frontend || true
+          sudo docker rmi -f frontend:latest || true
           docker load -i /home/ubuntu/build_deploy/frontend.tar/frontend.tar
-          docker stop frontend || true
-          docker rm frontend || true
-          docker run -d --name frontend -p 8081:80 frontend:latest
+          cd /home/ubuntu/project
+          sudo docker-compose down  # stop and remove previous containers
+          sudo docker-compose up -d  # run new containers with the latest image
         EOF
       shell: bash
