@@ -49,6 +49,9 @@ const UserPage = () => {
     onClose: onCloseDeleteModalOpen,
   } = useDisclosure();
 
+  const [userToDelete, setUserToDelete] = useState<IUserDto | null>(null);
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -63,23 +66,17 @@ const UserPage = () => {
         );
         if (!response.ok) throw new Error("Failed to fetch users");
         const data: IUserDto[] = await response.json();
-        console.log("data: ", data);
-
-        // const validUsers = data.filter((user) => user && user.fullname);
-        setUsers([...data]);
+        setUsers(data);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
     };
 
     fetchUsers();
-  }, []);
+  }, [token]);
 
-  const [userToDelete, setUserToDelete] = useState<IUserDto | null>(null);
-  // const [token] = useState("7ddcab480c848bf79280b8d2ed83ebc3ea1b6908"); //your admin token
-  const token = localStorage.getItem("token");
   const filteredUsers = users
-    .filter((user) => user.fullname) // فقط کاربرانی که فیلد name دارند
+    .filter((user) => user.fullname)
     .filter((user) =>
       user.fullname.toLowerCase().includes(search.toLowerCase())
     );
@@ -116,17 +113,8 @@ const UserPage = () => {
     }
   };
 
-  // const handleDeleteConfirm = () => {
-  //   if (userToDelete) {
-  //     setUsers(users.filter((u) => u !== userToDelete));
-  //   }
-  //   onCloseDeleteModalOpen();
-  //   setUserToDelete(null);
-  // };
-
   const validationSchema = Yup.object({
-    name: Yup.string().required(t("validation.name_required")),
-
+    fullname: Yup.string().required(t("validation.name_required")),
     email: Yup.string()
       .email(t("validation.email_invalid"))
       .required(t("validation.email_required")),
@@ -134,42 +122,25 @@ const UserPage = () => {
   });
 
   const onSubmit = async (values: IUserDto) => {
-    const { fullname, email, department, id } = values;
-
     try {
-      console.log("Sending data:", { id, fullname, email, department });
       const response = await fetch(
-        `http://127.0.0.1:8000/api/accounts/users/${id}/edit/`,
+        `http://127.0.0.1:8000/api/accounts/users/${values.id}/edit/`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Token ${token}`,
           },
-          body: JSON.stringify({ fullname, email, department }),
+          body: JSON.stringify(values),
         }
       );
-      console.log("Response status:", response.status);
       if (!response.ok) throw new Error("Failed to update user");
       const updatedUser = await response.json();
-      setUsers(users.map((u) => (u.id === id ? updatedUser : u)));
+      setUsers(users.map((u) => (u.id === values.id ? updatedUser : u)));
     } catch (error) {
       console.error("Error updating user:", error);
     }
     onCloseEditModalOpen();
-
-    // const tempUsers = [...users];
-    // const userIndex = tempUsers.findIndex((item) => item.id === id);
-    // const tempUser = users[userIndex];
-    // const updatedUser = {
-    //   ...tempUser,
-    //   name,
-    //   email,
-    //   department,
-    // };
-    // tempUsers[userIndex] = updatedUser;
-    // setUsers([...tempUsers]);
-    // onCloseEditModalOpen();
   };
 
   const formik = useFormik({
@@ -189,53 +160,47 @@ const UserPage = () => {
   });
 
   return (
-    <>
-      <div className="container mx-auto px-4 mt-4 md:px-8">
-        <h1 className="text-xl font-bold mb-4 text-center md:text-right">
-          {t("user_management.title")}
-        </h1>
-        <Input
-          className="mb-6"
-          placeholder={t("user_management.search_placeholder")}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <div className="space-y-4">
-          {filteredUsers.map((user, index) => (
-            <div
-              key={index}
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 items-center p-4 bg-gray-100 rounded-lg shadow-lg gap-4"
-            >
-              <div className="sm:col-span-1 md:col-span-2">
-                <p className="font-medium">{user.name}</p>
-                <p className="text-gray-600">{user.email}</p>
-              </div>
-              <div className="hidden md:block md:col-span-1">
-                <p className="font-medium">
-                  {
-                    subjectOptions.find((item) => item.id === user.department)
-                      .title
-                  }
-                </p>
-              </div>
-              <div className="flex justify-end md:justify-end md:col-span-2 gap-2">
-                <Button
-                  color="primary"
-                  size="sm"
-                  onClick={() => handleEdit(user)}
-                >
-                  {t("user_management.edit_user")}
-                </Button>
-                <Button
-                  size="sm"
-                  color="danger"
-                  onClick={() => handleDelete(user)}
-                >
-                  {t("user_management.delete_user")}
-                </Button>
-              </div>
-            ) : null
-          )}
-        </div>
+    <div className="container mx-auto px-4 mt-4 md:px-8">
+      <h1 className="text-xl font-bold mb-4 text-center md:text-right">
+        {t("user_management.title")}
+      </h1>
+      <Input
+        className="mb-6"
+        placeholder={t("user_management.search_placeholder")}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <div className="space-y-4">
+        {filteredUsers.map((user) => (
+          <div
+            key={user.id}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 items-center p-4 bg-gray-100 rounded-lg shadow-lg gap-4"
+          >
+            <div className="sm:col-span-1 md:col-span-2">
+              <p className="font-medium">{user.fullname}</p>
+              <p className="text-gray-600">{user.email}</p>
+            </div>
+            <div className="hidden md:block md:col-span-1">
+              <p className="font-medium">
+                {
+                  subjectOptions.find((item) => item.id === user.department)
+                    ?.title || ""
+                }
+              </p>
+            </div>
+            <div className="flex justify-end md:col-span-2 gap-2">
+              <Button color="primary" size="sm" onClick={() => handleEdit(user)}>
+                {t("user_management.edit_user")}
+              </Button>
+              <Button
+                size="sm"
+                color="danger"
+                onClick={() => handleDelete(user)}
+              >
+                {t("user_management.delete_user")}
+              </Button>
+            </div>
+          </div>
+        ))}
       </div>
       <Modal
         isOpen={isOpenEditModalOpen}
@@ -243,79 +208,38 @@ const UserPage = () => {
         hideCloseButton
       >
         <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader>
-                <h2 className="text-lg font-bold">
-                  {t("user_management.edit_user")}
-                </h2>
-              </ModalHeader>
-              <ModalBody>
-                {editUser && (
-                  <form
-                    onSubmit={formik.handleSubmit}
-                    className="flex flex-col"
-                  >
-                    <Input
-                      {...formik.getFieldProps({ name: "name" })}
-                      name="name"
-                      label={t("user_management.name")}
-
-                      size="sm"
-                      variant="bordered"
-                      labelPlacement={"outside"}
-                      errorMessage={<>{formik.errors.fullname ?? ""}</>}
-                      isInvalid={!!formik.errors.fullname}
-                    />
-                    <Input
-                      {...formik.getFieldProps({ name: "email" })}
-                      name="email"
-                      label={t("user_management.email")}
-                      size="sm"
-                      variant="bordered"
-                      labelPlacement={"outside"}
-                      errorMessage={<>{formik.errors.email ?? ""}</>}
-                      isInvalid={!!formik.errors.email}
-                    />
-                    <Select
-                      size="sm"
-                      label={t("user_management.department")}
-                      variant="bordered"
-                      labelPlacement={"outside"}
-                      {...formik.getFieldProps({ name: "department" })}
-                      errorMessage={<>{formik.errors.department ?? ""}</>}
-                      isInvalid={!!formik.errors.department}
-                    >
-                      {subjectOptions.map((item: any) => (
-                        <SelectItem key={item.id} value={item.id}>
-                          {item.title}
-                        </SelectItem>
-                      ))}
-                    </Select>
-                    <div className="mt-4 flex items-center gap-2 justify-end">
-                      <Button
-                        variant="flat"
-                        size="sm"
-                        type="button"
-                        color="danger"
-                        onClick={onClose}
-                      >
-                        {t("user_management.cancel")}
-                      </Button>
-                      <Button
-                        size="sm"
-                        type="submit"
-                        disabled={!formik.isValid}
-                        color="primary"
-                      >
-                        {t("user_management.confirm")}
-                      </Button>
-                    </div>
-                  </form>
-                )}
-              </ModalBody>
-            </>
-          )}
+          <ModalHeader>
+            <h2 className="text-lg font-bold">
+              {t("user_management.edit_user")}
+            </h2>
+          </ModalHeader>
+          <ModalBody>
+            <form onSubmit={formik.handleSubmit}>
+              <Input
+                {...formik.getFieldProps("fullname")}
+                label={t("user_management.name")}
+                isInvalid={!!formik.errors.fullname}
+              />
+              <Input
+                {...formik.getFieldProps("email")}
+                label={t("user_management.email")}
+                isInvalid={!!formik.errors.email}
+              />
+              <Select
+                {...formik.getFieldProps("department")}
+                label={t("user_management.department")}
+              >
+                {subjectOptions.map((option) => (
+                  <SelectItem key={option.id} value={option.id}>
+                    {option.title}
+                  </SelectItem>
+                ))}
+              </Select>
+              <Button type="submit" disabled={!formik.isValid}>
+                {t("user_management.confirm")}
+              </Button>
+            </form>
+          </ModalBody>
         </ModalContent>
       </Modal>
       <Modal
@@ -324,29 +248,25 @@ const UserPage = () => {
         hideCloseButton
       >
         <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader>
-                <h2 className="text-lg font-bold">
-                  {t("user_management.delete_confirmation")}
-                </h2>
-              </ModalHeader>
-              <ModalBody>
-                <p>{t("user_management.delete_user_confirmation_text")}</p>
-              </ModalBody>
-              <ModalFooter>
-                <Button variant="flat" onClick={() => onClose()}>
-                  {t("user_management.cancel")}
-                </Button>
-                <Button color="danger" onClick={handleDeleteConfirm}>
-                  {t("user_management.confirm")}
-                </Button>
-              </ModalFooter>
-            </>
-          )}
+          <ModalHeader>
+            <h2 className="text-lg font-bold">
+              {t("user_management.delete_confirmation")}
+            </h2>
+          </ModalHeader>
+          <ModalBody>
+            <p>{t("user_management.delete_user_confirmation_text")}</p>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onCloseDeleteModalOpen}>
+              {t("user_management.cancel")}
+            </Button>
+            <Button color="danger" onClick={handleDeleteConfirm}>
+              {t("user_management.confirm")}
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
-    </>
+    </div>
   );
 };
 
