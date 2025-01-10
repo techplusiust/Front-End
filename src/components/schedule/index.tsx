@@ -6,8 +6,10 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import { formatDate } from "./utils/formatDate";
 import Logic from "./logic";
 import { calculateRowSpan } from "./utils/calculateRowSpan";
+import { useTranslation } from "react-i18next";
 
 const Schedule: React.FC = () => {
+  const { t } = useTranslation();
   const {
     selectedGroup,
     setSelectedGroup,
@@ -27,11 +29,11 @@ const Schedule: React.FC = () => {
     <div className="p-6 h-screen">
       <div className="flex gap-2 relative overflow-hidden h-full">
         <div className="flex-1 h-full flex flex-col">
-          <h1 className="text-xl font-bold mb-4">زمان بندی کلاس‌ها</h1>
+          <h1 className="text-xl font-bold mb-4">{t("schedule.title")}</h1>
           <div className="flex gap-2">
             <Select
               variant="bordered"
-              placeholder="انتخاب گروه آموزشی"
+              placeholder={t("schedule.select_group")}
               multiple={false}
               selectedKeys={new Set([selectedGroup])}
               onSelectionChange={(keys) => {
@@ -56,7 +58,7 @@ const Schedule: React.FC = () => {
             <Select
               multiple={false}
               variant="bordered"
-              placeholder="انتخاب درس"
+              placeholder={t("schedule.select_lesson")}
               selectedKeys={selectedLesson}
               onSelectionChange={setSelectedLesson}
               className="mb-4 max-w-xs"
@@ -69,7 +71,7 @@ const Schedule: React.FC = () => {
             </Select>
           </div>
 
-          <div className="mb-4 text-sm">انتخاب کلاس:</div>
+          <div className="mb-4 text-sm">{t("schedule.select_class")}</div>
           <div className="overflow-y-auto flex-1">
             {filteredCourses.map((course) => (
               <Card

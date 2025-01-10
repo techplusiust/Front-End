@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Card, Avatar, Button, Textarea } from "@nextui-org/react";
+import { useTranslation } from "react-i18next";
 import "./TeacherDetailsPage.css";
 
 interface Teacher {
@@ -20,6 +21,7 @@ interface Teacher {
 }
 
 const TeacherDetailsPage: React.FC = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const teacher = location.state as Teacher;
 
@@ -44,8 +46,12 @@ const TeacherDetailsPage: React.FC = () => {
         <div className="header">
           <Avatar src={teacher.image || "/default-avatar.png"} size="lg" />
           <div>
-            <h4 className="title">{teacher.name.fa} ({teacher.name.en})</h4>
-            <p className="description">{teacher.department.fa} ({teacher.department.en})</p>
+            <h4 className="title">
+              {teacher.name.fa} ({teacher.name.en})
+            </h4>
+            <p className="description">
+              {teacher.department.fa} ({teacher.department.en})
+            </p>
           </div>
         </div>
         {/* <p>موضوع تدریس: {teacher.subject || "نامشخص"}</p>
@@ -54,7 +60,7 @@ const TeacherDetailsPage: React.FC = () => {
 
       {/* Reviews Section */}
       <div className="reviews-section">
-        <h3 className="review-title">نظرات:</h3>
+        <h3 className="review-title">{t("teacher_details.reviews_title")}</h3>
         {reviews.length > 0 ? (
           reviews.map((review, index) => (
             <Card key={index} className="review-card">
@@ -62,19 +68,19 @@ const TeacherDetailsPage: React.FC = () => {
             </Card>
           ))
         ) : (
-          <p>هنوز نظری ثبت نشده است.</p>
+          <p>{t("teacher_details.no_reviews")}</p>
         )}
 
         {/* Add Review Section */}
         <div className="add-review">
           <Textarea
-            placeholder="نظر خود را وارد کنید..."
+            placeholder={t("teacher_details.add_review_placeholder")}
             fullWidth
             value={newReview}
             onChange={(e) => setNewReview(e.target.value)}
           />
           <Button size="sm" onClick={handleAddReview}>
-            ثبت نظر
+            {t("teacher_details.submit_review")}
           </Button>
         </div>
       </div>

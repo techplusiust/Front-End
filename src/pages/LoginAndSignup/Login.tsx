@@ -2,56 +2,47 @@ import axios from "axios";
 import { Button, Input } from "@nextui-org/react";
 import { useFormik } from "formik";
 import { Eye, EyeSlash, TickCircle } from "iconsax-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useSetRecoilState } from "recoil";
 import { authAtom } from "../../recoil/authAtom";
 import { userAtom } from "../../recoil/userAtom";
+import { useTranslation } from "react-i18next";
 
 const initialValues = {
   email: "",
   password: "",
 };
 
-const validationSchema = Yup.object({
-  email: Yup.string()
-    .email("فرمت ایمیل صحیح نیست")
-    .required("ایمیل را وارد نمایید"),
-  password: Yup.string()
-    .required("رمز عبور را وارد نمایید")
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-      "رمز عبور باید حداقل 8 کارکتر باشد و شامل حداقل یک حرف بزرگ، یک حرف کوچک، یک عدد، و کارکتر ویژه مانند @، # یا ؟ باشد"
-    ),
-});
-
 const LoginForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
-
-  const toggleVisibility = () => setIsVisible(!isVisible);
+  const { t, i18n } = useTranslation(); 
   const navigate = useNavigate();
   const setAuth = useSetRecoilState(authAtom);
   const setUser = useSetRecoilState(userAtom);
 
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem("language") || "en"; 
+    i18n.changeLanguage(storedLanguage); 
+  }, [i18n]);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
+
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email(t("login.errors.email_invalid")) 
+      .required(t("login.errors.email_required")),
+    password: Yup.string()
+      .required(t("login.errors.password_required"))
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        t("login.errors.password_invalid")
+      ),
+  });
+
   const onSubmit = async (values: any) => {
     const { email, password } = values;
-
-    // if (email === "admin@example.com" && password === "@Admin123") {
-    //   setAuth({
-    //     isLoggedin: true,
-    //     isAdmin: true,
-    //     role: "admin",
-    //   });
-
-    //   setUser({
-    //     email: "admin@example.com",
-    //     department: "Administration",
-    //   });
-
-    //   navigate("/admin");
-    //   return;
-    // }
 
     try {
       const response = await axios.post(
@@ -59,10 +50,7 @@ const LoginForm = () => {
         { email, password },
         { headers: { "Content-Type": "application/json" } }
       );
-      console.log("API Response:", response.data);
       if (response.status === 200) {
-        console.log("Login successful. User data:", response.data);
-        // setLoginResponse(response.data);
         localStorage.setItem("token", response.data.token);
 
         setAuth({
@@ -80,14 +68,12 @@ const LoginForm = () => {
         navigate(response.data.isAdmin ? "/admin" : "/");
       } else {
         const errorMessage =
-          response.data.message ||
-          "ورود ناموفق. لطفاً اطلاعات خود را بررسی کنید.";
+          response.data.message || t("login.error.general");
         console.error("Login error:", errorMessage);
       }
     } catch (error: any) {
       const errorMessage =
-        error.response?.data?.message ||
-        "خطای اتصال به سرور. لطفاً دوباره تلاش کنید.";
+        error.response?.data?.message || t("login.error.server");
       console.error("Server connection error:", errorMessage);
     }
   };
@@ -103,7 +89,7 @@ const LoginForm = () => {
   return (
     <div className="w-full max-w-md h-full px-4 py-6 " lang="he-IL" dir="rtl">
       <div>
-        <h1 className="text-blue-700 font-bold text-xl mb-4">ورود</h1>
+        <h1 className="text-blue-700 font-bold text-xl mb-4">{t("login.title")}</h1>
         <form
           onSubmit={formik.handleSubmit}
           style={{
@@ -115,7 +101,7 @@ const LoginForm = () => {
           <Input
             {...formik.getFieldProps({ name: "email" })}
             name="email"
-            label="ایمیل"
+            label={t("login.email")}
             size="sm"
             variant="bordered"
             labelPlacement={"outside"}
@@ -125,7 +111,7 @@ const LoginForm = () => {
           <Input
             {...formik.getFieldProps({ name: "password" })}
             name="password"
-            label="رمز عبور"
+            label={t("login.password")}
             size="sm"
             variant="bordered"
             labelPlacement={"outside"}
@@ -155,16 +141,15 @@ const LoginForm = () => {
             fullWidth
             startContent={<TickCircle variant="Bulk" />}
             type="submit"
-            // disabled={!formik.isValid}
             color="primary"
             className="my-2"
           >
-            تایید
+            {t("login.submit")}
           </Button>
           <p>
-            آیا حساب کاربری ندارید؟
+            {t("login.noAccount")}{" "}
             <Link to={`/signup`} className="text-blue-600">
-              ثبت نام
+              {t("login.signup")}
             </Link>
           </p>
         </form>

@@ -13,6 +13,7 @@ import {
 } from "@nextui-org/react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useTranslation } from "react-i18next";
 
 interface IUserDto {
   id: number;
@@ -25,10 +26,11 @@ interface IUserDto {
 }
 
 const UserPage = () => {
+  const { t } = useTranslation();
   const [subjectOptions] = useState<any[]>([
     {
       id: "1",
-      title: "مهندسی کامپیوتر",
+      title: t("user_management.computer_engineering"),
     },
   ]);
   const [users, setUsers] = useState<IUserDto[]>([]);
@@ -123,11 +125,12 @@ const UserPage = () => {
   // };
 
   const validationSchema = Yup.object({
-    fullname: Yup.string().required("نام پروفایل را وارد نمایید"),
+    name: Yup.string().required(t("validation.name_required")),
+
     email: Yup.string()
-      .email("فرمت ایمیل صحیح نیست")
-      .required("ایمیل را وارد نمایید"),
-    department: Yup.string().required("رشته تحصیلی را وارد نمایید"),
+      .email(t("validation.email_invalid"))
+      .required(t("validation.email_required")),
+    department: Yup.string().required(t("validation.department_required")),
   });
 
   const onSubmit = async (values: IUserDto) => {
@@ -189,48 +192,46 @@ const UserPage = () => {
     <>
       <div className="container mx-auto px-4 mt-4 md:px-8">
         <h1 className="text-xl font-bold mb-4 text-center md:text-right">
-          مدیریت کاربران
+          {t("user_management.title")}
         </h1>
         <Input
           className="mb-6"
-          placeholder="جستجو..."
+          placeholder={t("user_management.search_placeholder")}
           onChange={(e) => setSearch(e.target.value)}
         />
         <div className="space-y-4">
-          {filteredUsers.map((user, index) =>
-            user && user.fullname ? (
-              <div
-                key={index}
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 items-center p-4 bg-gray-100 rounded-lg shadow-lg gap-4"
-              >
-                <div className="sm:col-span-1 md:col-span-2">
-                  <p className="font-medium">{user.fullname}</p>
-                  <p className="text-gray-600">{user.email}</p>
-                </div>
-                <div className="hidden md:block md:col-span-1">
-                  <p className="font-medium">
-                    {
-                      subjectOptions.find((item) => item.id === user.department)
-                        .title
-                    }
-                  </p>
-                </div>
-                <div className="flex justify-end md:justify-end md:col-span-2 gap-2">
-                  <Button
-                    color="primary"
-                    size="sm"
-                    onClick={() => handleEdit(user)}
-                  >
-                    ویرایش
-                  </Button>
-                  <Button
-                    size="sm"
-                    color="danger"
-                    onClick={() => handleDelete(user)}
-                  >
-                    حذف
-                  </Button>
-                </div>
+          {filteredUsers.map((user, index) => (
+            <div
+              key={index}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 items-center p-4 bg-gray-100 rounded-lg shadow-lg gap-4"
+            >
+              <div className="sm:col-span-1 md:col-span-2">
+                <p className="font-medium">{user.name}</p>
+                <p className="text-gray-600">{user.email}</p>
+              </div>
+              <div className="hidden md:block md:col-span-1">
+                <p className="font-medium">
+                  {
+                    subjectOptions.find((item) => item.id === user.department)
+                      .title
+                  }
+                </p>
+              </div>
+              <div className="flex justify-end md:justify-end md:col-span-2 gap-2">
+                <Button
+                  color="primary"
+                  size="sm"
+                  onClick={() => handleEdit(user)}
+                >
+                  {t("user_management.edit_user")}
+                </Button>
+                <Button
+                  size="sm"
+                  color="danger"
+                  onClick={() => handleDelete(user)}
+                >
+                  {t("user_management.delete_user")}
+                </Button>
               </div>
             ) : null
           )}
@@ -245,7 +246,9 @@ const UserPage = () => {
           {(onClose) => (
             <>
               <ModalHeader>
-                <h2 className="text-lg font-bold">ویرایش کاربر</h2>
+                <h2 className="text-lg font-bold">
+                  {t("user_management.edit_user")}
+                </h2>
               </ModalHeader>
               <ModalBody>
                 {editUser && (
@@ -254,9 +257,10 @@ const UserPage = () => {
                     className="flex flex-col"
                   >
                     <Input
-                      {...formik.getFieldProps({ name: "fullname" })}
-                      name="fullname"
-                      label="نام پروفایل"
+                      {...formik.getFieldProps({ name: "name" })}
+                      name="name"
+                      label={t("user_management.name")}
+
                       size="sm"
                       variant="bordered"
                       labelPlacement={"outside"}
@@ -266,7 +270,7 @@ const UserPage = () => {
                     <Input
                       {...formik.getFieldProps({ name: "email" })}
                       name="email"
-                      label="ایمیل"
+                      label={t("user_management.email")}
                       size="sm"
                       variant="bordered"
                       labelPlacement={"outside"}
@@ -275,7 +279,7 @@ const UserPage = () => {
                     />
                     <Select
                       size="sm"
-                      label={"رشته"}
+                      label={t("user_management.department")}
                       variant="bordered"
                       labelPlacement={"outside"}
                       {...formik.getFieldProps({ name: "department" })}
@@ -296,7 +300,7 @@ const UserPage = () => {
                         color="danger"
                         onClick={onClose}
                       >
-                        انصراف
+                        {t("user_management.cancel")}
                       </Button>
                       <Button
                         size="sm"
@@ -304,7 +308,7 @@ const UserPage = () => {
                         disabled={!formik.isValid}
                         color="primary"
                       >
-                        تایید
+                        {t("user_management.confirm")}
                       </Button>
                     </div>
                   </form>
@@ -323,17 +327,19 @@ const UserPage = () => {
           {(onClose) => (
             <>
               <ModalHeader>
-                <h2 className="text-lg font-bold">هشدار حذف کاربر</h2>
+                <h2 className="text-lg font-bold">
+                  {t("user_management.delete_confirmation")}
+                </h2>
               </ModalHeader>
               <ModalBody>
-                <p>آیا از حذف کاربر اطمینان دارید؟</p>
+                <p>{t("user_management.delete_user_confirmation_text")}</p>
               </ModalBody>
               <ModalFooter>
                 <Button variant="flat" onClick={() => onClose()}>
-                  انصراف
+                  {t("user_management.cancel")}
                 </Button>
                 <Button color="danger" onClick={handleDeleteConfirm}>
-                  تایید
+                  {t("user_management.confirm")}
                 </Button>
               </ModalFooter>
             </>

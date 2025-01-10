@@ -141,7 +141,6 @@ const CourseList: React.FC = () => {
               <p>
                 <strong>دانشکده:</strong> {course.faculty_fa}
               </p>
-
             </div>
           ))
         ) : (
