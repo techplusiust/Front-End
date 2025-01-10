@@ -1,9 +1,10 @@
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 import { useFormik } from "formik";
 import { TickCircle } from "iconsax-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as Yup from "yup";
 import edituserimage from "../../assets/fonts/iranyekan/Images/edituserimage.jpg";
+import { useTranslation } from "react-i18next";
 
 // Initial values for the form
 const initialValues = {
@@ -36,9 +37,14 @@ const initialSubjectOptions = [
 ];
 
 const EditUserForm = () => {
+  const { t, i18n } = useTranslation();
   const [subjectOptions] = useState(initialSubjectOptions);
   const [successPopup, setSuccessPopup] = useState<boolean>(false);
 
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem("language") || "en"; 
+    i18n.changeLanguage(storedLanguage); 
+  }, [i18n]);
   const onSubmit = async (values: any) => {
     console.log("Updated user data:", values);
 
@@ -92,7 +98,7 @@ const EditUserForm = () => {
               marginBottom: "1.5rem",
             }}
           >
-            ویرایش اطلاعات کاربری
+            {t("edit_user_form.title")}
           </h1>
 
           <form
@@ -107,7 +113,7 @@ const EditUserForm = () => {
             <Input
               {...formik.getFieldProps({ name: "fullname" })}
               name="fullname"
-              label="نام پروفایل"
+              label={t("edit_user_form.fullname")}
               size="lg"
               variant="bordered"
               labelPlacement={"outside"}
@@ -119,7 +125,7 @@ const EditUserForm = () => {
             <Input
               {...formik.getFieldProps({ name: "national_code" })}
               name="national_code"
-              label="کد ملی"
+              label={t("edit_user_form.national_code")}
               size="lg"
               variant="bordered"
               labelPlacement={"outside"}
@@ -131,7 +137,7 @@ const EditUserForm = () => {
             <Input
               {...formik.getFieldProps({ name: "student_number" })}
               name="student_number"
-              label="شماره دانشجویی"
+              label={t("edit_user_form.student_number")}
               size="lg"
               variant="bordered"
               labelPlacement={"outside"}
@@ -142,7 +148,7 @@ const EditUserForm = () => {
             <Input
               {...formik.getFieldProps({ name: "email" })}
               name="email"
-              label="ایمیل"
+              label={t("edit_user_form.email")}
               size="lg"
               variant="bordered"
               labelPlacement={"outside"}
@@ -152,11 +158,9 @@ const EditUserForm = () => {
 
             {/* Department Field */}
             <Select
-            
-              data-testid="department-select"
               size="lg"
-              label="رشته"
-              aria-label="رشته تحصیلی"
+              label={t("edit_user_form.department")}
+              aria-label={t("edit_user_form.department")}
               variant="bordered"
               labelPlacement={"outside"}
               {...formik.getFieldProps({ name: "department" })}
@@ -179,7 +183,7 @@ const EditUserForm = () => {
               color="primary"
               className="mt-2"
             >
-              ذخیره تغییرات
+              {t("edit_user_form.save_changes")}
             </Button>
           </form>
         </div>
@@ -207,7 +211,7 @@ const EditUserForm = () => {
 
       {/* Success Popup */}
       {successPopup && (
-        <div data-testid="success-popup"
+        <div
           style={{
             position: "fixed",
             bottom: "1rem",
@@ -221,7 +225,7 @@ const EditUserForm = () => {
             fontSize: "0.9rem",
           }}
         >
-          اطلاعات کاربر با موفقیت به‌روزرسانی شد
+          {t("edit_user_form.success_message")}
         </div>
       )}
     </div>

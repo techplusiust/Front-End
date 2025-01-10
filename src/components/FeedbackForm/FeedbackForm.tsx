@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Input, Textarea, Button, Spacer, Card } from "@nextui-org/react";
+import { useTranslation } from "react-i18next";
 import feedimage from "../../assets/fonts/iranyekan/Images/feedback-image.jpg";
 
 interface FeedbackFormData {
@@ -9,6 +10,7 @@ interface FeedbackFormData {
 }
 
 const FeedbackForm: React.FC = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FeedbackFormData>({
     name: "",
     email: "",
@@ -18,7 +20,7 @@ const FeedbackForm: React.FC = () => {
   const [errors, setErrors] = useState({
     name: false,
     email: false,
-    emailFormat: false, // For invalid email format
+    emailFormat: false,
     feedback: false,
   });
 
@@ -35,8 +37,8 @@ const FeedbackForm: React.FC = () => {
     }));
     setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: false, // Clear field error on typing
-      emailFormat: false, // Clear email format error on typing
+      [name]: false,
+      emailFormat: false,
     }));
   };
 
@@ -55,22 +57,19 @@ const FeedbackForm: React.FC = () => {
       name: formData.name.trim() === "",
       email: formData.email.trim() === "",
       emailFormat:
-        formData.email.trim() !== "" && !validateEmail(formData.email.trim()), // Check email format if not empty
+        formData.email.trim() !== "" && !validateEmail(formData.email.trim()),
       feedback: formData.feedback.trim() === "",
     };
 
     setErrors(newErrors);
 
-    // Check if any field has an error
     if (newErrors.name || newErrors.email || newErrors.emailFormat || newErrors.feedback) {
       return;
     }
 
-    // Show success message
-    setSuccessMessage("بازخورد شما ارسال شد");
-    setTimeout(() => setSuccessMessage(""), 3000); // Clear message after 3 seconds
+    setSuccessMessage(t("feedback_form.success_message"));
+    setTimeout(() => setSuccessMessage(""), 3000);
 
-    // Clear form
     setFormData({ name: "", email: "", feedback: "" });
   };
 
@@ -95,109 +94,76 @@ const FeedbackForm: React.FC = () => {
           marginTop: "2.5rem",
         }}
       >
-        {/* Feedback Image */}
-        <h3>فرم بازخورد</h3>
+        <h3>{t("feedback_form.title")}</h3>
         <img
           src={feedimage}
           alt="Feedback"
           style={{ width: "600px", marginBottom: "1rem" }}
         />
         <form onSubmit={handleSubmit}>
-          {/* Name Field */}
           <Input
             fullWidth
-            label="نام"
-            placeholder="نام خود را وارد کنید"
+            label={t("feedback_form.name")}
+            placeholder={t("feedback_form.name_placeholder")}
             value={formData.name}
             onChange={handleInputChange}
             name="name"
-            aria-label="نام"
+            aria-label={t("feedback_form.name")}
             color={errors.name ? "danger" : "default"}
           />
           {errors.name && (
-            <span
-              style={{
-                color: "red",
-                fontSize: "0.8rem",
-                textAlign: "left",
-                display: "block",
-              }}
-            >
-              پر کردن این فیلد اجباری است
+            <span style={{ color: "red", fontSize: "0.8rem", textAlign: "left" }}>
+              {t("feedback_form.errors.name_required")}
             </span>
           )}
           <Spacer y={1} />
 
-          {/* Email Field */}
           <Input
             fullWidth
-            label="ایمیل"
-            placeholder="ایمیل خود را وارد کنید"
+            label={t("feedback_form.email")}
+            placeholder={t("feedback_form.email_placeholder")}
             value={formData.email}
             onChange={handleInputChange}
             name="email"
-            aria-label="ایمیل"
+            aria-label={t("feedback_form.email")}
             color={errors.email || errors.emailFormat ? "danger" : "default"}
           />
           {errors.email && (
-            <span
-              style={{
-                color: "red",
-                fontSize: "0.8rem",
-                textAlign: "left",
-                display: "block",
-              }}
-            >
-              پر کردن این فیلد اجباری است
+            <span style={{ color: "red", fontSize: "0.8rem", textAlign: "left" }}>
+              {t("feedback_form.errors.email_required")}
             </span>
           )}
           {errors.emailFormat && (
-            <span
-              style={{
-                color: "red",
-                fontSize: "0.8rem",
-                textAlign: "left",
-                display: "block",
-              }}
-            >
-              فرمت ایمیل صحیح نیست
+            <span style={{ color: "red", fontSize: "0.8rem", textAlign: "left" }}>
+              {t("feedback_form.errors.email_invalid")}
             </span>
           )}
           <Spacer y={1} />
 
-          {/* Feedback Field */}
           <Textarea
             fullWidth
-            label="بازخورد"
-            placeholder="بازخورد خود را وارد کنید"
+            label={t("feedback_form.feedback")}
+            placeholder={t("feedback_form.feedback_placeholder")}
             value={formData.feedback}
             onChange={handleInputChange}
             name="feedback"
-            aria-label="بازخورد"
+            aria-label={t("feedback_form.feedback")}
             rows={4}
             color={errors.feedback ? "danger" : "default"}
           />
           {errors.feedback && (
-            <span
-              style={{
-                color: "red",
-                fontSize: "0.8rem",
-                textAlign: "left",
-                display: "block",
-              }}
-            >
-              پر کردن این فیلد اجباری است
+            <span style={{ color: "red", fontSize: "0.8rem", textAlign: "left" }}>
+              {t("feedback_form.errors.feedback_required")}
             </span>
           )}
           <Spacer y={1.5} />
 
           <Button type="submit" color="primary" fullWidth>
-            ارسال
+            {t("feedback_form.submit")}
           </Button>
         </form>
       </Card>
 
-      {/* Success Message Popup */}
       {successMessage && (
         <div
           style={{

@@ -1,10 +1,9 @@
 {
-  "schedule": "Schedule",
   "professors": "Professors",
   "profile": "Profile",
   "admin": "Admin",
   "logout": "Logout",
-  "login": "Login / Register",
+  "login_button": "Login / Register",
   "user_management": {
     "title": "User Management",
     "search_placeholder": "Search...",
@@ -73,6 +72,7 @@
     "view_and_review": "View Reviews / Submit Review"
   },
   "schedule": {
+    "schedule": "Schedule",
     "title": "Class Schedule",
     "select_group": "Select Group",
     "all_groups": "All Groups",
@@ -88,5 +88,73 @@
     "day": "Day",
     "time": "Time",
     "location": "Location"
+  },
+"login": {
+    "title": "Login to your account",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Login",
+    "noAccount": "Don't have an account?",
+    "signup": "Sign up",
+    "errors": {
+      "email_invalid": "Invalid email format",
+      "email_required": "Email is required",
+      "password_required": "Password is required",
+      "password_invalid": "Password must be at least 8 characters and include at least one uppercase letter, one lowercase letter, one number, and one special character"
+    }
+  },
+  "signup": {
+    "title": "Sign Up",
+    "fullname": "Full Name",
+    "national_code": "National Code",
+    "student_number": "Student Number",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "department": "Department",
+    "submit": "Sign Up",
+    "already_have_account": "Already have an account?",
+    "errors": {
+      "fullname_required": "Full name is required",
+      "national_code_required": "National code is required",
+      "student_number_required": "Student number is required",
+      "email_invalid": "Invalid email format",
+      "email_required": "Email is required",
+      "password1_required": "Password is required",
+      "password1_invalid": "Password must be at least 8 characters and include at least one uppercase letter, one lowercase letter, one number, and one special character",
+      "password2_required": "Please confirm your password",
+      "password2_mismatch": "Passwords do not match",
+      "department_required": "Department is required"
+    }
+  },
+  "edit_user_form": {
+    "title": "Edit User Information",
+    "fullname": "Full Name",
+    "national_code": "National Code",
+    "student_number": "Student Number",
+    "email": "Email",
+    "department": "Department",
+    "save_changes": "Save Changes",
+    "success_message": "User information updated successfully"
+  },"feedback_form": {
+    "title": "Feedback Form",
+    "name": "Name",
+    "name_placeholder": "Enter your name",
+    "email": "Email",
+    "email_placeholder": "Enter your email",
+    "feedback": "Feedback",
+    "feedback_placeholder": "Enter your feedback",
+    "submit": "Submit",
+    "errors": {
+      "name_required": "This field is required",
+      "email_required": "This field is required",
+      "email_invalid": "Invalid email format",
+      "feedback_required": "This field is required"
+    },
+    "success_message": "Your feedback has been submitted"
+  },
+  "not_found": {
+    "title": "The page you are looking for could not be found!",
+    "go_home": "Return to Homepage"
   }
 }

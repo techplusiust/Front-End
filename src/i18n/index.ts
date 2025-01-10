@@ -8,11 +8,14 @@ i18n.use(initReactI18next).init({
     en: { translation: enTranslations },
     fa: { translation: faTranslations },
   },
-  lng: "fa", // زبان پیش‌فرض
-  fallbackLng: "en", // زبان پشتیبان
+  lng: "fa",
+  fallbackLng: "en",
   interpolation: {
-    escapeValue: false, // برای جلوگیری از XSS
+    escapeValue: false, 
   },
 });
 
 export default i18n;
+
+
+

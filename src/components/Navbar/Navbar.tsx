@@ -15,6 +15,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/react";
+import { FiGlobe } from "react-icons/fi"; 
 import { AcmeLogo } from "./AcmeLogo";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../../recoil/userAtom";
@@ -22,14 +23,10 @@ import { authAtom } from "../../recoil/authAtom";
 import { languageAtom } from "../../recoil/languageAtom";
 import { useTranslation } from "react-i18next";
 
-// Import translations dynamically based on the language
-import enTranslations from "../../lang/en.json";
-import faTranslations from "../../lang/fa.json";
-
 const menuItems = [
   {
     href: "schedule",
-    title: "schedule",
+    title: "schedule.schedule",
   },
   {
     href: "professors",
@@ -49,13 +46,14 @@ const CustomNavbar: React.FC = () => {
   const { t, i18n } = useTranslation();
 
   React.useEffect(() => {
-    if (language === "fa") {
-      i18n.addResources("fa", "translation", faTranslations);
+    const storedLanguage = localStorage.getItem("language");
+    if (storedLanguage) {
+      setLanguage(storedLanguage);
+      i18n.changeLanguage(storedLanguage);
     } else {
-      i18n.addResources("en", "translation", enTranslations);
+      i18n.changeLanguage(language);
     }
-    i18n.changeLanguage(language);
-  }, [language, i18n]);
+  }, [i18n, setLanguage]);
 
   const logout = () => {
     setAuth({
@@ -68,6 +66,8 @@ const CustomNavbar: React.FC = () => {
 
   const handleLanguageChange = (code: string) => {
     setLanguage(code);
+    localStorage.setItem("language", code);
+    i18n.changeLanguage(code);
   };
 
   return (
@@ -94,19 +94,16 @@ const CustomNavbar: React.FC = () => {
         <NavbarContent className="flex items-center gap-4">
           <Dropdown>
             <DropdownTrigger>
-              <Button
-                size="sm"
-                color="primary"
-                variant="flat"
-                className="p-0"
-                aria-label="Language Selector"
-              >
-                <img
-                  src="/path-to-globe-icon.png"
-                  alt="Change Language"
-                  className="w-6 h-6"
-                />
-              </Button>
+            <Button
+  size="sm"
+  color="primary"
+  variant="flat"
+  className="p-0 bg-transparent shadow-none border-none"
+  aria-label="Language Selector"
+>
+  <FiGlobe className="w-6 h-6" /> 
+</Button>
+
             </DropdownTrigger>
             <DropdownMenu>
               {languages.map((lang) => (
@@ -128,7 +125,7 @@ const CustomNavbar: React.FC = () => {
                 href="/login"
                 variant="solid"
               >
-                {t("login")}
+                {t("login_button")}
               </Button>
             </NavbarItem>
           )}
