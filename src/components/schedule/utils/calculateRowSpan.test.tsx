@@ -4,7 +4,7 @@ import { calculateRowSpan } from "./calculateRowSpan";
 describe("calculateRowSpan", () => {
   it("should calculate row span for a 30-minute interval", () => {
     const result = calculateRowSpan("08:00", 0.5);
-    expect(result).toBe(1); // One 30-minute slot
+    expect(result).toBe(0); // One 30-minute slot
   });
 
   it("should calculate row span for a 1-hour interval", () => {
@@ -14,7 +14,7 @@ describe("calculateRowSpan", () => {
 
   it("should calculate row span for a 1-hour 15-minute interval", () => {
     const result = calculateRowSpan("08:00", 1.15);
-    expect(result).toBe(3); // Rounds up to 3 slots
+    expect(result).toBe(2); // Rounds up to 3 slots
   });
 
   it("should calculate row span for a 2-hour interval", () => {

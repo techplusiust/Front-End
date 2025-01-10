@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Modal,
   Button,
@@ -15,35 +15,15 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
 
-enum eGender {
-  Male = "Male",
-  Female = "Female",
-}
-
 interface IUserDto {
   id: number;
-  name: string;
+  fullname: string;
+  national_code: string;
   email: string;
-  gender: eGender;
   department: string;
+  student_number: string;
+  is_superuser: boolean;
 }
-
-const mockUsers: IUserDto[] = [
-  {
-    id: 1,
-    name: "فرگل نصیری",
-    email: "fargol@example.com",
-    gender: eGender.Female,
-    department: "1",
-  },
-  {
-    id: 2,
-    name: "هانیه",
-    email: "haniyeh@example.com",
-    gender: eGender.Female,
-    department: "1",
-  },
-];
 
 const UserPage = () => {
   const { t } = useTranslation();
@@ -53,7 +33,7 @@ const UserPage = () => {
       title: t("user_management.computer_engineering"),
     },
   ]);
-  const [users, setUsers] = useState<IUserDto[]>(mockUsers);
+  const [users, setUsers] = useState<IUserDto[]>([]);
   const [search, setSearch] = useState("");
   const [editUser, setEditUser] = useState<IUserDto | null>(null);
   const {
@@ -72,10 +52,21 @@ const UserPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/accounts/users/`);
+        const response = await fetch(
+          `http://127.0.0.1:8000/api/accounts/users/`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+            },
+          }
+        );
         if (!response.ok) throw new Error("Failed to fetch users");
-        const data = await response.json();
-        setUsers(data);
+        const data: IUserDto[] = await response.json();
+        console.log("data: ", data);
+
+        // const validUsers = data.filter((user) => user && user.fullname);
+        setUsers([...data]);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -85,11 +76,13 @@ const UserPage = () => {
   }, []);
 
   const [userToDelete, setUserToDelete] = useState<IUserDto | null>(null);
-  const [token] = useState("your-admin-token");
-
-  const filteredUsers = users.filter((user) =>
-    user.name.toLowerCase().includes(search.toLowerCase())
-  );
+  // const [token] = useState("7ddcab480c848bf79280b8d2ed83ebc3ea1b6908"); //your admin token
+  const token = localStorage.getItem("token");
+  const filteredUsers = users
+    .filter((user) => user.fullname) // فقط کاربرانی که فیلد name دارند
+    .filter((user) =>
+      user.fullname.toLowerCase().includes(search.toLowerCase())
+    );
 
   const handleEdit = (user: IUserDto) => {
     setEditUser(user);
@@ -109,7 +102,7 @@ const UserPage = () => {
           {
             method: "DELETE",
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Token ${token}`,
             },
           }
         );
@@ -133,6 +126,7 @@ const UserPage = () => {
 
   const validationSchema = Yup.object({
     name: Yup.string().required(t("validation.name_required")),
+
     email: Yup.string()
       .email(t("validation.email_invalid"))
       .required(t("validation.email_required")),
@@ -140,20 +134,22 @@ const UserPage = () => {
   });
 
   const onSubmit = async (values: IUserDto) => {
-    const { name, email, department, id } = values;
+    const { fullname, email, department, id } = values;
 
     try {
+      console.log("Sending data:", { id, fullname, email, department });
       const response = await fetch(
         `http://127.0.0.1:8000/api/accounts/users/${id}/edit/`,
         {
           method: "PUT",
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
           },
-          body: JSON.stringify({ name, email, department }),
+          body: JSON.stringify({ fullname, email, department }),
         }
       );
+      console.log("Response status:", response.status);
       if (!response.ok) throw new Error("Failed to update user");
       const updatedUser = await response.json();
       setUsers(users.map((u) => (u.id === id ? updatedUser : u)));
@@ -179,10 +175,12 @@ const UserPage = () => {
   const formik = useFormik({
     initialValues: editUser || {
       id: 0,
-      name: "",
+      fullname: "",
       email: "",
-      gender: eGender.Male,
+      student_number: "",
+      national_code: "",
       department: "1",
+      is_superuser: false,
     },
     onSubmit,
     validationSchema,
@@ -235,8 +233,8 @@ const UserPage = () => {
                   {t("user_management.delete_user")}
                 </Button>
               </div>
-            </div>
-          ))}
+            ) : null
+          )}
         </div>
       </div>
       <Modal
@@ -262,11 +260,12 @@ const UserPage = () => {
                       {...formik.getFieldProps({ name: "name" })}
                       name="name"
                       label={t("user_management.name")}
+
                       size="sm"
                       variant="bordered"
                       labelPlacement={"outside"}
-                      errorMessage={<>{formik.errors.name ?? ""}</>}
-                      isInvalid={!!formik.errors.name}
+                      errorMessage={<>{formik.errors.fullname ?? ""}</>}
+                      isInvalid={!!formik.errors.fullname}
                     />
                     <Input
                       {...formik.getFieldProps({ name: "email" })}
