@@ -72,22 +72,26 @@ const UserPage = () => {
       try {
         const response = await fetch(`http://127.0.0.1:8000/api/accounts/users/`);
         if (!response.ok) throw new Error("Failed to fetch users");
-        const data = await response.json();
-        setUsers(data);
+        const data: IUserDto[] = await response.json();
+        const validUsers = data.filter((user) => user && user.name);
+        setUsers(validUsers.length ? validUsers : mockUsers); 
       } catch (error) {
         console.error("Error fetching users:", error);
+        setUsers(mockUsers); // در صورت بروز خطا، داده‌های پیش‌فرض را ست می‌کنیم
       }
     };
-
+  
     fetchUsers();
   }, []);
+  
 
   const [userToDelete, setUserToDelete] = useState<IUserDto | null>(null);
-  const [token] = useState("your-admin-token");
+  const [token] = useState("7ddcab480c848bf79280b8d2ed83ebc3ea1b6908");//your admin token
 
-  const filteredUsers = users.filter((user) =>
-    user.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredUsers = users
+  .filter((user) => user.name) // فقط کاربرانی که فیلد name دارند
+  .filter((user) => user.name.toLowerCase().includes(search.toLowerCase()));
+
 
   const handleEdit = (user: IUserDto) => {
     setEditUser(user);
@@ -141,6 +145,7 @@ const UserPage = () => {
     const { name, email, department, id } = values;
 
     try {
+      console.log("Sending data:", { id, name, email, department });
       const response = await fetch(
         `http://127.0.0.1:8000/api/accounts/users/${id}/edit/`,
         {
@@ -152,6 +157,7 @@ const UserPage = () => {
           body: JSON.stringify({ name, email, department }),
         }
       );
+      console.log("Response status:", response.status);
       if (!response.ok) throw new Error("Failed to update user");
       const updatedUser = await response.json();
       setUsers(users.map((u) => (u.id === id ? updatedUser : u)));
@@ -201,6 +207,7 @@ const UserPage = () => {
         />
         <div className="space-y-4">
           {filteredUsers.map((user, index) => (
+            user && user.name ? (
             <div
               key={index}
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 items-center p-4 bg-gray-100 rounded-lg shadow-lg gap-4"
@@ -234,6 +241,7 @@ const UserPage = () => {
                 </Button>
               </div>
             </div>
+            ) : null
           ))}
         </div>
       </div>
