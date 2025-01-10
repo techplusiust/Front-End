@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Modal,
   Button,
@@ -27,23 +27,6 @@ interface IUserDto {
   department: string;
 }
 
-const mockUsers: IUserDto[] = [
-  {
-    id: 1,
-    name: "فرگل نصیری",
-    email: "fargol@example.com",
-    gender: eGender.Female,
-    department: "1",
-  },
-  {
-    id: 2,
-    name: "هانیه",
-    email: "haniyeh@example.com",
-    gender: eGender.Female,
-    department: "1",
-  },
-];
-
 const UserPage = () => {
   const [subjectOptions] = useState<any[]>([
     {
@@ -51,7 +34,7 @@ const UserPage = () => {
       title: "مهندسی کامپیوتر",
     },
   ]);
-  const [users, setUsers] = useState<IUserDto[]>(mockUsers);
+  const [users, setUsers] = useState<IUserDto[]>([]);
   const [search, setSearch] = useState("");
   const [editUser, setEditUser] = useState<IUserDto | null>(null);
   const {
@@ -70,28 +53,33 @@ const UserPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/accounts/users/`);
+        const response = await fetch(
+          `http://127.0.0.1:8000/api/accounts/users/`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+            },
+          }
+        );
         if (!response.ok) throw new Error("Failed to fetch users");
         const data: IUserDto[] = await response.json();
         const validUsers = data.filter((user) => user && user.name);
-        setUsers(validUsers.length ? validUsers : mockUsers); 
+        setUsers(validUsers.length ? validUsers : []);
       } catch (error) {
         console.error("Error fetching users:", error);
-        setUsers(mockUsers); // در صورت بروز خطا، داده‌های پیش‌فرض را ست می‌کنیم
       }
     };
-  
+
     fetchUsers();
   }, []);
-  
 
   const [userToDelete, setUserToDelete] = useState<IUserDto | null>(null);
-  const [token] = useState("7ddcab480c848bf79280b8d2ed83ebc3ea1b6908");//your admin token
+  const [token] = useState("7ddcab480c848bf79280b8d2ed83ebc3ea1b6908"); //your admin token
 
   const filteredUsers = users
-  .filter((user) => user.name) // فقط کاربرانی که فیلد name دارند
-  .filter((user) => user.name.toLowerCase().includes(search.toLowerCase()));
-
+    .filter((user) => user.name) // فقط کاربرانی که فیلد name دارند
+    .filter((user) => user.name.toLowerCase().includes(search.toLowerCase()));
 
   const handleEdit = (user: IUserDto) => {
     setEditUser(user);
@@ -111,7 +99,7 @@ const UserPage = () => {
           {
             method: "DELETE",
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Token ${token}`,
             },
           }
         );
@@ -151,8 +139,8 @@ const UserPage = () => {
         {
           method: "PUT",
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
           },
           body: JSON.stringify({ name, email, department }),
         }
@@ -206,43 +194,43 @@ const UserPage = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
         <div className="space-y-4">
-          {filteredUsers.map((user, index) => (
+          {filteredUsers.map((user, index) =>
             user && user.name ? (
-            <div
-              key={index}
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 items-center p-4 bg-gray-100 rounded-lg shadow-lg gap-4"
-            >
-              <div className="sm:col-span-1 md:col-span-2">
-                <p className="font-medium">{user.name}</p>
-                <p className="text-gray-600">{user.email}</p>
+              <div
+                key={index}
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 items-center p-4 bg-gray-100 rounded-lg shadow-lg gap-4"
+              >
+                <div className="sm:col-span-1 md:col-span-2">
+                  <p className="font-medium">{user.name}</p>
+                  <p className="text-gray-600">{user.email}</p>
+                </div>
+                <div className="hidden md:block md:col-span-1">
+                  <p className="font-medium">
+                    {
+                      subjectOptions.find((item) => item.id === user.department)
+                        .title
+                    }
+                  </p>
+                </div>
+                <div className="flex justify-end md:justify-end md:col-span-2 gap-2">
+                  <Button
+                    color="primary"
+                    size="sm"
+                    onClick={() => handleEdit(user)}
+                  >
+                    ویرایش
+                  </Button>
+                  <Button
+                    size="sm"
+                    color="danger"
+                    onClick={() => handleDelete(user)}
+                  >
+                    حذف
+                  </Button>
+                </div>
               </div>
-              <div className="hidden md:block md:col-span-1">
-                <p className="font-medium">
-                  {
-                    subjectOptions.find((item) => item.id === user.department)
-                      .title
-                  }
-                </p>
-              </div>
-              <div className="flex justify-end md:justify-end md:col-span-2 gap-2">
-                <Button
-                  color="primary"
-                  size="sm"
-                  onClick={() => handleEdit(user)}
-                >
-                  ویرایش
-                </Button>
-                <Button
-                  size="sm"
-                  color="danger"
-                  onClick={() => handleDelete(user)}
-                >
-                  حذف
-                </Button>
-              </div>
-            </div>
             ) : null
-          ))}
+          )}
         </div>
       </div>
       <Modal
