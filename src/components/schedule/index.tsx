@@ -151,7 +151,6 @@ const Schedule: React.FC = () => {
                               selectedCourseTime?.first_day_time ?? "",
                               selectedCourseTime?.first_day_duration ?? 0
                             );
-                            
 
                             return (
                               <div
