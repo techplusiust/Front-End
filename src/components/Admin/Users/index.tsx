@@ -14,17 +14,14 @@ import {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-enum eGender {
-  Male = "Male",
-  Female = "Female",
-}
-
 interface IUserDto {
   id: number;
-  name: string;
+  fullname: string;
+  national_code: string;
   email: string;
-  gender: eGender;
   department: string;
+  student_number: string;
+  is_superuser: boolean;
 }
 
 const UserPage = () => {
@@ -64,8 +61,10 @@ const UserPage = () => {
         );
         if (!response.ok) throw new Error("Failed to fetch users");
         const data: IUserDto[] = await response.json();
-        const validUsers = data.filter((user) => user && user.name);
-        setUsers(validUsers.length ? validUsers : []);
+        console.log("data: ", data);
+
+        // const validUsers = data.filter((user) => user && user.fullname);
+        setUsers([...data]);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -75,11 +74,13 @@ const UserPage = () => {
   }, []);
 
   const [userToDelete, setUserToDelete] = useState<IUserDto | null>(null);
-  const [token] = useState("7ddcab480c848bf79280b8d2ed83ebc3ea1b6908"); //your admin token
-
+  // const [token] = useState("7ddcab480c848bf79280b8d2ed83ebc3ea1b6908"); //your admin token
+  const token = localStorage.getItem("token");
   const filteredUsers = users
-    .filter((user) => user.name) // فقط کاربرانی که فیلد name دارند
-    .filter((user) => user.name.toLowerCase().includes(search.toLowerCase()));
+    .filter((user) => user.fullname) // فقط کاربرانی که فیلد name دارند
+    .filter((user) =>
+      user.fullname.toLowerCase().includes(search.toLowerCase())
+    );
 
   const handleEdit = (user: IUserDto) => {
     setEditUser(user);
@@ -122,7 +123,7 @@ const UserPage = () => {
   // };
 
   const validationSchema = Yup.object({
-    name: Yup.string().required("نام پروفایل را وارد نمایید"),
+    fullname: Yup.string().required("نام پروفایل را وارد نمایید"),
     email: Yup.string()
       .email("فرمت ایمیل صحیح نیست")
       .required("ایمیل را وارد نمایید"),
@@ -130,10 +131,10 @@ const UserPage = () => {
   });
 
   const onSubmit = async (values: IUserDto) => {
-    const { name, email, department, id } = values;
+    const { fullname, email, department, id } = values;
 
     try {
-      console.log("Sending data:", { id, name, email, department });
+      console.log("Sending data:", { id, fullname, email, department });
       const response = await fetch(
         `http://127.0.0.1:8000/api/accounts/users/${id}/edit/`,
         {
@@ -142,7 +143,7 @@ const UserPage = () => {
             "Content-Type": "application/json",
             Authorization: `Token ${token}`,
           },
-          body: JSON.stringify({ name, email, department }),
+          body: JSON.stringify({ fullname, email, department }),
         }
       );
       console.log("Response status:", response.status);
@@ -171,10 +172,12 @@ const UserPage = () => {
   const formik = useFormik({
     initialValues: editUser || {
       id: 0,
-      name: "",
+      fullname: "",
       email: "",
-      gender: eGender.Male,
+      student_number: "",
+      national_code: "",
       department: "1",
+      is_superuser: false,
     },
     onSubmit,
     validationSchema,
@@ -195,13 +198,13 @@ const UserPage = () => {
         />
         <div className="space-y-4">
           {filteredUsers.map((user, index) =>
-            user && user.name ? (
+            user && user.fullname ? (
               <div
                 key={index}
                 className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 items-center p-4 bg-gray-100 rounded-lg shadow-lg gap-4"
               >
                 <div className="sm:col-span-1 md:col-span-2">
-                  <p className="font-medium">{user.name}</p>
+                  <p className="font-medium">{user.fullname}</p>
                   <p className="text-gray-600">{user.email}</p>
                 </div>
                 <div className="hidden md:block md:col-span-1">
@@ -251,14 +254,14 @@ const UserPage = () => {
                     className="flex flex-col"
                   >
                     <Input
-                      {...formik.getFieldProps({ name: "name" })}
-                      name="name"
+                      {...formik.getFieldProps({ name: "fullname" })}
+                      name="fullname"
                       label="نام پروفایل"
                       size="sm"
                       variant="bordered"
                       labelPlacement={"outside"}
-                      errorMessage={<>{formik.errors.name ?? ""}</>}
-                      isInvalid={!!formik.errors.name}
+                      errorMessage={<>{formik.errors.fullname ?? ""}</>}
+                      isInvalid={!!formik.errors.fullname}
                     />
                     <Input
                       {...formik.getFieldProps({ name: "email" })}
