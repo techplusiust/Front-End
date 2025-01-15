@@ -241,9 +241,7 @@ export default function Landing() {
                     </div>
                     <p>
                       <br />
-                      قبل از استفاده از این سامانه، همیشه نگران پر شدن ظرفیت
-                      کلاس‌ها بودم. اما اطلاع‌رسانی لحظه‌ای این سیستم باعث شد
-                      به‌موقع دروس موردنظرم را انتخاب کنم. فوق‌العاده کاربردی!
+                      با سامانه پیشرفته انتخاب واحد، فرقی نمی‌کند کجا باشید؛ تنها با گوشی موبایل خود می‌توانید دروس موردنظر را به سرعت و بدون دردسر انتخاب کنید. طراحی هوشمند، انتخاب واحد را برای همه ساده‌تر کرده است!!
                     </p>
                   </div>
                 </div>
@@ -316,7 +314,7 @@ export default function Landing() {
                   </Link>
                 </div>
               </div>
-              <div className="info_social">
+              {/* <div className="info_social">
                 <Link to="">
                   <FaFacebookF />
                 </Link>
@@ -329,7 +327,7 @@ export default function Landing() {
                 <Link to="">
                   <BsInstagram />
                 </Link>
-              </div>
+              </div> */}
             </div>
             <div className="col-md-6 col-lg-3 info_col flex text-center mr-auto pl-4">
               <div className="info_detail">
@@ -358,6 +356,9 @@ export default function Landing() {
                   </Link>
                   <Link className="" to="/professors">
                     اساتید
+                  </Link>
+                  <Link className="" to="/feedbackform">
+                     فرم انتقاد و پیشنهاد
                   </Link>
                 </div>
               </div>
