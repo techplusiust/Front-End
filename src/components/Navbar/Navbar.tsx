@@ -6,7 +6,6 @@ import {
   Button,
   NavbarItem,
   Link,
-  NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
   Dropdown,

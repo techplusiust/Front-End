@@ -50,7 +50,7 @@ const SignupForm = () => {
       ),
     password2: Yup.string()
       .required(t("signup.errors.password2_required"))
-      .oneOf([Yup.ref("password1"), null], t("signup.errors.password2_mismatch")),
+      .oneOf([Yup.ref("password1")], t("signup.errors.password2_mismatch")),
     department: Yup.string().required(t("signup.errors.department_required")),
   });
 
