@@ -1,7 +1,7 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { describe, it, expect, beforeEach, vi } from "vitest";
-import CourseList from "./index";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import axios from "axios";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import CourseList from "./index";
 
 // Mock axios so we can control network responses
 vi.mock("axios");
@@ -16,7 +16,7 @@ describe("CourseList Component", () => {
 
   it("renders the title and search box", async () => {
     // First .get call
-    (axios.get as vi.Mock).mockResolvedValueOnce({
+    (axios.get as any).mockResolvedValueOnce({
       status: 200,
       data: [
         {
@@ -31,7 +31,7 @@ describe("CourseList Component", () => {
       ],
     });
     // Second .get call (because of duplicate useEffect, if still present)
-    (axios.get as vi.Mock).mockResolvedValueOnce({
+    (axios.get as any).mockResolvedValueOnce({
       status: 200,
       data: [
         {
@@ -71,11 +71,11 @@ describe("CourseList Component", () => {
     }));
 
     // Because your code calls getCourses() twice, mock both:
-    (axios.get as vi.Mock).mockResolvedValueOnce({
+    (axios.get as any).mockResolvedValueOnce({
       status: 200,
       data: thirtyCourses,
     });
-    (axios.get as vi.Mock).mockResolvedValueOnce({
+    (axios.get as any).mockResolvedValueOnce({
       status: 200,
       data: thirtyCourses,
     });
@@ -115,11 +115,11 @@ describe("CourseList Component", () => {
     ];
 
     // Mock both requests with the same array
-    (axios.get as vi.Mock).mockResolvedValueOnce({
+    (axios.get as any).mockResolvedValueOnce({
       status: 200,
       data: mockCourses,
     });
-    (axios.get as vi.Mock).mockResolvedValueOnce({
+    (axios.get as any).mockResolvedValueOnce({
       status: 200,
       data: mockCourses,
     });
@@ -158,11 +158,11 @@ describe("CourseList Component", () => {
       },
     ];
 
-    (axios.get as vi.Mock).mockResolvedValueOnce({
+    (axios.get as any).mockResolvedValueOnce({
       status: 200,
       data: mockCourses,
     });
-    (axios.get as vi.Mock).mockResolvedValueOnce({
+    (axios.get as any).mockResolvedValueOnce({
       status: 200,
       data: mockCourses,
     });

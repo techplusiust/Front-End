@@ -1,21 +1,17 @@
-import "./Landing.css";
 import { Link } from "react-router-dom";
+import "./Landing.css";
 
+import { FaPhone } from "react-icons/fa";
+import { FaRegEnvelope } from "react-icons/fa6";
+import { LiaMapMarkerAltSolid } from "react-icons/lia";
+import img15 from "../../assets/fonts/iranyekan/Images/landingimage/client1.jpg";
+import img16 from "../../assets/fonts/iranyekan/Images/landingimage/client2.jpg";
 import img1 from "../../assets/fonts/iranyekan/Images/landingimage/hero-bg.png";
-import img2 from "../../assets/fonts/iranyekan/Images/landingimage/slider-img.png";
 import img3 from "../../assets/fonts/iranyekan/Images/landingimage/s1.png";
 import img4 from "../../assets/fonts/iranyekan/Images/landingimage/s2.png";
 import img5 from "../../assets/fonts/iranyekan/Images/landingimage/s3.png";
-import img15 from "../../assets/fonts/iranyekan/Images/landingimage/client1.jpg";
-import img16 from "../../assets/fonts/iranyekan/Images/landingimage/client2.jpg";
+import img2 from "../../assets/fonts/iranyekan/Images/landingimage/slider-img.png";
 import img17 from "../../assets/fonts/iranyekan/Images/landingimage/انتخاب واحد2.jpg";
-import { FaFacebookF } from "react-icons/fa";
-import { RiTwitterXFill } from "react-icons/ri";
-import { SlSocialLinkedin } from "react-icons/sl";
-import { BsInstagram } from "react-icons/bs";
-import { LiaMapMarkerAltSolid } from "react-icons/lia";
-import { FaPhone } from "react-icons/fa";
-import { FaRegEnvelope } from "react-icons/fa6";
 
 export default function Landing() {
   return (
@@ -241,7 +237,10 @@ export default function Landing() {
                     </div>
                     <p>
                       <br />
-                      با سامانه پیشرفته انتخاب واحد، فرقی نمی‌کند کجا باشید؛ تنها با گوشی موبایل خود می‌توانید دروس موردنظر را به سرعت و بدون دردسر انتخاب کنید. طراحی هوشمند، انتخاب واحد را برای همه ساده‌تر کرده است!!
+                      با سامانه پیشرفته انتخاب واحد، فرقی نمی‌کند کجا باشید؛
+                      تنها با گوشی موبایل خود می‌توانید دروس موردنظر را به سرعت
+                      و بدون دردسر انتخاب کنید. طراحی هوشمند، انتخاب واحد را
+                      برای همه ساده‌تر کرده است!!
                     </p>
                   </div>
                 </div>
@@ -335,7 +334,7 @@ export default function Landing() {
                 <p className="about-text">
                   سامانه انتخاب واحد هوشمند، ابزاری کاربردی و مدرن است که به شما
                   امکان می‌دهد در کمترین زمان و با بالاترین دقت، برنامه تحصیلی
-                  خود را تنظیم کنید. 
+                  خود را تنظیم کنید.
                 </p>
               </div>
             </div>
@@ -356,7 +355,7 @@ export default function Landing() {
                     اساتید
                   </Link>
                   <Link className="" to="/feedbackform">
-                     فرم انتقاد و پیشنهاد
+                    فرم انتقاد و پیشنهاد
                   </Link>
                 </div>
               </div>

@@ -1,27 +1,26 @@
-import * as React from "react";
 import {
+  Avatar,
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  Link,
   Navbar,
   NavbarBrand,
   NavbarContent,
-  Button,
   NavbarItem,
-  Link,
-  NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Dropdown,
-  DropdownTrigger,
-  Avatar,
-  DropdownMenu,
-  DropdownItem,
 } from "@nextui-org/react";
-import { FiGlobe } from "react-icons/fi"; 
-import { AcmeLogo } from "./AcmeLogo";
+import * as React from "react";
+import { useTranslation } from "react-i18next";
+import { FiGlobe } from "react-icons/fi";
 import { useRecoilState } from "recoil";
-import { userAtom } from "../../recoil/userAtom";
 import { authAtom } from "../../recoil/authAtom";
 import { languageAtom } from "../../recoil/languageAtom";
-import { useTranslation } from "react-i18next";
+import { userAtom } from "../../recoil/userAtom";
+import { AcmeLogo } from "./AcmeLogo";
 
 const menuItems = [
   {
@@ -94,16 +93,15 @@ const CustomNavbar: React.FC = () => {
         <NavbarContent className="flex items-center gap-4">
           <Dropdown>
             <DropdownTrigger>
-            <Button
-  size="sm"
-  color="primary"
-  variant="flat"
-  className="p-0 bg-transparent shadow-none border-none"
-  aria-label="Language Selector"
->
-  <FiGlobe className="w-6 h-6" /> 
-</Button>
-
+              <Button
+                size="sm"
+                color="primary"
+                variant="flat"
+                className="p-0 bg-transparent shadow-none border-none"
+                aria-label="Language Selector"
+              >
+                <FiGlobe className="w-6 h-6" />
+              </Button>
             </DropdownTrigger>
             <DropdownMenu>
               {languages.map((lang) => (

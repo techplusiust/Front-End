@@ -1,13 +1,12 @@
-import axios from "axios";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
+import axios from "axios";
 import { useFormik } from "formik";
 import { Eye, EyeSlash, TickCircle } from "iconsax-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useQuery } from "../../hooks/useQuery";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   fullname: "",
@@ -37,8 +36,12 @@ const SignupForm = () => {
 
   const validationSchema = Yup.object({
     fullname: Yup.string().required(t("signup.errors.fullname_required")),
-    national_code: Yup.string().required(t("signup.errors.national_code_required")),
-    student_number: Yup.string().required(t("signup.errors.student_number_required")),
+    national_code: Yup.string().required(
+      t("signup.errors.national_code_required")
+    ),
+    student_number: Yup.string().required(
+      t("signup.errors.student_number_required")
+    ),
     email: Yup.string()
       .email(t("signup.errors.email_invalid"))
       .required(t("signup.errors.email_required")),
@@ -50,7 +53,7 @@ const SignupForm = () => {
       ),
     password2: Yup.string()
       .required(t("signup.errors.password2_required"))
-      .oneOf([Yup.ref("password1"), null], t("signup.errors.password2_mismatch")),
+      .oneOf([Yup.ref("password1"), ""], t("signup.errors.password2_mismatch")),
     department: Yup.string().required(t("signup.errors.department_required")),
   });
 
@@ -105,7 +108,11 @@ const SignupForm = () => {
   });
 
   return (
-    <div className="w-full max-w-md h-full px-4 py-6 mt-4" lang="he-IL" dir="rtl">
+    <div
+      className="w-full max-w-md h-full px-4 py-6 mt-4"
+      lang="he-IL"
+      dir="rtl"
+    >
       <div>
         <h1 className="text-blue-700 font-bold text-xl">{t("signup.title")}</h1>
         <form
