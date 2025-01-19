@@ -58,7 +58,7 @@ jobs:
         port: ${{ secrets.SERVER_PORT }}
         source: "frontend.tar"
         target: "/home/ubuntu/build_deploy/"
-
+        
     - name: Deploy Docker image on server
       env:
         SSH_HOST: ${{ secrets.SERVER_HOST }}
@@ -76,3 +76,4 @@ jobs:
           sudo docker-compose up -d  # run new containers with the latest image
         EOF
       shell: bash
+      
