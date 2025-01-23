@@ -6,6 +6,8 @@ import { FaRegEnvelope } from "react-icons/fa6";
 import { LiaMapMarkerAltSolid } from "react-icons/lia";
 import img15 from "../../assets/fonts/iranyekan/Images/landingimage/client1.jpg";
 import img16 from "../../assets/fonts/iranyekan/Images/landingimage/client2.jpg";
+import img1676 from "../../assets/fonts/iranyekan/Images/aabbaabb.jpg";
+
 import img1 from "../../assets/fonts/iranyekan/Images/landingimage/hero-bg.png";
 import img3 from "../../assets/fonts/iranyekan/Images/landingimage/s1.png";
 import img4 from "../../assets/fonts/iranyekan/Images/landingimage/s2.png";
@@ -40,11 +42,12 @@ export default function Landing() {
                           انتخاب واحد، در کمترین زمان و بدون سردرگمی برنامه
                           تحصیلی خود را تنظیم کنید. ابزارها و امکانات پیشرفته ما
                           برای دانشجویان طراحی شده است تا تجربه‌ای سریع، مطمئن و
-                          بدون استرس داشته باشند سامانه به طور خودکار اطلاعات
-                          مربوط به پیش‌نیازها، دروس ارائه‌شده و زمان‌های خالی را
-                          بررسی کرده و بهترین پیشنهادها را به شما ارائه می‌دهد.
-                          این یعنی دیگر نیازی به جستجوی دستی و نگرانی درباره
-                          انتخاب‌های نادرست ندارید
+                          بدون استرس داشته باشند و به راحتی انتخاب واحد کنند. با
+                          استفاده از این سامانه نگران چیزی نباشید چرا که ما اینجاییم
+                          تا نگرانی شما را برطرف کنیم. ممنون می شویم در صورتی که
+                          از این سامانه خوشتان آمد، آنرا به دوستان عزیزتان معرفی کنید چرا
+                          که دوستان شما استثنائا در این سامانه دوستان ما خواهند بود پس دیگر
+                          چه نگرانی وجود دارد؟!
                         </p>
                         {/* <div className="btn-box items-center">
                           <Link to="" className="btn1">
@@ -81,7 +84,7 @@ export default function Landing() {
             <h2 className="fonty text-center">ویژگی های سامانه انتخاب واحد</h2>
           </div>
           <div className="row flex">
-            <div className=" col-md-4 boxy me-3 ">
+            {/* <div className=" col-md-4 boxy me-3 ">
               <div className="box">
                 <div className="img-box">
                   <img src={img3} alt="" />
@@ -90,16 +93,16 @@ export default function Landing() {
                   <h5>پیشنهاد هوشمند دروس</h5>
                   <br />
                   <p className="text-justify">
-                    سامانه ما با بررسی دقیق اطلاعات تحصیلی شما، از جمله رشته،
-                    مقطع، دروس گذرانده‌شده و پیش‌نیازها، لیستی از واحدهای
+                    سامانه ما با بررسی اطلاعات تحصیلی شما، از جمله رشته،
+                    مقطع و... لیستی از واحدهای
                     پیشنهادی را به شما ارائه می‌دهد. این ویژگی به شما کمک می‌کند
-                    تا انتخاب‌هایی هوشمندانه و متناسب با نیازهای آموزشی خود
+                    تا انتخابی درست با نیازهای آموزشی 
                     داشته باشید
                   </p>
-                  {/* <Link to="">Read More</Link> */}
+                  
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className=" col-md-4 boxy me-3 ">
               <div className="box ">
                 <div className="img-box">
@@ -110,10 +113,9 @@ export default function Landing() {
                   <br />
                   <p className="text-justify">
                     یکی از دغدغه‌های همیشگی دانشجویان، تداخل زمانی کلاس‌ها است.
-                    سامانه هوشمند ما، به‌طور خودکار تمام گزینه‌های انتخابی شما
+                    سامانه هوشمند ما گزینه‌های انتخابی شما
                     را بررسی کرده و از ایجاد هم‌پوشانی در زمان‌بندی کلاس‌ها
-                    جلوگیری می‌کند. این یعنی برنامه‌ای بی‌نقص و هماهنگ، بدون
-                    نیاز به تلاش اضافی.
+                    جلوگیری می‌کند. 
                   </p>
                   {/* <Link to="">Read More</Link> */}
                 </div>
@@ -128,11 +130,10 @@ export default function Landing() {
                   <h5>زمان‌بندی دقیق</h5>
                   <br />
                   <p className="text-justify">
-                    امکان مشاهده زمان‌های آزاد و خالی در برنامه تحصیلی، یکی از
+                    امکان مشاهده زمان‌های آزاد در برنامه تحصیلی، یکی از
                     قابلیت‌های کلیدی این سامانه است. شما می‌توانید به راحتی
-                    ساعات خالی خود را پیدا کرده و دروس دلخواه را بر اساس این
-                    زمان‌بندی به برنامه خود اضافه کنید. این قابلیت به ویژه برای
-                    دانشجویان مشغول به کار، بسیار کاربردی است.
+                    ساعات خالی خود را پیدا کرده و دروس را بر اساس این
+                    زمان‌بندی به برنامه اضافه کنید.
                   </p>
                   {/* <Link to="">Read More</Link> */}
                 </div>
@@ -217,8 +218,8 @@ export default function Landing() {
                     <p>
                       <br />
                       استفاده از سامانه انتخاب واحد، تجربه‌ای عالی و بدون استرس
-                      بود. پیشنهادات هوشمند دروس و جلوگیری از تداخل کلاس‌ها به
-                      من کمک کرد برنامه‌ام را سریع و دقیق بچینم
+                      بود. خیلی راحت برنامه ترم آینده خود را چیدم و رابط کاربری سایت عالی بود
+                      و راحت بودم. ممنون از این سامانه
                     </p>
                   </div>
                 </div>
@@ -238,14 +239,13 @@ export default function Landing() {
                     <p>
                       <br />
                       با سامانه پیشرفته انتخاب واحد، فرقی نمی‌کند کجا باشید؛
-                      تنها با گوشی موبایل خود می‌توانید دروس موردنظر را به سرعت
-                      و بدون دردسر انتخاب کنید. طراحی هوشمند، انتخاب واحد را
-                      برای همه ساده‌تر کرده است!!
+                      تنها با یک گوشی موبایل خود می‌توانید دروس موردنظر را به سرعت
+                      و بدون دردسر انتخاب کنیدو لذت ببرید  .
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="item">
+              {/* <div className="item">
                 <div className="box">
                   <div className="img-box">
                     <img src={img15} alt="" className="box-img" />
@@ -260,16 +260,16 @@ export default function Landing() {
                     <p>
                       <br />
                       طراحی کاربرپسند این سامانه باعث شد حتی زمانی که در سفر
-                      بودم و به لپ‌تاپ دسترسی نداشتم، بتوانم به‌راحتی با موبایلم
-                      وارد شوم و انتخاب واحدم را انجام دهم و بسیار کاربردی است
+                      بودم و به لپ‌تاپ دسترسی نداشتم، بتوانم با موبایلم
+                      وارد شوم و انتخاب واحدم را انجام دهم    
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="item">
                 <div className="box">
                   <div className="img-box">
-                    <img src={img16} alt="" className="box-img" />
+                    <img src={img1676} alt="" className="box-img" />
                   </div>
                   <div className="detail-box">
                     <div className="client_id">
@@ -279,10 +279,11 @@ export default function Landing() {
                       <i className="fa fa-quote-left" aria-hidden="true"></i>
                     </div>
                     <p>
+                      <br />
                       سامانه انتخاب واحد جدید، بهترین هدیه‌ای بود که می‌توانستم
-                      دریافت کنم. این سامانه با ارائه یک راهکار هوشمند و کارآمد،
+                      دریافت کنم. این سامانه با ارائه یک راهکار کارآمد،
                       به من کمک می‌کند تا بدون اتلاف وقت، برنامه درسی‌ام را
-                      تنظیم کنم و به اهداف تحصیلی‌ام برسم{" "}
+                      تنظیم کنم {" "}
                     </p>
                   </div>
                 </div>
@@ -296,7 +297,7 @@ export default function Landing() {
         <div className="container ml-[200px]">
           <div dir="ltr" className="row flex">
             <div className="col-md-6 col-lg-3 info_col ml-5 pl-4">
-              <div className="info_contact">
+              {/* <div className="info_contact">
                 <h4 className="text-center">آدرس</h4>
                 <div className="contact_link_box">
                   <Link to="" className="flex">
@@ -312,7 +313,7 @@ export default function Landing() {
                     <span>demo@gmail.com</span>
                   </Link>
                 </div>
-              </div>
+              </div> */}
               {/* <div className="info_social">
                 <Link to="">
                   <FaFacebookF />

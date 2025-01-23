@@ -326,8 +326,14 @@ a:focus {
 
 .slider_section .img-box {
   margin: 45px 0;
+  padding-right: 22px;
+  padding-left: 6px;
 }
-
+.img-box {
+  
+  padding-right: 22px;
+  
+}
 .slider_section .img-box img {
   width: 100%;
   -webkit-animation: upDown 5s infinite;
@@ -393,7 +399,8 @@ a:focus {
   width: 100%;
   margin-bottom: 2rem;
   margin-top: 2rem;
-  margin-right: 0.5rem;
+  padding-right: 10px;
+  margin-right: auto;
   margin-left: auto;
 }
 
@@ -920,6 +927,7 @@ a:focus {
 .text-right-justify {
   text-align: justify;
   direction: rtl;
+  padding-left: 12px;
 }
 
 .about-text { 
@@ -1011,6 +1019,7 @@ a:focus {
   .about_section .img-box {
     margin-bottom: 70px;
   }
+  
 }
 
 @media (max-width: 576px) {
