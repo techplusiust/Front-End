@@ -17,21 +17,21 @@ const initialValues = {
 
 const LoginForm = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const { t, i18n } = useTranslation(); 
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const setAuth = useSetRecoilState(authAtom);
   const setUser = useSetRecoilState(userAtom);
 
   useEffect(() => {
-    const storedLanguage = localStorage.getItem("language") || "en"; 
-    i18n.changeLanguage(storedLanguage); 
+    const storedLanguage = localStorage.getItem("language") || "en";
+    i18n.changeLanguage(storedLanguage);
   }, [i18n]);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email(t("login.errors.email_invalid")) 
+      .email(t("login.errors.email_invalid"))
       .required(t("login.errors.email_required")),
     password: Yup.string()
       .required(t("login.errors.password_required"))
@@ -60,6 +60,7 @@ const LoginForm = () => {
         });
 
         setUser({
+          id: response.data.user.id,
           email: response.data.user.email,
           department: response.data.user.department,
           avatar: "",
@@ -67,8 +68,7 @@ const LoginForm = () => {
 
         navigate(response.data.isAdmin ? "/admin" : "/");
       } else {
-        const errorMessage =
-          response.data.message || t("login.error.general");
+        const errorMessage = response.data.message || t("login.error.general");
         console.error("Login error:", errorMessage);
       }
     } catch (error: any) {
@@ -89,7 +89,9 @@ const LoginForm = () => {
   return (
     <div className="w-full max-w-md h-full px-4 py-6 " lang="he-IL" dir="rtl">
       <div>
-        <h1 className="text-blue-700 font-bold text-xl mb-4">{t("login.title")}</h1>
+        <h1 className="text-blue-700 font-bold text-xl mb-4">
+          {t("login.title")}
+        </h1>
         <form
           onSubmit={formik.handleSubmit}
           style={{

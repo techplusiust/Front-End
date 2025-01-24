@@ -2,6 +2,7 @@ import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
 
 interface User {
+  id: number;
   email: string;
   department: string;
   avatar?: string;

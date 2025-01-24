@@ -10,18 +10,31 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  Input,
 } from "@nextui-org/react";
-
-import { useEffect } from "react";
+import * as Yup from "yup";
 import "./ProfileSidebar.css";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../../recoil/userAtom";
 import { authAtom } from "../../recoil/authAtom";
+import { useFormik } from "formik";
+import { t } from "i18next";
+import { Eye, EyeSlash } from "iconsax-react";
+import { useState } from "react";
 
 const ProfileSidebar = () => {
+  const token = localStorage.getItem("token");
   const [user, setUser] = useRecoilState(userAtom);
   const [auth, setAuth] = useRecoilState(authAtom);
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenEditPass,
+    onOpen: onOpenEditPass,
+    onOpenChange: onOpenChangeEditPass,
+  } = useDisclosure();
+
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const toggleVisibility = () => setIsVisible(!isVisible);
 
   const handleOpenDeleteProfile = () => {
     onOpen();
@@ -58,13 +71,49 @@ const ProfileSidebar = () => {
     // }
   };
 
-  useEffect(() => {
-    if (user) {
-      console.log("User Information: ", user);
-    } else {
-      console.log("No user information available.");
+  const validationSchema = Yup.object({
+    password1: Yup.string()
+      .required(t("signup.errors.password1_required"))
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        t("signup.errors.password1_invalid")
+      ),
+    password2: Yup.string()
+      .required(t("signup.errors.password2_required"))
+      .oneOf([Yup.ref("password1"), ""], t("signup.errors.password2_mismatch")),
+  });
+
+  const onSubmit = async (values: any) => {
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:8000/api/accounts/users/${user?.id}/edit/`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+          },
+          body: JSON.stringify(values),
+        }
+      );
+      onClose();
+      if (!response.ok) throw new Error("Failed to update user");
+    } catch (error) {
+      console.error("Error updating user:", error);
+      onClose();
     }
-  }, [user]);
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      password1: "",
+      password2: "",
+    },
+    onSubmit,
+    validationSchema,
+    validateOnMount: false,
+    enableReinitialize: true,
+  });
 
   return (
     <>
@@ -97,7 +146,7 @@ const ProfileSidebar = () => {
         <div className="profile-sidebar-buttons">
           <Button
             color="primary"
-            onClick={() => console.log("Change Password")}
+            onClick={() => onOpenEditPass()}
             style={{ flex: 1 }}
           >
             تغییر رمز ورود
@@ -113,7 +162,7 @@ const ProfileSidebar = () => {
           )}
         </div>
       </Card>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} hideCloseButton>
         <ModalContent>
           {(onClose) => (
             <>
@@ -127,14 +176,72 @@ const ProfileSidebar = () => {
                 <Button color="danger" variant="light" onPress={onClose}>
                   انصراف
                 </Button>
-                <Button
-                  onClick={() => onSubmitDeleteProfile()}
-                  color="primary"
-                  onPress={onClose}
-                >
+                <Button color="primary" onPress={() => onSubmitDeleteProfile()}>
                   بله
                 </Button>
               </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      <Modal
+        isOpen={isOpenEditPass}
+        onOpenChange={onOpenChangeEditPass}
+        hideCloseButton
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <form onSubmit={formik.handleSubmit}>
+                <ModalHeader className="flex flex-col gap-1">
+                  تغییر رمز عبور
+                </ModalHeader>
+                <ModalBody>
+                  <Input
+                    {...formik.getFieldProps({ name: "password1" })}
+                    name="password1"
+                    label={t("signup.password")}
+                    size="sm"
+                    variant="bordered"
+                    labelPlacement={"outside"}
+                    type={isVisible ? "text" : "password"}
+                    endContent={
+                      <button
+                        className="focus:outline-none"
+                        type="button"
+                        onClick={toggleVisibility}
+                      >
+                        {isVisible ? (
+                          <EyeSlash variant="Bulk" />
+                        ) : (
+                          <Eye variant="Bulk" />
+                        )}
+                      </button>
+                    }
+                    errorMessage={<>{formik.errors.password1 ?? ""}</>}
+                    isInvalid={!!formik.errors.password1}
+                  />
+                  <Input
+                    {...formik.getFieldProps({ name: "password2" })}
+                    name="password2"
+                    label={t("signup.confirm_password")}
+                    size="sm"
+                    variant="bordered"
+                    labelPlacement={"outside"}
+                    type={isVisible ? "text" : "password"}
+                    errorMessage={<>{formik.errors.password2 ?? ""}</>}
+                    isInvalid={!!formik.errors.password2}
+                  />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="danger" variant="light" onPress={onClose}>
+                    انصراف
+                  </Button>
+                  <Button color="primary" type="submit">
+                    بله
+                  </Button>
+                </ModalFooter>
+              </form>
             </>
           )}
         </ModalContent>
