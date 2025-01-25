@@ -15,7 +15,7 @@
   "dependencies": {
     "@faker-js/faker": "^9.2.0",
     "@nextui-org/button": "^2.0.37",
-    "@nextui-org/react": "^2.4.6",
+    "@nextui-org/react": "^2.2.5",
     "@nextui-org/use-infinite-scroll": "^2.1.5",
     "@testing-library/jest-dom": "^6.6.3",
     "axios": "^1.7.7",

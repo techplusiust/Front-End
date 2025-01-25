@@ -13,9 +13,8 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/react";
-import * as React from "react";
-import { useTranslation } from "react-i18next";
-import { FiGlobe } from "react-icons/fi";
+import { FiGlobe } from "react-icons/fi"; 
+import { AcmeLogo } from "./AcmeLogo";
 import { useRecoilState } from "recoil";
 import { authAtom } from "../../recoil/authAtom";
 import { languageAtom } from "../../recoil/languageAtom";
