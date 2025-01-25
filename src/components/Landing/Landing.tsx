@@ -1,15 +1,11 @@
 import { Link } from "react-router-dom";
 import "./Landing.css";
 
-import { FaPhone } from "react-icons/fa";
-import { FaRegEnvelope } from "react-icons/fa6";
-import { LiaMapMarkerAltSolid } from "react-icons/lia";
 import img15 from "../../assets/fonts/iranyekan/Images/landingimage/client1.jpg";
 import img16 from "../../assets/fonts/iranyekan/Images/landingimage/client2.jpg";
 import img1676 from "../../assets/fonts/iranyekan/Images/aabbaabb.jpg";
 
 import img1 from "../../assets/fonts/iranyekan/Images/landingimage/hero-bg.png";
-import img3 from "../../assets/fonts/iranyekan/Images/landingimage/s1.png";
 import img4 from "../../assets/fonts/iranyekan/Images/landingimage/s2.png";
 import img5 from "../../assets/fonts/iranyekan/Images/landingimage/s3.png";
 import img2 from "../../assets/fonts/iranyekan/Images/landingimage/slider-img.png";
