@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   Avatar,
   Button,
@@ -19,7 +21,8 @@ import { useRecoilState } from "recoil";
 import { authAtom } from "../../recoil/authAtom";
 import { languageAtom } from "../../recoil/languageAtom";
 import { userAtom } from "../../recoil/userAtom";
-import { AcmeLogo } from "./AcmeLogo";
+import { useTranslation } from "react-i18next";
+
 
 const menuItems = [
   {
