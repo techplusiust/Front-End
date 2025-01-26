@@ -35,15 +35,24 @@ const SignupForm = () => {
         const response = await axios.get(
           "http://127.0.0.1:8000/api/professors/all/"
         );
-        console.log(response.data);
-        setSubjectOptions(response.data); // فرض می‌شود که پاسخ API شامل لیست دانشکده‌ها است
+        
+        // بررسی ساختار پاسخ API
+        const data = response.data?.data || response.data;
+  
+        if (Array.isArray(data)) {
+          console.log("API Data:", data);
+          setSubjectOptions(data); // تنظیم داده‌ها
+        } else {
+          console.error("Unexpected API response format:", response.data);
+        }
       } catch (error) {
-        console.error("Error fetching faculties:", error);
+        console.error("Error fetching faculties:", error.response?.data || error.message);
       }
     };
-
+  
     fetchFaculties();
   }, []);
+  
 
   const validationSchema = Yup.object({
     fullname: Yup.string().required(t("signup.errors.fullname_required")),
@@ -219,8 +228,8 @@ const SignupForm = () => {
             isInvalid={!!formik.errors.department}
           >
             {subjectOptions.map((item: any) => (
-              <SelectItem key={item.id} value={item.id}>
-                {item.title}
+              <SelectItem key={item.id} value={item.department.fa} textValue={item.department.fa}>
+                <span>{item.department.fa}</span>
               </SelectItem>
             ))}
           </Select>
