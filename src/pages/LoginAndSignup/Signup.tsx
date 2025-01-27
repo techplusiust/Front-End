@@ -35,7 +35,8 @@ const SignupForm = () => {
       try {
         const response = await axios.get(
           // "http://127.0.0.1:8000/api/professors/all/"
-          "http://194.5.206.181:8000/api/professors/all/"
+          // "http://194.5.206.181:8000/api/professors/all/"
+          "http://backend:8000/api/professors/all/"
         );
         
         // بررسی ساختار پاسخ API
