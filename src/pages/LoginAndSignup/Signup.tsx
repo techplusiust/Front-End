@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useQuery } from "../../hooks/useQuery";
-
+//دوباره پوش مینمایم
 const initialValues = {
   fullname: "",
   national_code: "",
@@ -18,13 +18,14 @@ const initialValues = {
   department: "",
 };
 
-
 const SignupForm = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  const [subjectOptions, setSubjectOptions] = useState<any[]>([]);
-  
+  const [uniqueDepartments, setUniqueDepartments] = useState<
+    { en: string; fa: string }[]
+  >([]);
+
   const navigate = useNavigate();
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
@@ -33,18 +34,28 @@ const SignupForm = () => {
     const fetchFaculties = async () => {
       try {
         const response = await axios.get(
-          // "http://127.0.0.1:8000/api/professors/all/"
-          "http://194.5.206.181:8000/api/professors/all/"
+          "http://194.5.206.181:8000/api/professors/all"
         );
-        console.log(response.data);
-        setSubjectOptions(response.data); // فرض می‌شود که پاسخ API شامل لیست دانشکده‌ها است
+        // Explicitly type the departments and unique variables
+        const departments: { en: string; fa: string }[] = response.data.map(
+          (item: any) => item.department
+        );
+  
+        const unique: { en: string; fa: string }[] = Array.from(
+          new Map(
+            departments.map((dep) => [dep.en, dep]) // Using dep.en as the key
+          ).values()
+        );
+  
+        setUniqueDepartments(unique);
       } catch (error) {
         console.error("Error fetching faculties:", error);
       }
     };
-
+  
     fetchFaculties();
   }, []);
+  
 
   const validationSchema = Yup.object({
     fullname: Yup.string().required(t("signup.errors.fullname_required")),
@@ -122,8 +133,8 @@ const SignupForm = () => {
   return (
     <div
       className="w-full max-w-md h-full px-4 py-6 mt-4"
-      lang="he-IL"
-      dir="rtl"
+      lang={i18n.language === "fa" ? "fa-IR" : "fa-IR"}
+      dir={i18n.language === "fa" ? "rtl" : "rtl"}
     >
       <div>
         <h1 className="text-blue-700 font-bold text-xl">{t("signup.title")}</h1>
@@ -136,7 +147,7 @@ const SignupForm = () => {
           }}
         >
           <Input
-            {...formik.getFieldProps({ name: "fullname" })}
+            {...formik.getFieldProps("fullname")}
             name="fullname"
             label={t("signup.fullname")}
             size="sm"
@@ -146,7 +157,7 @@ const SignupForm = () => {
             isInvalid={!!formik.errors.fullname}
           />
           <Input
-            {...formik.getFieldProps({ name: "national_code" })}
+            {...formik.getFieldProps("national_code")}
             name="national_code"
             label={t("signup.national_code")}
             size="sm"
@@ -156,7 +167,7 @@ const SignupForm = () => {
             isInvalid={!!formik.errors.national_code}
           />
           <Input
-            {...formik.getFieldProps({ name: "student_number" })}
+            {...formik.getFieldProps("student_number")}
             name="student_number"
             label={t("signup.student_number")}
             size="sm"
@@ -166,7 +177,7 @@ const SignupForm = () => {
             isInvalid={!!formik.errors.student_number}
           />
           <Input
-            {...formik.getFieldProps({ name: "email" })}
+            {...formik.getFieldProps("email")}
             name="email"
             label={t("signup.email")}
             size="sm"
@@ -176,7 +187,7 @@ const SignupForm = () => {
             isInvalid={!!formik.errors.email}
           />
           <Input
-            {...formik.getFieldProps({ name: "password1" })}
+            {...formik.getFieldProps("password1")}
             name="password1"
             label={t("signup.password")}
             size="sm"
@@ -200,13 +211,13 @@ const SignupForm = () => {
             isInvalid={!!formik.errors.password1}
           />
           <Input
-            {...formik.getFieldProps({ name: "password2" })}
+            {...formik.getFieldProps("password2")}
             name="password2"
             label={t("signup.confirm_password")}
             size="sm"
             variant="bordered"
             labelPlacement={"outside"}
-            type={isVisible ? "text" : "password"}
+            type="password"
             errorMessage={<>{formik.errors.password2 ?? ""}</>}
             isInvalid={!!formik.errors.password2}
           />
@@ -215,13 +226,13 @@ const SignupForm = () => {
             label={t("signup.department")}
             variant="bordered"
             labelPlacement={"outside"}
-            {...formik.getFieldProps({ name: "department" })}
+            {...formik.getFieldProps("department")}
             errorMessage={<>{formik.errors.department ?? ""}</>}
             isInvalid={!!formik.errors.department}
           >
-            {subjectOptions.map((item: any) => (
-              <SelectItem key={item.id} value={item.id}>
-                {item.title}
+            {uniqueDepartments.map((dept: any) => (
+              <SelectItem key={dept.en} value={dept.en}>
+                {i18n.language === "fa" ? dept.fa : dept.en}
               </SelectItem>
             ))}
           </Select>
