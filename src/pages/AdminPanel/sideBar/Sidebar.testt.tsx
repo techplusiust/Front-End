@@ -11,7 +11,6 @@ describe("Sidebar Component", () => {
       </BrowserRouter>
     );
 
-
     const coursesLink = screen.getByText("لیست درس‌ها");
     const usersLink = screen.getByText("لیست کاربران");
     const reportsLink = screen.getByText("گزارش‌ها");
