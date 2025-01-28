@@ -23,7 +23,7 @@ const LoginForm = () => {
   const setUser = useSetRecoilState(userAtom);
 
   useEffect(() => {
-    const storedLanguage = localStorage.getItem("language") || "en";
+    const storedLanguage = localStorage.getItem("language") || "fa";
     i18n.changeLanguage(storedLanguage);
   }, [i18n]);
 

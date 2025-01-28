@@ -34,38 +34,10 @@ const SignupForm = () => {
       try {
         const response = await axios.get(
           // "http://127.0.0.1:8000/api/professors/all/"
-          // "http://194.5.206.181:8000/api/professors/all/"
-          "http://backend:8000/api/professors/all/"
+          "http://194.5.206.181:8000/api/professors/all/"
         );
-<<<<<<< HEAD
-        
-        // بررسی ساختار پاسخ API
-        const data = response.data?.data || response.data;
-  
-        if (Array.isArray(data)) {
-          console.log("API Data:", data);
-          setUniqueDepartments(data); // تنظیم داده‌ها
-        } else {
-          console.error("Unexpected API response format:", response.data);
-        }
-
-        // Explicitly type the departments and unique variables
-        const departments: { en: string; fa: string }[] = response.data.map(
-          (item: any) => item.department
-        );
-  
-        const unique: { en: string; fa: string }[] = Array.from(
-          new Map(
-            departments.map((dep) => [dep.en, dep]) // Using dep.en as the key
-          ).values()
-        );
-  
-        setUniqueDepartments(unique);
-
-=======
         console.log(response.data);
         setSubjectOptions(response.data); // فرض می‌شود که پاسخ API شامل لیست دانشکده‌ها است
->>>>>>> parent of 19b3aa7 (API edit fir choosing department)
       } catch (error) {
         console.error("Error fetching faculties:", error.response?.data || error.message);
       }
