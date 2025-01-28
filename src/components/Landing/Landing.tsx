@@ -10,8 +10,16 @@ import img4 from "../../assets/fonts/iranyekan/Images/landingimage/s2.png";
 import img5 from "../../assets/fonts/iranyekan/Images/landingimage/s3.png";
 import img2 from "../../assets/fonts/iranyekan/Images/landingimage/slider-img.png";
 import img17 from "../../assets/fonts/iranyekan/Images/landingimage/انتخاب واحد2.jpg";
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 export default function Landing() {
+  const { t , i18n} = useTranslation();
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem("language");
+    const language = storedLanguage === "fa" || storedLanguage === "en" ? storedLanguage : "fa";
+    i18n.changeLanguage(language);
+  }, [i18n]);
   return (
     <>
       <div className="hero_area">
@@ -32,24 +40,8 @@ export default function Landing() {
                   <div className="row flex">
                     <div className=" col-md-6 custom mr-3">
                       <div className="detail-box">
-                        <h1 className="text-center">انتخاب واحد</h1>
-                        <p className="text-justify">
-                          انتخاب واحد، آسان‌تر از همیشه! به کمک سامانه هوشمند
-                          انتخاب واحد، در کمترین زمان و بدون سردرگمی برنامه
-                          تحصیلی خود را تنظیم کنید. ابزارها و امکانات پیشرفته ما
-                          برای دانشجویان طراحی شده است تا تجربه‌ای سریع، مطمئن و
-                          بدون استرس داشته باشند و به راحتی انتخاب واحد کنند. با
-                          استفاده از این سامانه نگران چیزی نباشید چرا که ما اینجاییم
-                          تا نگرانی شما را برطرف کنیم. ممنون می شویم در صورتی که
-                          از این سامانه خوشتان آمد، آنرا به دوستان عزیزتان معرفی کنید چرا
-                          که دوستان شما استثنائا در این سامانه دوستان ما خواهند بود پس دیگر
-                          چه نگرانی وجود دارد؟!
-                        </p>
-                        {/* <div className="btn-box items-center">
-                          <Link to="" className="btn1">
-                            ادامه مطلب
-                          </Link>
-                        </div> */}
+                        <h1 className="text-center">{t("landing.title")}</h1>
+                        <p className="text-justify">{t("landing.description")}</p>
                       </div>
                     </div>
                     <div className=" col-md-6 custom ">
@@ -61,15 +53,6 @@ export default function Landing() {
                 </div>
               </div>
             </div>
-            {/* <ol className="carousel-indicators">
-              <li
-                data-target="#customCarousel1"
-                data-slide-to="0"
-                className="active"
-              ></li>
-              <li data-target="#customCarousel1" data-slide-to="1"></li>
-              <li data-target="#customCarousel1" data-slide-to="2"></li>
-            </ol> */}
           </div>
         </section>
       </div>
@@ -77,43 +60,18 @@ export default function Landing() {
       <section className="service_section">
         <div className="container flex flex-col">
           <div className="heading_container heading_center">
-            <h2 className="fonty text-center">ویژگی های سامانه انتخاب واحد</h2>
+            <h2 className="fonty text-center">{t("landing.features_title")}</h2>
           </div>
           <div className="row flex">
-            {/* <div className=" col-md-4 boxy me-3 ">
-              <div className="box">
-                <div className="img-box">
-                  <img src={img3} alt="" />
-                </div>
-                <div className="detail-box">
-                  <h5>پیشنهاد هوشمند دروس</h5>
-                  <br />
-                  <p className="text-justify">
-                    سامانه ما با بررسی اطلاعات تحصیلی شما، از جمله رشته،
-                    مقطع و... لیستی از واحدهای
-                    پیشنهادی را به شما ارائه می‌دهد. این ویژگی به شما کمک می‌کند
-                    تا انتخابی درست با نیازهای آموزشی 
-                    داشته باشید
-                  </p>
-                  
-                </div>
-              </div>
-            </div> */}
             <div className=" col-md-4 boxy me-3 ">
               <div className="box ">
                 <div className="img-box">
                   <img src={img4} alt="" />
                 </div>
                 <div className="detail-box">
-                  <h5>بررسی هم‌پوشانی کلاس‌ها</h5>
+                  <h5>{t("feature1.title")}</h5>
                   <br />
-                  <p className="text-justify">
-                    یکی از دغدغه‌های همیشگی دانشجویان، تداخل زمانی کلاس‌ها است.
-                    سامانه هوشمند ما گزینه‌های انتخابی شما
-                    را بررسی کرده و از ایجاد هم‌پوشانی در زمان‌بندی کلاس‌ها
-                    جلوگیری می‌کند. 
-                  </p>
-                  {/* <Link to="">Read More</Link> */}
+                  <p className="text-justify">{t("feature1.description")}</p>
                 </div>
               </div>
             </div>
@@ -123,67 +81,32 @@ export default function Landing() {
                   <img src={img5} alt="" />
                 </div>
                 <div className="detail-box">
-                  <h5>زمان‌بندی دقیق</h5>
+                  <h5>{t("feature2.title")}</h5>
                   <br />
-                  <p className="text-justify">
-                    امکان مشاهده زمان‌های آزاد در برنامه تحصیلی، یکی از
-                    قابلیت‌های کلیدی این سامانه است. شما می‌توانید به راحتی
-                    ساعات خالی خود را پیدا کرده و دروس را بر اساس این
-                    زمان‌بندی به برنامه اضافه کنید.
-                  </p>
-                  {/* <Link to="">Read More</Link> */}
+                  <p className="text-justify">{t("feature2.description")}</p>
                 </div>
               </div>
             </div>
           </div>
-          {/* <div className="btn-box mb-3">
-            <Link to="" style={{ backgroundColor: "#070606" }}>
-              مشاهده همه
-            </Link>
-          </div> */}
         </div>
       </section>
 
       <section className="about_section layout_padding flex justify-center">
         <div className="container flex flex-col">
           <div className="heading_container heading_center">
-            <h2 className="fonty">درباره ما</h2>
+            <h2 className="fonty">{t("about.title")}</h2>
           </div>
           <div className="row flex justify-between" dir="ltr">
             <div className="col-md-6 why ml-4">
               <div className="img-box">
-                <img src={img17} alt="" />
+              <img src={img17} alt="" style={{ width: "70%", height: "auto" }} />
+
               </div>
             </div>
-            <div className="col-md-6 why me-5">
+            <div className="col-md-6 why me-5" style={{ width: "120%", height: "auto" }}>
               <div className="detail-box text-center">
-                <p className="text-right-justify">
-                  ما در تیم توسعه سامانه انتخاب واحد هوشمند، با هدف ساده‌تر کردن
-                  فرآیند برنامه‌ریزی تحصیلی برای دانشجویان، دست به طراحی و ایجاد
-                  سیستمی پیشرفته و کاربرپسند زده‌ایم. دغدغه اصلی ما، ایجاد
-                  تجربه‌ای بدون استرس، دقیق و سریع برای تمامی دانشجویان، از ترم
-                  اولی‌ها گرفته تا دانشجویان سال‌های پایانی است. با ترکیب دانش
-                  فنی، فناوری‌های نوین و آگاهی از نیازهای آموزشی، این سامانه
-                  طراحی شده تا به عنوان یک دستیار مطمئن و همراه، فرآیند انتخاب
-                  واحد را بهینه کند. ما معتقدیم که انتخاب واحد نباید یک فرآیند
-                  زمان‌بر یا پیچیده باشد، بلکه فرصتی برای دانشجویان است تا
-                  بتوانند به شکلی منظم و بدون نگرانی، برنامه‌ریزی خود را پیش
-                  ببرند ویژگی‌های منحصربه‌فرد این سامانه، از جمله پیشنهاد دروس
-                  متناسب با پیش‌نیازها، بررسی تداخل زمانی و اطلاع‌رسانی لحظه‌ای،
-                  نتیجه تلاش مداوم ما برای درک بهتر مشکلات دانشجویان و ارائه
-                  راه‌حل‌های کاربردی است. ما با تکیه بر بازخورد کاربران و بهبود
-                  مستمر، به دنبال آن هستیم که همیشه بهترین خدمات ممکن را ارائه
-                  دهیم. هدف ما این است که شما، دانشجوی گرامی، بتوانید بر روی
-                  مهم‌ترین اهداف خود تمرکز کنید و انتخاب واحد را به سامانه‌ای
-                  هوشمند و دقیق بسپارید
-                </p>
-                <p className="text-center font-bold">
-                  با ما، انتخاب واحد دیگر یک چالش نیست، بلکه گامی ساده و لذت‌بخش
-                  به سوی موفقیت تحصیلی است
-                </p>
-                {/* <Link to="" style={{ backgroundColor: "#070606" }}>
-                  ادامه مطلب
-                </Link> */}
+                <p className="text-right-justify">{t("about.description")}</p>
+                <p className="text-center font-bold">{t("about.highlight")}</p>
               </div>
             </div>
           </div>
@@ -193,9 +116,7 @@ export default function Landing() {
       <section className="client_section layout_padding flex justify-center">
         <div className="container flex flex-col">
           <div className="heading_container heading_center psudo_white_primary mb_45">
-            <h2 className="fonty">
-              نظر دانشجویان درباره سامانه انتخاب واحد ما
-            </h2>
+            <h2 className="fonty">{t("testimonials.title")}</h2>
           </div>
           <div className="carousel-wrap">
             <div className="owl-carousel client_owl-carousel flex ">
@@ -207,16 +128,11 @@ export default function Landing() {
                   <div className="detail-box">
                     <div className="client_id">
                       <div className="client_info">
-                        <p>علی حسینی</p>
+                        <p>{t("testimonials.client1.name")}</p>
                       </div>
                       <i className="fa fa-quote-left" aria-hidden="true"></i>
                     </div>
-                    <p>
-                      <br />
-                      استفاده از سامانه انتخاب واحد، تجربه‌ای عالی و بدون استرس
-                      بود. خیلی راحت برنامه ترم آینده خود را چیدم و رابط کاربری سایت عالی بود
-                      و راحت بودم. ممنون از این سامانه
-                    </p>
+                    <p>{t("testimonials.client1.feedback")}</p>
                   </div>
                 </div>
               </div>
@@ -228,40 +144,14 @@ export default function Landing() {
                   <div className="detail-box">
                     <div className="client_id">
                       <div className="client_info">
-                        <p>زهرا کمالی</p>
+                        <p>{t("testimonials.client2.name")}</p>
                       </div>
                       <i className="fa fa-quote-left" aria-hidden="true"></i>
                     </div>
-                    <p>
-                      <br />
-                      با سامانه پیشرفته انتخاب واحد، فرقی نمی‌کند کجا باشید؛
-                      تنها با یک گوشی موبایل خود می‌توانید دروس موردنظر را به سرعت
-                      و بدون دردسر انتخاب کنیدو لذت ببرید  .
-                    </p>
+                    <p>{t("testimonials.client2.feedback")}</p>
                   </div>
                 </div>
               </div>
-              {/* <div className="item">
-                <div className="box">
-                  <div className="img-box">
-                    <img src={img15} alt="" className="box-img" />
-                  </div>
-                  <div className="detail-box">
-                    <div className="client_id">
-                      <div className="client_info">
-                        <p>محمد عباسی</p>
-                      </div>
-                      <i className="fa fa-quote-left" aria-hidden="true"></i>
-                    </div>
-                    <p>
-                      <br />
-                      طراحی کاربرپسند این سامانه باعث شد حتی زمانی که در سفر
-                      بودم و به لپ‌تاپ دسترسی نداشتم، بتوانم با موبایلم
-                      وارد شوم و انتخاب واحدم را انجام دهم    
-                    </p>
-                  </div>
-                </div>
-              </div> */}
               <div className="item">
                 <div className="box">
                   <div className="img-box">
@@ -270,17 +160,11 @@ export default function Landing() {
                   <div className="detail-box">
                     <div className="client_id">
                       <div className="client_info">
-                        <p>مهسا رضایی</p>
+                        <p>{t("testimonials.client3.name")}</p>
                       </div>
                       <i className="fa fa-quote-left" aria-hidden="true"></i>
                     </div>
-                    <p>
-                      <br />
-                      سامانه انتخاب واحد جدید، بهترین هدیه‌ای بود که می‌توانستم
-                      دریافت کنم. این سامانه با ارائه یک راهکار کارآمد،
-                      به من کمک می‌کند تا بدون اتلاف وقت، برنامه درسی‌ام را
-                      تنظیم کنم {" "}
-                    </p>
+                    <p>{t("testimonials.client3.feedback")}</p>
                   </div>
                 </div>
               </div>
@@ -293,77 +177,35 @@ export default function Landing() {
         <div className="container ml-[200px]">
           <div dir="ltr" className="row flex">
             <div className="col-md-6 col-lg-3 info_col ml-5 pl-4">
-              {/* <div className="info_contact">
-                <h4 className="text-center">آدرس</h4>
-                <div className="contact_link_box">
-                  <Link to="" className="flex">
-                    <LiaMapMarkerAltSolid />
-                    <span>مکان</span>
-                  </Link>
-                  <Link to="" className="text-nowrap flex">
-                    <FaPhone className="me-1" />
-                    <span>تماس +01 1234567890</span>
-                  </Link>
-                  <Link to="" className="flex">
-                    <FaRegEnvelope className="me-1" />
-                    <span>demo@gmail.com</span>
-                  </Link>
-                </div>
-              </div> */}
-              {/* <div className="info_social">
-                <Link to="">
-                  <FaFacebookF />
-                </Link>
-                <Link to="">
-                  <RiTwitterXFill />
-                </Link>
-                <Link to="">
-                  <SlSocialLinkedin />
-                </Link>
-                <Link to="">
-                  <BsInstagram />
-                </Link>
-              </div> */}
             </div>
             <div className="col-md-6 col-lg-3 info_col flex text-center mr-auto pl-4">
               <div className="info_detail">
-                <h4>اطلاعات</h4>
-                <p className="about-text">
-                  سامانه انتخاب واحد هوشمند، ابزاری کاربردی و مدرن است که به شما
-                  امکان می‌دهد در کمترین زمان و با بالاترین دقت، برنامه تحصیلی
-                  خود را تنظیم کنید.
-                </p>
+                <h4>{t("info.title")}</h4>
+                <p className="about-text">{t("info.description")}</p>
               </div>
             </div>
             <div className="col-md-6 col-lg-2 info_col pl-4">
               <div className="info_link_box mr-9">
-                <h4>Links</h4>
+                <h4>{t("info.links_title")}</h4>
                 <div className="info_links">
                   <Link className="" to="/profile">
-                    پروفایل
+                    {t("info.links.profile")}
                   </Link>
                   <Link className="" to="/courses">
-                    دوره ها
+                    {t("info.links.courses")}
                   </Link>
                   <Link className="" to="/schedule">
-                    برنامه کلاس ها
+                    {t("info.links.schedule")}
                   </Link>
                   <Link className="" to="/professors">
-                    اساتید
+                    {t("info.links.professors")}
                   </Link>
                   <Link className="" to="/feedbackform">
-                    فرم انتقاد و پیشنهاد
+                    {t("info.links.feedback_form")}
                   </Link>
                 </div>
               </div>
             </div>
-            {/* <div className="col-md-6 col-lg-2 info_col mr-9">
-              <h4>مشترک شوید</h4>
-              <form action="#">
-                <input type="text" placeholder="Enter email" />
-                <button type="submit">Subscribe</button>
-              </form>
-            </div> */}
           </div>
         </div>
       </section>
@@ -374,8 +216,7 @@ export default function Landing() {
             &copy;{" "}
             <span id="displayYear">
               {" "}
-              حقوق معنوی این سامانه محفوظ بوده و هرگونه استفاده غیرمجاز از آن
-              پیگرد قانونی دارد{" "}
+              {t("footer.copyright")}
             </span>
           </p>
         </div>
