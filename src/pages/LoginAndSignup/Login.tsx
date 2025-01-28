@@ -23,8 +23,9 @@ const LoginForm = () => {
   const setUser = useSetRecoilState(userAtom);
 
   useEffect(() => {
-    const storedLanguage = localStorage.getItem("language") || "en";
-    i18n.changeLanguage(storedLanguage);
+    const storedLanguage = localStorage.getItem("language");
+    const language = storedLanguage === "fa" || storedLanguage === "en" ? storedLanguage : "fa";
+    i18n.changeLanguage(language);
   }, [i18n]);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -46,34 +47,34 @@ const LoginForm = () => {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/accounts/login/",
+        `${process.env.REACT_APP_API_URL || "http://127.0.0.1:8000"}/api/accounts/login/`,
         { email, password },
         { headers: { "Content-Type": "application/json" } }
       );
+
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
 
         setAuth({
           isLoggedin: true,
-          isAdmin: email === "admin@example.com" || false,
-          role: email === "admin@example.com" ? "admin" : "user",
+          isAdmin: response.data.user.role === "admin",
+          role: response.data.user.role,
         });
 
         setUser({
           id: response.data.user.id,
           email: response.data.user.email,
           department: response.data.user.department,
-          avatar: "",
+          avatar: response.data.user.avatar || "",
         });
 
-        navigate(response.data.isAdmin ? "/admin" : "/");
+        navigate(response.data.user.role === "admin" ? "/admin" : "/");
       } else {
         const errorMessage = response.data.message || t("login.error.general");
         console.error("Login error:", errorMessage);
       }
     } catch (error: any) {
-      const errorMessage =
-        error.response?.data?.message || t("login.error.server");
+      const errorMessage = error?.response?.data?.message || t("login.error.server");
       console.error("Server connection error:", errorMessage);
     }
   };
@@ -87,7 +88,11 @@ const LoginForm = () => {
   });
 
   return (
-    <div className="w-full max-w-md h-full px-4 py-6 " lang="he-IL" dir="rtl">
+    <div
+      className="w-full max-w-md h-full px-4 py-6"
+      lang={i18n.language}
+      dir={i18n.language === "fa" ? "rtl" : "ltr"}
+    >
       <div>
         <h1 className="text-blue-700 font-bold text-xl mb-4">
           {t("login.title")}
@@ -97,21 +102,25 @@ const LoginForm = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "0px",
+            gap: "12px",
           }}
         >
           <Input
-            {...formik.getFieldProps({ name: "email" })}
+            {...formik.getFieldProps("email")}
             name="email"
             label={t("login.email")}
             size="sm"
             variant="bordered"
             labelPlacement={"outside"}
-            errorMessage={<>{formik.errors.email ?? ""}</>}
-            isInvalid={!!formik.errors.email}
+            errorMessage={
+              formik.touched.email && formik.errors.email ? (
+                <>{formik.errors.email}</>
+              ) : null
+            }
+            isInvalid={formik.touched.email && !!formik.errors.email}
           />
           <Input
-            {...formik.getFieldProps({ name: "password" })}
+            {...formik.getFieldProps("password")}
             name="password"
             label={t("login.password")}
             size="sm"
@@ -135,8 +144,12 @@ const LoginForm = () => {
                 )}
               </button>
             }
-            errorMessage={<>{formik.errors.password ?? ""}</>}
-            isInvalid={!!formik.errors.password}
+            errorMessage={
+              formik.touched.password && formik.errors.password ? (
+                <>{formik.errors.password}</>
+              ) : null
+            }
+            isInvalid={formik.touched.password && !!formik.errors.password}
           />
           <Button
             size="sm"

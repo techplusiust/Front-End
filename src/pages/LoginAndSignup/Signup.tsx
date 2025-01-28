@@ -2,7 +2,7 @@ import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 import axios from "axios";
 import { useFormik } from "formik";
 import { Eye, EyeSlash, TickCircle } from "iconsax-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -18,21 +18,33 @@ const initialValues = {
   department: "",
 };
 
-const initialSubjectOptions = [
-  {
-    id: "1",
-    title: "مهندسی کامپیوتر",
-  },
-];
 
 const SignupForm = () => {
   const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  const subjectOptions = initialSubjectOptions;
+  const [subjectOptions, setSubjectOptions] = useState<any[]>([]);
+  
   const navigate = useNavigate();
   const query = useQuery();
   const redirect = query.get("redirect") || "/";
+
+  useEffect(() => {
+    const fetchFaculties = async () => {
+      try {
+        const response = await axios.get(
+          // "http://127.0.0.1:8000/api/professors/all/"
+          "http://194.5.206.181:8000/api/professors/all/"
+        );
+        console.log(response.data);
+        setSubjectOptions(response.data); // فرض می‌شود که پاسخ API شامل لیست دانشکده‌ها است
+      } catch (error) {
+        console.error("Error fetching faculties:", error);
+      }
+    };
+
+    fetchFaculties();
+  }, []);
 
   const validationSchema = Yup.object({
     fullname: Yup.string().required(t("signup.errors.fullname_required")),
