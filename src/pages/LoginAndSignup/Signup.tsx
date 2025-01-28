@@ -39,7 +39,7 @@ const SignupForm = () => {
         console.log(response.data);
         setSubjectOptions(response.data); // فرض می‌شود که پاسخ API شامل لیست دانشکده‌ها است
       } catch (error) {
-        console.error("Error fetching faculties:", error.response?.data || error.message);
+        console.error("Error fetching faculties:", error);
       }
     };
 
@@ -219,17 +219,9 @@ const SignupForm = () => {
             errorMessage={<>{formik.errors.department ?? ""}</>}
             isInvalid={!!formik.errors.department}
           >
-<<<<<<< HEAD
-
-            {uniqueDepartments.map((dept: any) => (
-              <SelectItem key={dept.en} value={dept.en}>
-                {i18n.language === "fa" ? dept.fa : dept.en}
-
-=======
             {subjectOptions.map((item: any) => (
               <SelectItem key={item.id} value={item.id}>
                 {item.title}
->>>>>>> parent of 19b3aa7 (API edit fir choosing department)
               </SelectItem>
             ))}
           </Select>
