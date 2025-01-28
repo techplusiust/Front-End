@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import "./Reports.css";
 import { useTranslation } from "react-i18next";
 
+const getFormattedDate = (daysToAdd: number = 0): string => {
+  const date = new Date();
+  date.setDate(date.getDate() + daysToAdd);
+  return new Intl.DateTimeFormat("fa-IR").format(date);
+};
+
 interface UserReport {
   id: number;
   name: string;
@@ -13,8 +19,8 @@ interface UserReport {
 const reportsData: UserReport[] = [
   {
     id: 1,
-    name: "علی حسینی",
-    joinDate: "1402/01/15",
+    name: "علی محمدی",
+    joinDate: getFormattedDate(),
     deleteDate: null,
     recentAccessPairs: [
       { entry: "10:30", exit: "14:45" },
@@ -25,8 +31,8 @@ const reportsData: UserReport[] = [
   {
     id: 2,
     name: "زهرا احمدی",
-    joinDate: "1401/12/10",
-    deleteDate: "1402/05/01",
+    joinDate: getFormattedDate(),
+    deleteDate: getFormattedDate(1),
     recentAccessPairs: [
       { entry: "09:15", exit: "12:00" },
       { entry: "13:30", exit: "15:00" },
@@ -35,8 +41,8 @@ const reportsData: UserReport[] = [
   },
   {
     id: 3,
-    name: "مهدی کاظمی",
-    joinDate: "1400/06/20",
+    name: "مهدی حسینی",
+    joinDate: getFormattedDate(),
     deleteDate: null,
     recentAccessPairs: [
       { entry: "11:00", exit: "13:00" },
@@ -46,8 +52,8 @@ const reportsData: UserReport[] = [
   },
   {
     id: 4,
-    name: "سارا مرادی",
-    joinDate: "1401/02/10",
+    name: "فرگل نصیری",
+    joinDate: getFormattedDate(),
     deleteDate: null,
     recentAccessPairs: [
       { entry: "08:30", exit: "12:30" },
@@ -57,9 +63,9 @@ const reportsData: UserReport[] = [
   },
   {
     id: 5,
-    name: "فاطمه رضایی",
-    joinDate: "1399/11/05",
-    deleteDate: "1402/02/20",
+    name: "هانیه کریمی",
+    joinDate: getFormattedDate(),
+    deleteDate: getFormattedDate(1),
     recentAccessPairs: [
       { entry: "07:45", exit: "10:15" },
       { entry: "12:30", exit: "14:45" },
@@ -68,8 +74,8 @@ const reportsData: UserReport[] = [
   },
   {
     id: 6,
-    name: "امیر صادقی",
-    joinDate: "1400/01/10",
+    name: "امیررضا قاسمی",
+    joinDate: getFormattedDate(),
     deleteDate: null,
     recentAccessPairs: [
       { entry: "09:00", exit: "11:30" },
@@ -79,156 +85,13 @@ const reportsData: UserReport[] = [
   },
   {
     id: 7,
-    name: "مریم اکبری",
-    joinDate: "1401/04/18",
+    name: "سمیرا علوی",
+    joinDate: getFormattedDate(),
     deleteDate: null,
     recentAccessPairs: [
       { entry: "08:15", exit: "11:45" },
       { entry: "12:30", exit: "15:00" },
       { entry: "16:00", exit: "19:00" },
-    ],
-  },
-  {
-    id: 8,
-    name: "حسین موسوی",
-    joinDate: "1402/06/01",
-    deleteDate: null,
-    recentAccessPairs: [
-      { entry: "10:00", exit: "12:30" },
-      { entry: "13:00", exit: "15:30" },
-      { entry: "16:30", exit: "19:00" },
-    ],
-  },
-  {
-    id: 9,
-    name: "ناهید سلطانی",
-    joinDate: "1402/04/20",
-    deleteDate: null,
-    recentAccessPairs: [
-      { entry: "09:45", exit: "12:15" },
-      { entry: "13:15", exit: "15:45" },
-      { entry: "16:30", exit: "19:00" },
-    ],
-  },
-  {
-    id: 10,
-    name: "رضا شیرازی",
-    joinDate: "1401/08/15",
-    deleteDate: null,
-    recentAccessPairs: [
-      { entry: "07:30", exit: "10:00" },
-      { entry: "12:00", exit: "14:30" },
-      { entry: "15:00", exit: "17:30" },
-    ],
-  },
-  {
-    id: 11,
-    name: "علیرضا صالحی",
-    joinDate: "1401/01/12",
-    deleteDate: null,
-    recentAccessPairs: [
-      { entry: "08:00", exit: "10:30" },
-      { entry: "11:00", exit: "13:30" },
-      { entry: "14:00", exit: "16:30" },
-    ],
-  },
-  {
-    id: 12,
-    name: "فرزاد محمدی",
-    joinDate: "1400/09/20",
-    deleteDate: null,
-    recentAccessPairs: [
-      { entry: "09:30", exit: "12:00" },
-      { entry: "12:30", exit: "15:00" },
-      { entry: "15:30", exit: "18:00" },
-    ],
-  },
-  {
-    id: 13,
-    name: "شادی کاظمی",
-    joinDate: "1402/02/01",
-    deleteDate: null,
-    recentAccessPairs: [
-      { entry: "08:30", exit: "11:00" },
-      { entry: "12:00", exit: "14:30" },
-      { entry: "15:00", exit: "17:30" },
-    ],
-  },
-  {
-    id: 14,
-    name: "کامران طاهری",
-    joinDate: "1402/07/15",
-    deleteDate: null,
-    recentAccessPairs: [
-      { entry: "09:00", exit: "12:30" },
-      { entry: "13:00", exit: "15:30" },
-      { entry: "16:00", exit: "18:30" },
-    ],
-  },
-  {
-    id: 15,
-    name: "بهزاد جمشیدی",
-    joinDate: "1401/03/25",
-    deleteDate: null,
-    recentAccessPairs: [
-      { entry: "10:00", exit: "12:30" },
-      { entry: "13:00", exit: "15:30" },
-      { entry: "16:00", exit: "18:00" },
-    ],
-  },
-  {
-    id: 16,
-    name: "آزاده یوسفی",
-    joinDate: "1400/07/07",
-    deleteDate: null,
-    recentAccessPairs: [
-      { entry: "08:00", exit: "10:30" },
-      { entry: "11:00", exit: "13:30" },
-      { entry: "14:00", exit: "16:30" },
-    ],
-  },
-  {
-    id: 17,
-    name: "حسین یزدی",
-    joinDate: "1401/11/05",
-    deleteDate: null,
-    recentAccessPairs: [
-      { entry: "09:30", exit: "12:00" },
-      { entry: "12:30", exit: "15:00" },
-      { entry: "15:30", exit: "18:00" },
-    ],
-  },
-  {
-    id: 18,
-    name: "محمود قاسمی",
-    joinDate: "1399/12/12",
-    deleteDate: null,
-    recentAccessPairs: [
-      { entry: "07:30", exit: "09:30" },
-      { entry: "11:00", exit: "13:30" },
-      { entry: "14:00", exit: "16:30" },
-    ],
-  },
-  {
-    id: 19,
-    name: "ستار اسدی",
-    joinDate: "1401/05/08",
-    deleteDate: null,
-    recentAccessPairs: [
-      { entry: "08:15", exit: "10:45" },
-      { entry: "11:30", exit: "14:00" },
-      { entry: "14:30", exit: "16:30" },
-    ],
-  },
-  {
-    id: 20,
-    name: "سینا نیکو",
-    joinDate: "1400/12/01",
-    deleteDate: null,
-    recentAccessPairs: [
-      { entry: "09:00", exit: "11:30" },
-      { entry: "12:00", exit: "14:30" },
-      { entry: "15:00", exit: "17:30" },
     ],
   },
 ];
@@ -261,9 +124,7 @@ const Reports: React.FC = () => {
               </p>
               <p>
                 <strong>{t("reports.delete_date")}:</strong>{" "}
-                {report.deleteDate
-                  ? report.deleteDate
-                  : t("reports.not_deleted")}
+                {report.deleteDate ? report.deleteDate : t("reports.not_deleted")}
               </p>
               <div>
                 <strong>{t("reports.recent_activity")}:</strong>

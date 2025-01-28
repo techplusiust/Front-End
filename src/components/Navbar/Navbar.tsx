@@ -158,7 +158,7 @@ const CustomNavbar: React.FC = () => {
                     {t("profile")}
                   </DropdownItem>
                 )}
-                <DropdownItem onClick={logout} key="logout" color="danger">
+                <DropdownItem onClick={logout} key="logout" color="danger" href="/">
                   {t("logout")}
                 </DropdownItem>
               </DropdownMenu>
