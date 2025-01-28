@@ -156,5 +156,62 @@
   "not_found": {
     "title": "The page you are looking for could not be found!",
     "go_home": "Return to Homepage"
+  },
+  "landing": {
+    "title": "Course Registration",
+    "description": "Course registration made easier than ever! With our intelligent course selection system, you can quickly and efficiently plan your semester without any hassle."
+  },
+  "landing.features_title": "System Features",
+  "landing.feature1": {
+    "title": "Class Overlap Detection",
+    "description": "One of the main concerns for students is overlapping class schedules. Our intelligent system checks your selections to ensure no time conflicts."
+  },
+  "landing.feature2": {
+    "title": "Accurate Scheduling",
+    "description": "Easily view your free time slots and add courses to your schedule with precision using our advanced scheduling tools."
+  },
+  "about": {
+    "title": "About Us",
+    "description": "Our team has developed an intelligent course registration system to simplify the academic planning process for students, ensuring a stress-free and efficient experience.",
+    "highlight": "With us, course registration is no longer a challenge but a simple and enjoyable step toward academic success."
+  },
+  "testimonials": {
+    "title": "What Students Say About Our System",
+    "client1": {
+      "name": "Ali Hosseini",
+      "feedback": "Using the course registration system was an excellent and stress-free experience. I easily planned my next semester, and the user interface was great!"
+    },
+    "client2": {
+      "name": "Zahra Kamali",
+      "feedback": "With the advanced registration system, you can select your desired courses quickly and easily, even with just your phone!"
+    },
+    "client3": {
+      "name": "Mahsa Rezaei",
+      "feedback": "The new course registration system is the best tool I could ask for. It provides an efficient solution to help me organize my schedule effortlessly."
+    }
+  },
+  "info": {
+    "title": "Information",
+    "description": "The intelligent course registration system is a practical and modern tool that allows you to plan your academic schedule with high accuracy in the shortest time.",
+    "links_title": "Links",
+    "links": {
+      "profile": "Profile",
+      "courses": "Courses",
+      "schedule": "Schedule",
+      "professors": "Professors",
+      "feedback_form": "Feedback Form"
+    }
+  },
+  "footer": {
+    "copyright": "All rights reserved for this system, and any unauthorized use will be legally pursued."
+  },
+
+  "feature1": {
+    "title": "Class Overlap Detection",
+    "description": "One of the main concerns for students is overlapping class schedules. Our intelligent system checks your selections to ensure no time conflicts."
+  },
+  "feature2": {
+    "title": "Accurate Scheduling",
+    "description": "Easily view your free time slots and add courses to your schedule with precision using our advanced scheduling tools."
   }
 }
