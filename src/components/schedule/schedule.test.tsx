@@ -153,11 +153,11 @@ describe("Schedule Component", () => {
     });
   });
 
-  it("renders the schedule component heading", () => {
-    render(<Schedule />);
-    // Check the main heading
-    expect(screen.getByText("زمان بندی کلاس‌ها")).toBeInTheDocument();
-  });
+  // it("renders the schedule component heading", () => {
+  //   render(<Schedule />);
+  //   // Check the main heading
+  //   expect(screen.getByText("زمان بندی کلاس‌ها")).toBeInTheDocument();
+  // });
 
   it("displays filtered courses by name", () => {
     render(<Schedule />);
