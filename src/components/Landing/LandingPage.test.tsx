@@ -1,32 +1,25 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, beforeEach } from "vitest";
-import LandingPage from "../Landing/Landing";
+import Landing from "./Landing";
 import { RecoilRoot } from "recoil";
 import { BrowserRouter } from "react-router-dom";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../../i18n";
 
-// import NavbarPage from './NavbarPage';
-// import SliderSection from './SliderSection';
-// import ServiceSection from './ServiceSection';
-// import AboutSection from './AboutSection';
-// import ClientSection from './ClientSection';
-// import InfoSection from './InfoSection';
-
-// تست رندر کلی لندینگ پیج
-describe("LandingPage", () => {
+describe("Landing Component", () => {
   beforeEach(() => {
     render(
       <RecoilRoot>
         <BrowserRouter>
-          {" "}
-          {/* اضافه کردن BrowserRouter */}
-          <LandingPage />
+          <I18nextProvider i18n={i18n}>
+            <Landing />
+          </I18nextProvider>
         </BrowserRouter>
       </RecoilRoot>
     );
   });
 
   it("should render the landing page without crashing", async () => {
-    // استفاده از findByText برای اطمینان از لود شدن کامل
     const elements = await screen.findAllByText(/انتخاب واحد/i);
     expect(elements.length).toBeGreaterThan(0);
   });
@@ -49,9 +42,4 @@ describe("LandingPage", () => {
   it("should display client reviews", () => {
     expect(screen.getByText(/نظر دانشجویان/i)).toBeInTheDocument();
   });
-
-  // it('should render contact information', () => {
-  //   expect(screen.getByText(/آدرس/i)).toBeInTheDocument();
-  //   expect(screen.getByText(/تماس/i)).toBeInTheDocument();
-  // });
 });
