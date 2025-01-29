@@ -39,7 +39,7 @@ const UserPage = () => {
     if (selectedUser) {
       setUsers(users.map((user) => (user.id === selectedUser.id ? selectedUser : user)));
     }
-    onOpenChangeEdit(false);
+    // onOpenChangeEdit(false);
   };
 
   const handleDelete = (user: User) => {
@@ -51,7 +51,7 @@ const UserPage = () => {
     if (userToDelete) {
       setUsers(users.filter((user) => user.id !== userToDelete.id));
     }
-    onOpenChangeDelete(false);
+    // onOpenChangeDelete(false);
   };
 
   return (
